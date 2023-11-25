@@ -17,8 +17,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-C:\xampp\htdocs\point-of-sale-system\package-lock.json
-C:\xampp\htdocs\point-of-sale-system\.env
-/.env.example
-/.gitignore
-/package-lock.json
