@@ -10,6 +10,18 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'product_name',
+        'product_code',
+        'product_price',
+        'product_quantity',
+        'supplier_id',
+        'category_id',
+        'user_id',
+    ];
+
+    protected $primaryKey = 'product_id';
+
     use HasFactory;
 
     function supplier() : HasOne
