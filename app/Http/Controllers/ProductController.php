@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product) {
         $formFields = $request->all();
         $product->update($formFields);
-        return redirect('/products')->with('success', 'Product updated successfully!');
+        return redirect('products')->with('success', 'Product updated successfully!');
     }
 
     public function destroy(Product $product) {

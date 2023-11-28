@@ -1,4 +1,6 @@
 <x-layout>
+    <a href="/products/create">
+        <button>Add Product</button></a>
     <table>
         <thead>
             <th>Product ID</th>
@@ -24,7 +26,7 @@
                     <td>{{$product->category->category_name}}</td>
                     <td>{{$product->user->user_fname}}</td>
                     <td><a href="/products/{{$product->product_id}}"><button>View</button></a></td>
-                    <td><a href="/products/edit/{{$product->product_id}}"><button>View</button></a></td>
+                    <td><a href="/products/edit/{{$product->product_id}}"><button>Edit</button></a></td>
                     <td>
                         <form action="/products/{{$product->product_id}}" method="post">
                             @csrf
