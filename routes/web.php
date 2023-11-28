@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('dbAdd_category');
 });
+Route::get('add_category', function () {
+    return view('dbAdd_category');
+});
+Route::get('add_supplier', function () {
+    return view('dbAdd_supplier');
+});
+Route::get('add_usertype', function () {
+    return view('dbAdd_usertype');
+});
+
+
+Route::post('save_category', [AdminController::class, 'save_category']);
+Route::post('save_supplier', [AdminController::class, 'save_supplier']);
+Route::post('save_usertype', [AdminController::class, 'save_usertype']);
+
