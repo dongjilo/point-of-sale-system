@@ -16,11 +16,13 @@ class AdminController extends Controller
         $data->category_desc=$request->categoryDesc;
         $data->save();
 
+        session()->forget('message');
         return redirect()->back()->with('message', 'Category Added Successfully!');
 
     }
 
     function save_supplier(Request $request){
+
         $data = new Supplier;
         $data->supplier_name=$request->supplierName;
         $data->supplier_phone=$request->supplierPhone;
@@ -28,15 +30,17 @@ class AdminController extends Controller
 
         $data->save();
 
+        session()->forget('message');
         return redirect()->back()->with('message', 'Supplier Added Successfully!');
     }
 
     function save_usertype(Request $request){
         $data = new UserType;
-        $data->category_name=$request->categoryName;
-        $data->category_desc=$request->categoryDesc;
+        $data->type_name=$request->typeName;
+        $data->type_desc=$request->typeDesc;
         $data->save();
 
+        session()->forget('message');
         return redirect()->back()->with('message', 'User Type Added Successfully!');
 
     }

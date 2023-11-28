@@ -8,6 +8,12 @@
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	@if (session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+   	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+	@endif
 	<form action="{{url('save_category')}}" method="post" class="container-sm w-25">
 
 		@csrf

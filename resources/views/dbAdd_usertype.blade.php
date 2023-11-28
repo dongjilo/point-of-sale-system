@@ -8,22 +8,20 @@
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	@if (session()->has('message'))
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+  	<strong>Success!</strong> {{ session()->get('message') }}
+ 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	@endif
 	<form action="{{url('save_usertype')}}" method="post" class="container-sm w-25">
 		@csrf
 
-		@if (session()->has('message'))
-    	<div class="alert alert-success">
-        {{ session()->get('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    	</div>
-		@endif
-
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
 		<label for="" class="form-label">User Type Name</label>
-		<input type="text" class="form-control" name="categoryName">
+		<input type="text" class="form-control" name="typeName">
 
 		<label for="" class="form-label">User Type Description</label>
-		<textarea name="categoryDesc" class="form-control-plaintext border border-black">
+		<textarea name="typeDesc" class="form-control-plaintext border border-black">
 
 		</textarea>
 		<input type="submit" value="ADD" class="mt-3 btn btn-primary">
