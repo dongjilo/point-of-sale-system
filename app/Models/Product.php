@@ -4,54 +4,55 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'product_name',
-        'product_code',
-        'product_price',
-        'product_quantity',
-        'supplier_id',
-        'category_id',
-        'user_id',
-    ];
+    protected $guarded = [];
 
     protected $primaryKey = 'product_id';
 
     use HasFactory;
 
-    function supplier() : HasOne
+
+    function supplier() : BelongsTo
     {
-        return $this->hasOne(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
-    function user() : HasOne
+    function category() : BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-    function inventory() : BelongsToMany
+    function user() : BelongsTo
     {
-        return $this->belongsToMany(Inventory::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    function order() : BelongsToMany
+
+
+    function inventory() : HasMany
     {
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(Inventory::class);
     }
 
-    function supplierOrder() : BelongsToMany
+    function order() : HasMany
     {
-        return $this->belongsToMany(SupplierOrder::class);
+        return $this->hasMany(Order::class);
     }
 
-    function supplierReceive() : BelongsToMany
+    function supplierOrder() : HasMany
     {
-        return $this->belongsToMany(SupplierReceive::class);
+        return $this->hasMany(SupplierOrder::class);
+    }
+
+    function supplierReceive() : HasMany
+    {
+        return $this->hasMany(SupplierReceive::class);
     }
 
 

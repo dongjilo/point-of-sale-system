@@ -13,19 +13,27 @@
         </thead>
 
         <tbody>
-        {{-- TODO: Figure out how to display the supplier/category/user name instead of their id --}}
             @foreach ($products as $product)
-                <td>{{$product->product_id}}</td>
-                <td>{{$product->product_name}}</td>
-                <td>{{$product->product_code}}</td>
-                <td>{{$product->product_price}}</td>
-                <td>{{$product->product_quantity}}</td>
-                <td>{{$product->supplier_id}}</td>
-                <td>{{$product->category_id}}</td>
-                <td>{{$product->user_id}}</td>
-                <td><a href="/products/{{$product->product_id}}"><button>View</button></a></td>
+                <tr>
+                    <td>{{$product->product_id}}</td>
+                    <td>{{$product->product_name}}</td>
+                    <td>{{$product->product_code}}</td>
+                    <td>{{$product->product_price}}</td>
+                    <td>{{$product->product_quantity}}</td>
+                    <td>{{$product->supplier->supplier_name}}</td>
+                    <td>{{$product->category->category_name}}</td>
+                    <td>{{$product->user->user_fname}}</td>
+                    <td><a href="/products/{{$product->product_id}}"><button>View</button></a></td>
+                    <td><a href="/products/edit/{{$product->product_id}}"><button>View</button></a></td>
+                    <td>
+                        <form action="/products/{{$product->product_id}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
-
     </table>
 </x-layout>

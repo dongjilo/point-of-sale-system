@@ -8,8 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
         {{ $slot }}
-    </main>
 </body>
 </html>

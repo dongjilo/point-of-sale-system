@@ -25,14 +25,30 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
-        $formFields = $request->validate([
-            'product_name' => 'required',
-            'product_price' => 'required',
-            'product_quantity' => 'required',
-        ]);
+
+        $formFields = $request->all();
 
         Product::create($formFields);
 
+
+
         return redirect('/products')->with('success', 'Product created successfully!');
+    }
+
+    public function edit(Product $product) {
+        return view('products.edit', [
+            'product' => $product
+        ]);
+    }
+
+    public function update(Request $request, Product $product) {
+        $formFields = $request->all();
+        $product->update($formFields);
+        return redirect('/products')->with('success', 'Product updated successfully!');
+    }
+
+    public function destroy(Product $product) {
+        $product->delete();
+        return redirect('products');
     }
 }
