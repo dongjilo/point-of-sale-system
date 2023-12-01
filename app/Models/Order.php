@@ -13,26 +13,22 @@ class Order extends Model
 {
     use HasFactory;
 
-    function product() : HasMany
+    protected $primaryKey = 'order_id';
+
+    function user() : BelongsTo
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(User::class);
     }
 
-    function inventory() : HasMany
+    function orderItems() : HasMany
     {
-        return $this->hasMany(Inventory::class);
+        return $this->hasMany(OrderItem::class);
     }
 
-    function user() : HasOne
+    function billing() : HasOne
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(Billing::class);
     }
-
-    function billing() : BelongsTo
-    {
-        return $this->belongsTo(Billing::class);
-    }
-
 
 
 }
