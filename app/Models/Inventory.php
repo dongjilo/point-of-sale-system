@@ -11,19 +11,16 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    function product() : HasMany
+    protected $primaryKey = 'inventory_id';
+
+    function product() : BelongsToMany
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 
-    function supplier_receive() : HasMany
+    function supplierReceive() : BelongsToMany
     {
-        return $this->hasMany(SupplierReceive::class);
-    }
-
-    function inventory() : BelongsToMany
-    {
-        return $this->belongsToMany(Inventory::class);
+        return $this->belongsToMany(SupplierReceive::class);
     }
 
 }

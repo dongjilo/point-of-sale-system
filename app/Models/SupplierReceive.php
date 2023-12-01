@@ -12,19 +12,19 @@ class SupplierReceive extends Model
 {
     use HasFactory;
 
-    function supplierOrder() : HasMany
+    protected $primaryKey = 'supplier_receive_id';
+
+    function supplierOrder() : BelongsTo
     {
-        return $this->hasMany(SupplierOrder::class);
+        return $this->belongsTo(SupplierOrder::class, 'supplier_order_id');
     }
 
-    function product() : HasMany
+    function product() : BelongsToMany
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_id');
     }
-
-    function inventory() : BelongsToMany
+    function inventory() : HasMany
     {
-        return $this->belongsToMany(Inventory::class);
+        return $this->hasMany(Inventory::class);
     }
-
 }

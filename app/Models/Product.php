@@ -33,16 +33,14 @@ class Product extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-
-
     function inventory() : HasMany
     {
         return $this->hasMany(Inventory::class);
     }
 
-    function order() : HasMany
+    function orderItem() : HasMany
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(OrderItem::class);
     }
 
     function supplierOrder() : HasMany

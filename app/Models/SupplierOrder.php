@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -12,23 +13,21 @@ class SupplierOrder extends Model
 {
     use HasFactory;
 
-    function product() : HasMany
+    protected $primaryKey = 'supplier_order_id';
+
+    function supplier() : BelongsTo
     {
-        return $this->hasMany(Product::class);
-    }
-    function supplier() : HasOne
-    {
-        return $this->hasOne(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
-    function user() : HasOne
+    function product() : BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
-    function supplierReceive() : BelongsToMany
+    function user() : BelongsTo
     {
-        return $this->belongsToMany(SupplierReceive::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }
