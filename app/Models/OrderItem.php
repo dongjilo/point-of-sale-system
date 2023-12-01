@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Billing extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'billing_id';
+    protected $primaryKey = 'order_item_id';
 
     function order() : BelongsTo
     {
@@ -22,5 +22,4 @@ class Billing extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 }
