@@ -25,9 +25,16 @@ use Illuminate\Support\Facades\Route;
  * destroy - delete
  */
 
+//default page
 Route::get('/', function () {
-    return view('index');
+    return view('test');
 });
+
+// //url from <a href="">
+// Route::get('/', function () {
+//     return view('login');
+// });
+
 
 
 // Users
