@@ -23,82 +23,58 @@
     <div id="wrapper">
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="retail-dashboard.html">
+          <a class="nav-link" href="#">
             <i class="fa fa-fw fa-line-chart"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="sales-reports.html">
-            <i class="fa fa-fw fa-bar-chart"></i>
-            <span>Sales Reports</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="inventory-reports.html">
+          <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-tags"></i>
-            <span>Inventory Reports</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="payment-reports.html">
-            <i class="fa fa-fw fa-money"></i>
-            <span>Payment Reports</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="sales.html">
-            <i class="fa fa-fw fa-table"></i>
-            <span>Check Sales</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="" data-toggle="modal" data-target="#addSaleModal">
-            <i class="fa fa-fw fa-plus"></i>
-            <span>Record New Sale</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="" data-toggle="modal" data-target="#addProductModal">
-            <i class="fa fa-fw fa-tags"></i>
-            <span>Add New Product</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="product-brands.html">
-            <i class="fa fa-fw fa-industry"></i>
-            <span>Product Brands</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="product-vendors.html">
-            <i class="fa fa-fw fa-users"></i>
-            <span>Product Vendors</span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-
-
-expanded="false">
-            <i class="fa fa-fw fa-folder"></i>
             <span>
-              Manage Products
+              Products
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Products</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-plus"></i> Add Product</a>
+            <a class="dropdown-item" href="products.html"> <i class="fa fa-tags"></i> All Products</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Product Types</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-plus"></i> Add New Type</a>
+            <a class="dropdown-item" href="product-types.html"> <i class="fa fa-tags"></i> Product Types</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="history.html">
-            <i class="fa fa-fw fa-calendar"></i>
-            <span>History</span></a>
+          <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-truck"></i>
+            <span>
+              Suppliers
+              <i class="float-right fa fa-angle-down"></i>
+            </span>
+          </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Suppliers</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-fw fa-plus"></i> Add Supplier</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-truck"></i> All Suppliers</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Supplier Order/Receive</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-fw fa-plus"></i>Order Product</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i>Receive Product</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="export-record.html">
-            <i class="fa fa-fw fa-external-link"></i>
-            <span>Export Record</span></a>
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-shopping-cart"></i>
+            <span>Orders</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="general-settings.html">
-            <i class="fa fa-fw fa-cogs"></i>
-            <span>General Settings</span></a>
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span>Inventory</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="help.html">
-            <i class="fa fa-fw fa-life-ring"></i>
-            <span>Help</span></a>
-        </li>
+
       </ul>
       <div id="content-wrapper">
         <div class="container-fluid">
@@ -114,17 +90,17 @@ expanded="false">
               <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-header">
                   <h1>Sales Count</h1>
-                  <small class="float-left">Last two weeks</small>
+                  <small class="float-left">In the last month</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fa fa-fw fa-money"></i>
+                    <i class="fa fa-money"></i>
                   </div>
                   <div class="card-text">
                     <h1 class="text-center display-3"><strong>135</strong></h1>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="sales-count.html">
+                <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
@@ -133,10 +109,10 @@ expanded="false">
               </div>
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-header">
                   <h1>Top-Selling</h1>
-                  <small class="float-left">Speakers</small>
+                  <small class="float-left">TBD</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
@@ -146,7 +122,7 @@ expanded="false">
                     <h1 class="text-center display-3"><strong>24</strong></h1>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="top-selling.html">
+                <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
@@ -155,10 +131,10 @@ expanded="false">
               </div>
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-dark o-hidden h-100">
+              <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-header">
-                  <h1>Short Items</h1>
-                  <small class="float-left">Includes short and requested items</small>
+                  <h1>Almost out of stock</h1>
+                  <small class="float-left">list of short stocks</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
@@ -177,17 +153,17 @@ expanded="false">
               </div>
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card text-white bg-danger o-hidden h-100">
                 <div class="card-header">
-                  <h1>Improvements</h1>
-                  <small class="float-left">Based on total monthly sales</small>
+                  <h1>Nearly expired products</h1>
+                  <small class="float-left">list of products nearing expiry date</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fa fa-fw fa-shopping-cart"></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>27%</strong></h1>
+                    <h1 class="text-center display-3"><strong>15</strong></h1>
                   </div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="improvements.html">
@@ -199,15 +175,15 @@ expanded="false">
               </div>
             </div>
           </div>
-          <!-- Area Chart Example-->
+
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-chart-area"></i>
-              Area Chart Example</div>
+              Profit for the last month</div>
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
-            <div class="card-footer small text-muted">Last Updated At:  </div>
+            <div class="card-footer small text-muted">Last Updated:  </div>
           </div>
         </div>
 
@@ -217,9 +193,6 @@ expanded="false">
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
     </a>
-
-
-
 
       </div>
     </div>

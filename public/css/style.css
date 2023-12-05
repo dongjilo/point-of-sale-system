@@ -181,7 +181,9 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   overflow-y: auto;
 }
 
+.footer{
 
+}
 
 @media (min-width: 576px) {
   .card-columns {
