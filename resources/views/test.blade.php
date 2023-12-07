@@ -22,13 +22,13 @@
 
     <div id="wrapper">
       <ul class="sidebar navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item mt-3">
           <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-line-chart"></i>
+            <i class="fa fa-fw fa-area-chart"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mt-3">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-tags"></i>
             <span>
@@ -41,12 +41,12 @@
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-plus"></i> Add Product</a>
             <a class="dropdown-item" href="products.html"> <i class="fa fa-tags"></i> All Products</a>
             <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Product Types</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-plus"></i> Add New Type</a>
-            <a class="dropdown-item" href="product-types.html"> <i class="fa fa-tags"></i> Product Types</a>
+            <h6 class="dropdown-header">Product Category</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-plus"></i> Add New Category</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i> Product Categories</a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mt-3">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-truck"></i>
             <span>
@@ -60,21 +60,32 @@
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-truck"></i> All Suppliers</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Supplier Order/Receive</h6>
+          </div>
+        </li>
+        <li class="nav-item mt-3">
+          <a class="nav-link" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-shopping-cart"></i>
+            <span>
+              Orders
+              <i class="float-right fa fa-angle-down"></i>
+            </span>
+          </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Cashier</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-fw fa-desktop"></i> Add Order</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-history"></i> All Orders</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">Supplier Order/Receive</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-fw fa-plus"></i>Order Product</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i>Receive Product</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-shopping-cart"></i>
-            <span>Orders</span></a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item mt-3">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-list-alt"></i>
-            <span>Inventory</span></a>
+            <span>Inventory</span>
+          </a>
         </li>
-
       </ul>
       <div id="content-wrapper">
         <div class="container-fluid">
