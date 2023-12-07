@@ -15,12 +15,10 @@ nav{
 .breadcrumb{
   background-color: #B6BBC4;
   border-radius: 5px;
-  display: inline-flex
+  display: inline-flex;
 }
 
 #wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -69,9 +67,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 }
 
-.scroll-to-top i {
-  font-weight: 800;
-}
+
 
 .smaller {
   font-size: 0.7rem;

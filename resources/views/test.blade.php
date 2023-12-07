@@ -60,6 +60,8 @@
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-truck"></i> All Suppliers</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Supplier Order/Receive</h6>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-fw fa-plus"></i>Order Product</a>
+            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-arrow-circle-down"></i>Receive Product</a>
           </div>
         </li>
         <li class="nav-item mt-3">
@@ -74,10 +76,6 @@
             <h6 class="dropdown-header">Cashier</h6>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal"> <i class="fa fa-fw fa-desktop"></i> Add Order</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-history"></i> All Orders</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Supplier Order/Receive</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-fw fa-plus"></i>Order Product</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tags"></i>Receive Product</a>
           </div>
         </li>
         <li class="nav-item mt-3">
@@ -90,9 +88,7 @@
       <div id="content-wrapper">
         <div class="container-fluid">
           <ol class="breadcrumb p-2">
-            <li class="breadcrumb-item">
-              Home
-            </li>
+            <li class="breadcrumb-item">Home</li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
 
@@ -105,7 +101,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fa fa-money"></i>
+                    <i class="fa fa-fw  fa-dollar"></i>
                   </div>
                   <div class="card-text">
                     <h1 class="text-center display-3"><strong>135</strong></h1>
@@ -127,7 +123,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fa fa-fw fa-flash"></i>
+                    <i class="fa fa-fw fa-external-link-square "></i>
                   </div>
                   <div class="card-text">
                     <h1 class="text-center display-3"><strong>24</strong></h1>
@@ -145,11 +141,11 @@
               <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-header">
                   <h1>Almost out of stock</h1>
-                  <small class="float-left">list of short stocks</small>
+                  <small class="float-left">list of products with short stocks</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fa fa-fw fa-tags"></i>
+                    <i class="fa fa-fw fa-tag"></i>
                   </div>
                   <div class="card-text">
                     <h1 class="text-center display-3"><strong>14</strong></h1>
@@ -171,7 +167,7 @@
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fa fa-fw fa-shopping-cart"></i>
+                    <i class="fa fa-fw fa-exclamation-circle"></i>
                   </div>
                   <div class="card-text">
                     <h1 class="text-center display-3"><strong>15</strong></h1>
@@ -190,23 +186,19 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-chart-area"></i>
-              Profit for the last month</div>
+              Profit this year</div>
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
             <div class="card-footer small text-muted">Last Updated:  </div>
           </div>
         </div>
-
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fa fa-angle-up"></i>
+        </a>
       </div>
     </div>
 
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-
-      </div>
-    </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
