@@ -3,10 +3,10 @@
             <div class="copyright text-center my-auto ">
               <br><br><br>
               <small class="text-muted">
-                You're using  beta version of this software. <a href="https://github.com/dongjilo/point-of-sale-system"> <i class="fa
+                This is a point of sale system made for you. <a href="https://github.com/dongjilo/point-of-sale-system"> <i class="fa
 fa-external-link"></i> Check for Updates</a>. In order to
 
-report a bug, please contact the system administrator <a href="https://github.com/dongjilo/point-of-sale-system">here.</a>
+report a problem, please contact our customer support <a href="https://github.com/dongjilo/point-of-sale-system">here.</a>
                 <br>
                 <br>
                 <br>
@@ -14,7 +14,7 @@ report a bug, please contact the system administrator <a href="https://github.co
 
 sale-system">Privacy Policy</a> | <a href="https://github.com/dongjilo/point-of-sale-system">Terms of Use</a> | <a
 
-href="https://github.com/dongjilo/point-of-sale-system">Advertisements</a>
+href="https://github.com/dongjilo/point-of-sale-system">About us</a>
               </small>
               <br><br><br>
               <span>Copyright &copy; 2023 <a href="https://github.com/dongjilo/point-of-sale-system">Group 8, BSIT 2D.</a> | <a

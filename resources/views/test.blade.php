@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home - Dashboard</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="css/style.css" rel="stylesheet">
@@ -18,6 +19,21 @@
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fa fa-bars"></i>
       </button>
+
+      <ul class="navbar-nav ms-auto ml-md-0">
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false" >
+            <i class="fa fa-fw fa-plus"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="#" class="dropdown-item" data-toggle="modal" data-target=""></a>
+            <i class="fa fa-fw fa-tags"></i>
+            New Products
+        </li>
+        <li class="nav-item dropdown no-arrow"></li>
+        <li class="nav-item dropdown no-arrow"></li>
+        <li class="nav-item dropdown no-arrow"></li>
+      </ul>
     </nav>
 
     <div id="wrapper">
@@ -60,7 +76,7 @@
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-truck"></i> All Suppliers</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Supplier Order/Receive</h6>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductTypeModal"> <i class="fa fa-fw fa-plus"></i>Order Product</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target=""> <i class="fa fa-fw fa-plus"></i>Order Product</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-arrow-circle-down"></i>Receive Product</a>
           </div>
         </li>

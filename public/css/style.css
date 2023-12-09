@@ -1,6 +1,11 @@
+*{
+  font-family: 'Poppins';
+}
+
 html {
   position: relative;
   min-height: 100%;
+
 }
 
 body {
@@ -18,10 +23,12 @@ nav{
   display: inline-flex;
 }
 
+
 #wrapper {
   display: flex;
 }
 
+/* whole contents in body */
 #wrapper #content-wrapper {
   overflow-x: hidden;
   width: 100%;
@@ -38,14 +45,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   padding-left: 0;
 }
 
-@media (min-width: 768px) {
-  body.fixed-nav #content-wrapper {
-    padding-left: 225px;
-  }
-  body.fixed-nav.sidebar-toggled #content-wrapper {
-    padding-left: 90px;
-  }
-}
+
+
 
 .scroll-to-top {
   position: fixed;
@@ -137,6 +138,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   overflow: hidden;
 }
 
+/* when screen is 768px and above the sidebar will be large*/
 @media (min-width: 768px) {
   .sidebar {
     width: 160px !important;
@@ -181,6 +183,9 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 }
 
+/*responsive ui for the sales, top-selling,
+  almost out of stock, and nearly expired products
+  cards*/
 @media (min-width: 576px) {
   .card-columns {
     -webkit-column-count: 1;
@@ -202,3 +207,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   }
 }
 
+/*no arrow down on dropdown*/
+.dropdown-toggle::after{
+  display: none;
+}
+/**/

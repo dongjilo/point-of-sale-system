@@ -29,7 +29,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('test');
 });
-
+Route::get('/modal', function () {
+    return view('components.bootstrap-modal');
+});
 // //url from <a href="">
 // Route::get('/', function () {
 //     return view('login');
