@@ -1,6 +1,6 @@
 <x-layout>
     <x-navbar></x-navbar>
-    <div class="container w-100 mt-5">
+    <div class="container w-100 my-5">
         <div class="card p-4">
                 <p class="card-title text-center h1">Product List</p>
 
@@ -32,7 +32,7 @@
                             <td class="text-center">{{$product->user->user_name}}</td>
                             <td class="d-flex justify-content-between"><a href="/products/{{$product->product_id}}" class="btn btn-sm btn-success">View</a>
                             <a href="/products/edit/{{$product->product_id}}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="/products/{{$product->product_id}}" method="post">
+                                <form action="/products/{{$product->product_id}}" method="post"> 
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
