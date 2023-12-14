@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -63,3 +64,9 @@ Route::put('/products/{product}', [ProductController::class, 'update']);
 Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 
 Route::get('/products/{product}', [ProductController::class, 'show']);
+
+// Cart
+Route::get('/cart', [CartController::class, 'index']);
+
+Route::post('/add-to-cart', [CartController::class, 'add-to-cart']);
+
