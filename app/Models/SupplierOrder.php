@@ -13,6 +13,7 @@ class SupplierOrder extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'supplier_order_id';
 
     function supplier() : BelongsTo

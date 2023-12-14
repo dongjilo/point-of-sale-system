@@ -11,6 +11,7 @@ class Inventory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'inventory_id';
 
     function product() : BelongsToMany

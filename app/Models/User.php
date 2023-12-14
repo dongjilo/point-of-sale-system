@@ -17,7 +17,6 @@ class User extends Authenticatable
     use HasFactory, HasApiTokens, Notifiable, Authorizable;
 
     protected $primaryKey = 'user_id';
-
     protected $guarded = [];
 
     protected $hidden = [

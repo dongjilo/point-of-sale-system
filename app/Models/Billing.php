@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Billing extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     protected $primaryKey = 'billing_id';
 
     function order() : BelongsTo

@@ -11,6 +11,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'category_id';
 
     function product() : HasMany

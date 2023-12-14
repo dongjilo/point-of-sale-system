@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Product extends Model
 {
     protected $guarded = [];
-
     protected $primaryKey = 'product_id';
 
     use HasFactory;

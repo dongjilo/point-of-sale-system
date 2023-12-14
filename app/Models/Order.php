@@ -13,6 +13,7 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'order_id';
 
     function user() : BelongsTo

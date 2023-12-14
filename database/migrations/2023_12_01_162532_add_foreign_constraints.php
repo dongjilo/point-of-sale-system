@@ -18,13 +18,23 @@ return new class extends Migration
         });
 
         Schema::table('supplier_orders', function (Blueprint $table) {
+            $table->foreign('user_id')->references('user_id')->on('users');
+        });
+
+        Schema::table('supplier_order_items', function (Blueprint $table) {
+            $table->foreign('supplier_order_id')->references('supplier_order_id')->on('supplier_orders');
             $table->foreign('supplier_id')->references('supplier_id')->on('suppliers');
             $table->foreign('product_id')->references('product_id')->on('products');
-            $table->foreign('user_id')->references('user_id')->on('users');
         });
 
         Schema::table('supplier_receives', function (Blueprint $table) {
             $table->foreign('supplier_order_id')->references('supplier_order_id')->on('supplier_orders');
+            $table->foreign('user_id')->references('user_id')->on('users');
+        });
+
+        Schema::table('supplier_receive_items', function (Blueprint $table) {
+            $table->foreign('supplier_receive_id')->references('supplier_receive_id')->on('supplier_receives');
+            $table->foreign('supplier_id')->references('supplier_id')->on('suppliers');
             $table->foreign('product_id')->references('product_id')->on('products');
         });
 

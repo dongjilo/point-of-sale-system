@@ -12,6 +12,7 @@ class SupplierReceive extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'supplier_receive_id';
 
     function supplierOrder() : BelongsTo

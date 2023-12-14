@@ -12,6 +12,7 @@ class Supplier extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $primaryKey = 'supplier_id';
 
     function product() : HasMany
