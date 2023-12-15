@@ -18,9 +18,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('user_name');
-            $table->string('user_uname');
+            $table->string('user_uname')->unique();
             $table->string('user_password');
             $table->string('user_type');
+            $table->rememberToken();
             $table->timestamps();
         });
 
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->id('supplier_id');
             $table->string('supplier_name');
             $table->string('supplier_phone');
-            $table->string('supplier_email');
+            $table->string('supplier_email')->unique();
             $table->timestamps();
         });
 
@@ -87,7 +88,7 @@ return new class extends Migration
         });
 
         Schema::create('orders', function (Blueprint $table) {
-            $table->id('order_id');
+            $table->ulid('order_id')->primary();
             $table->unsignedBigInteger('user_id');
             $table->date('order_date');
             $table->timestamps();
@@ -95,7 +96,7 @@ return new class extends Migration
 
         Schema::create('order_items', function (Blueprint $table) {
             $table->id('order_item_id');
-            $table->unsignedBigInteger('order_id');
+            $table->string('order_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('inventory_id');
             $table->integer('order_item_quantity');
@@ -105,7 +106,7 @@ return new class extends Migration
 
         Schema::create('billings', function (Blueprint $table) {
             $table->id('billing_id');
-            $table->unsignedBigInteger('order_id');
+            $table->string('order_id');
             $table->unsignedBigInteger('user_id');
             $table->string('billing_payment_method');
             $table->string('billing_bank_name')->nullable();
@@ -122,15 +123,15 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('supplier_receives');
+        Schema::dropIfExists('supplier_orders');
+        Schema::dropIfExists('billings');
+        Schema::dropIfExists('orders');
+        Schema::dropIfExists('products');
         Schema::dropIfExists('users');
         Schema::dropIfExists('suppliers');
         Schema::dropIfExists('categories');
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('supplier_orders');
-        Schema::dropIfExists('supplier_receives');
-        Schema::dropIfExists('inventories');
-        Schema::dropIfExists('orders');
-        Schema::dropIfExists('order_items');
-        Schema::dropIfExists('billings');
     }
 };
