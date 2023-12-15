@@ -1,4 +1,3 @@
-@php use App\Models\UserType; @endphp
 <form action="/users" method="post">
     @csrf
 
