@@ -10,7 +10,7 @@
     </ol>
     @include('components.alertMessages')
 	<div class="container-fluid">
-	<table id="supplierTable">
+	<table>
 	    <thead class="text-center">
 	    	<tr>
 		        <th>Supplier ID</th>

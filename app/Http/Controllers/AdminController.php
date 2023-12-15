@@ -64,46 +64,49 @@ class AdminController extends Controller
         ]);
     }
 
-    public function show_supplier(Product $supplier) {
-        return view('suppliers.show', [
-            'supplier' => $supplier
-        ]);
-    }
-
-    public function create_supplier() {
-        return view('products.create');
-    }
 
     public function store_supplier(Request $request) {
         try{
             $formFields = $request->all();
             Supplier::create($formFields);
 
-            session()->forget('success');
+            session()->forget('error');
             return back()->with('success', 'Supplier added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('error');
-            return back()->with('error', 'Supplier not added successfully!');
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not added successfully.');
         }
 
     }
 
-    public function edit_supplier(Supplier $supplier) {
-        return view('suppliers.edit', [
-            'supplier' => $supplier
-        ]);
+    public function update_supplier(Request $request, Supplier $supplier) {
+        try{
+            $formFields = $request->all();
+            $supplier->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Supplier updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not updated successfully.');
+        }
+
     }
 
-    public function update(Request $request, Supplier $supplier) {
-        $formFields = $request->all();
-        $supplier->update($formFields);
-        return redirect('products');
-    }
+    public function destroy_supplier(Supplier $supplier) {
+        try{
+            $supplier->delete();
 
-    public function destroy(Product $product) {
-        $product->delete();
-        return redirect('products');
+            session()->forget('error');
+            return back()->with('success', 'Supplier deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not deleted successfully.');
+        }
+
     }
     // end suppliers
 

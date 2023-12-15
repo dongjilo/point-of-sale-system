@@ -1,0 +1,16 @@
+[33mcommit f443bd27d0a8b771cdd18c602c4f6e727d87f5b4[m[33m ([m[1;35mrefs/stash[m[33m)[m
+Merge: 0f145d9 7be351e
+Author: ixynGIT <ixynrs@gmail.com>
+Date:   Fri Dec 15 21:57:53 2023 +0800
+
+    WIP on master: 0f145d9 migrations
+
+[1mdiff --cc routes/web.php[m
+[1mindex d1ee188,d1ee188..d094086[m
+[1m--- a/routes/web.php[m
+[1m+++ b/routes/web.php[m
+[36m@@@ -70,3 -70,3 +70,4 @@@[m [mRoute::get('/cart', [CartController::cl[m
+  [m
+  Route::post('/add-to-cart', [CartController::class, 'add-to-cart']);[m
+  [m
+[32m++[m

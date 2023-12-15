@@ -4,7 +4,7 @@
 
 
 {{-- add user modal --}}
-  <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModal" aria-hidden="true">
+  {{-- <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-white">
@@ -44,12 +44,12 @@
           </form>
         </div>
       </div>
-  </div>
+  </div> --}}
 {{-- end of add user modal --}}
 
 
 {{-- add product modal --}}
-  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
+  {{-- <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header text-white">
@@ -71,7 +71,7 @@
           </form>
         </div>
       </div>
-  </div>
+  </div> --}}
 {{-- end of add product category modal --}}
 
 
@@ -114,51 +114,7 @@
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
             </button>
           </div>
-          <form action="{{route('edit_suppliers')}}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="modal-body">
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier Name') }}:</strong>
-                      {!! Form::text('name', null, array('placeholder' => 'Supplier Name','class' => 'form-control', 'value' => )) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier Contact Number') }}:</strong>
-                      {!! Form::number('phone', null, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'value' => )) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier Email') }}:</strong>
-                      {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control', 'value' => )) !!}
-                  </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Supplier">
-            </div>
-          </form>
-        </div>
-      </div>
-  </div>
-{{-- end of add supplier modal --}}
-
-{{-- add supplier modal --}}
-  <div class="modal fade" id="editSupplierModal" tabindex="-1" role="dialog" aria-labelledby="editSupplierModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-white">
-            <h5 class="modal-title" id="editSupplierModal">
-              <i class="fa ffa-pencil-square"></i>
-              Edit Supplier
-            </h5>
-            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
-          <form action="{{route('store_suppliers')}}" method="post" enctype="multipart/form-data">
+          <form action="{{route('store_supplier')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="modal-body">
               <div class="col-xs-12 col-sm-12 col-md-12">
@@ -181,8 +137,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Supplier">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier</button>
             </div>
           </form>
         </div>
@@ -210,8 +166,8 @@
                 {{-- end of add input --}}
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn btn add" value="Add Order">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier</button>
             </div>
           </form>
         </div>
@@ -237,8 +193,8 @@
 
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Supplier Order">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier Order</button>
             </div>
           </form>
         </div>
@@ -265,7 +221,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Supplier Receive">
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save">Save Supplier Receive Order</i></button>
             </div>
           </form>
         </div>

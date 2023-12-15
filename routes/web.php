@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,18 +28,9 @@ use Illuminate\Support\Facades\Route;
  * destroy - delete
  */
 
-//default page
 Route::get('/', function () {
-    return view('test');
+    return view('dashboard');
 });
-Route::get('/modal', function () {
-    return view('components.bootstrap-modal');
-});
-// //url from <a href="">
-// Route::get('/', function () {
-//     return view('login');
-// });
-
 
 
 // Users
@@ -72,3 +66,15 @@ Route::put('/products/{product}', [ProductController::class, 'update']);
 Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 
 Route::get('/products/{product}', [ProductController::class, 'show']);
+
+Route::get('/suppliers', [ProductController::class, 'index']);
+
+// suppliers
+Route::get('/suppliers', [AdminController::class, 'view_supplier']);
+
+Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
+Route::delete('/suppliers/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
+Route::patch('/suppliers/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
+// suppliers end
+
+

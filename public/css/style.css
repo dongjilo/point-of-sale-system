@@ -38,18 +38,15 @@ nav{
 
 body.fixed-nav #content-wrapper {
   margin-top: 56px;
-  padding-left: 90px;
+  padding-left: 92px;
 }
 
 body.fixed-nav.sidebar-toggled #content-wrapper {
   padding-left: 0;
 }
 
-
-
-
-.scroll-to-top {
-  position: fixed;
+#scroll-to-top {
+  position: fixed !important;
   width: 50px;
   height: 50px;
   right: 15px;
@@ -59,13 +56,15 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: #fff;
   background: #161A30;
   line-height: 46px;
+  border-radius: 5px;
 }
 
 
 
-.scroll-to-top:hover {
+#scroll-to-top:hover {
   background: #B6BBC4;
-
+  border-radius: 5px;
+  color: #161A30;
 }
 
 
@@ -104,7 +103,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .sidebar {
-  width: 90px !important;
+  width: 92px !important;
   background-color: #31304D;
   min-height: calc(100vh - 56px);
 }
@@ -116,7 +115,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 .sidebar .nav-item .nav-link {
   text-align: center;
   padding: 0.75rem 1rem;
-  width: 90px;
+  width: 92px;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -157,7 +156,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
   .sidebar.toggled {
     overflow: visible;
-    width: 90px !important;
+    width: 92px !important;
   }
   .sidebar.toggled .nav-item:last-child {
     margin-bottom: 1rem;
@@ -165,7 +164,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   .sidebar.toggled .nav-item .nav-link {
     text-align: center;
     padding: 0.75rem 1rem;
-    width: 90px;
+    width: 92px;
   }
   .sidebar.toggled .nav-item .nav-link span {
     font-size: 0.65rem;
@@ -180,7 +179,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .footer{
-
+  position: relative;
 }
 
 /*responsive ui for the sales, top-selling,
@@ -207,8 +206,36 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   }
 }
 
-/*no arrow down on dropdown*/
-.dropdown-toggle::after{
+.navbar .navbar-nav .nav-item .dropdown-toggle::after{
   display: none;
 }
-/**/
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu{
+  left: auto !important;
+  right:0 !important;
+
+}
+.breadcrumb{
+  background-color:#B6BBC4 !important;
+  width: fit-content;
+  border-radius: 5px !important;
+}
+
+.modal-header{
+  background-color: #161A30;
+  color: white;
+}
+
+.modal .modal-footer .add{
+  color: white;
+  background-color: #161A30;
+}
+
+#supplierTable tbody tr td:nth-child(5){
+  display: flex;
+  gap: 5px;
+}
+
+
+.container-fluid{
+  overflow-x: auto;
+}
