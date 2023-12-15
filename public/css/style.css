@@ -225,9 +225,13 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: white;
 }
 
-.modal .modal-footer .add{
-  color: white;
-  background-color: #161A30;
+.modal .modal-footer .add, .container-fluid .add{
+  color: white !important;
+  background-color: #161a30 !important;
+}
+.modal .modal-footer .add:hover, .container-fluid .add:hover{
+  background-color: #20243E !important;
+  color: white !important;
 }
 
 #supplierTable tbody tr td:nth-child(5){
@@ -238,4 +242,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .container-fluid{
   overflow-x: auto;
+}
+
+.alert{
+  font-family: system-ui;
 }

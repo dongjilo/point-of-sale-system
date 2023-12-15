@@ -4,7 +4,7 @@
 
 
 {{-- add user modal --}}
-  {{-- <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModal" aria-hidden="true">
+  <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-white">
@@ -15,27 +15,10 @@
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
             </button>
           </div>
-          <form action="{{route('store_users')}}" method="post" enctype="multipart/form-data">
+          <form action="" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="modal-body">
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>{{ __('Name') }}:</strong>
-                      {!! Form::text('name', null, array('placeholder' => 'Supplier Name','class' => 'form-control', 'name' => 'supplier_name')) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier Contact Number') }}:</strong>
-                      {!! Form::number('phone', null, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'name' => 'supplier_phone')) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier Email') }}:</strong>
-                      {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control', 'name' => 'supplier_email')) !!}
-                  </div>
-              </div>
+
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
@@ -44,12 +27,12 @@
           </form>
         </div>
       </div>
-  </div> --}}
+  </div>
 {{-- end of add user modal --}}
 
 
 {{-- add product modal --}}
-  {{-- <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
+  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header text-white">
@@ -71,12 +54,12 @@
           </form>
         </div>
       </div>
-  </div> --}}
+  </div>
 {{-- end of add product category modal --}}
 
 
 {{-- add product category modal --}}
-  <div class="modal fade" id="addProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addProductCategoryModal" aria-hidden="true">
+  <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -89,11 +72,24 @@
           </div>
           <form class="">
             <div class="modal-body">
-
+            <form action="{{route('store_category')}}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                      <strong>{{ __('Category Name') }}:</strong>
+                      {!! Form::text('name', null, array('placeholder' => 'Enter Category Name','class' => 'form-control', 'name' => 'category_name')) !!}
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                  <div class="form-group">
+                      <strong>{{ __('Category Description') }}:</strong>
+                      {!! Form::textarea('phone', null, array('placeholder' => 'Enter Category Description','class' => 'form-control', 'name' => 'category_desc')) !!}
+                  </div>
+              </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn btn add" value="Add Category">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Category</button>
             </div>
           </form>
         </div>
@@ -221,7 +217,7 @@
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save">Save Supplier Receive Order</i></button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i></button>Save Supplier Receive Order
             </div>
           </form>
         </div>

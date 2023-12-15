@@ -37,7 +37,7 @@
             <i class="fa fa-fw fa-tags"></i>
             New Products
             </a>
-            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addProductCategoryModal">
+            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
             <i class="fa fa-fw fa-tag"></i>
             New Product Category
             </a>
@@ -105,9 +105,9 @@
             <div class="dropdown-divider"></div>
 
             <h6 class="dropdown-header">Product Category</h6>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addProductCategoryModal"> <i class="fa fa-plus">
+            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addCategoryModal"> <i class="fa fa-plus">
             </i>Add New Category</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-tag">
+            <a class="dropdown-item" href="categories"> <i class="fa fa-tag">
             </i>Product Categories</a>
           </div>
         </li>

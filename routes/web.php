@@ -38,7 +38,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/register', [UserController::class, 'create']);
 
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store_users']);
 
 Route::get('/login', [UserController::class, 'login']);
 
@@ -73,8 +73,16 @@ Route::get('/suppliers', [ProductController::class, 'index']);
 Route::get('/suppliers', [AdminController::class, 'view_supplier']);
 
 Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
-Route::delete('/suppliers/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
-Route::patch('/suppliers/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
+Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
+Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
 // suppliers end
+
+// categories
+Route::get('categories', [AdminController::class, 'view_category']);
+
+Route::post('/store_category', [AdminController::class, 'store_category']) -> name('store_category');
+Route::delete('/categories/delete/{category}', [AdminController::class, 'destroy_category']) -> name('destroy_category');
+Route::patch('/categories/update/{category}', [AdminController::class, 'update_cateory']) -> name('update_category');
+// categories end
 
 

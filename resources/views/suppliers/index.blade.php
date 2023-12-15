@@ -5,7 +5,7 @@
 
 	@section('content')
 	<ol class="breadcrumb p-2">
-        <li class="breadcrumb-item">Suppliers</li>
+        <li class="breadcrumb-item">Supplier</li>
         <li class="breadcrumb-item active">All Suppliers</li>
     </ol>
     @include('components.alertMessages')
@@ -44,6 +44,7 @@
 	        @endforeach
 	    </tbody>
 	</table>
+	<a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addSupplierModal"><i class="fa fa-fw fa-plus" ></i> Add Supplier</a>
 	</div>
 	@endsection
 	@section('script')

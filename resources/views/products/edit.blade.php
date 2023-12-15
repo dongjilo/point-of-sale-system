@@ -1,67 +1,46 @@
-@php use App\Models\Category;use App\Models\Supplier;use App\Models\User; @endphp
-<x-layout>
-<div class="container mt-5 ">
-    <div class="card p-4">
-        <h1 class="mb-3 text-center">Edit {{$product->product_name}}</h1>
-        <form action="/products/{{$product->product_id}}" method="post">
-            @csrf
-            @method('PUT')
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="product_name" id="product_name" placeholder="name" value="{{$product->product_name}}">
-                <label for="product_name">Product Name</label>
-            </div>
+    <div class="modal fade text-left" id="editSupplierModal{{$supplier->supplier_id}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <i class="fa fa-fw fa-pencil"></i>
+                        Edit Supplier: <u>{{$supplier->supplier_name}}</u>
+                    </h4>
+                    <button class="btn-close btn-close-white" type="button"data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('update_supplier', $supplier->supplier_id) }}" method="post" enctype="multipart/form-data">
+                        {{ method_field('patch') }}
+                        {{ csrf_field() }}
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                      <strong>{{ __('Supplier Name') }}:</strong>
+                      {!! Form::text('name', $supplier->supplier_name, array('placeholder' => 'Supplier Name','class' => 'form-control', 'name' => 'supplier_name', 'value' => '$supplier->supplier_name')) !!}
+                    </div>
+                    </div>
 
-            <div class="form-floating mb-3">
-                <input type="text" name="product_code" class="form-control" id="product_code" placeholder="code" value="{{$product->product_code}}">
-                <label for="product_code">Product Code</label>
-            </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                      <strong>{{ __('Supplier Contact Number') }}:</strong>
+                      {!! Form::number('phone', $supplier->supplier_phone, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'name' => 'supplier_phone', 'value' => '$supplier->supplier_phone')) !!}
+                    </div>
+                    </div>
 
-            <div class="form-floating mb-3">
-                <input type="number" name="product_price" class="form-control" id="product_price" placeholder="price" value="{{$product->product_price}}">
-                <label for="product_price">Product Price</label>
-            </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                      <strong>{{ __('Supplier Email') }}:</strong>
+                      {!! Form::email('email', $supplier->supplier_email, array('placeholder' => 'Email','class' => 'form-control', 'name' => 'supplier_email',  'value' => '$supplier->supplier_email')) !!}
+                    </div>
+                    </div>
+                 </div>
 
-            <div class="form-floating mb-3">
-                <input type="number" name="product_quantity" class="form-control" id="product_quantity" placeholder="quantity" value="{{$product->product_quantity}}">
-                <label for="product_quantity">Product Quantity</label>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+                        <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Update</button>
+                    </form>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-floating mb-3">
-                <select name="supplier_id" id="supplier_id" class="form-control">
-                    <option value="{{$product->supplier_id}}">{{$product->supplier->supplier_name}}</option>
-                    @foreach(Supplier::all()->where('supplier_id', '<>', "$product->supplier_id") as $supplier)
-                        <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
-                    @endforeach
-                </select>
-                <label for="supplier_id">Supplier</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <select name="category_id" class="form-control" id="supplier_id">
-                    <option value="{{$product->category_id}}">{{$product->category->category_name}}</option>
-                    @foreach(Category::all()->where('category_id', '<>', "$product->category_id") as $category)
-                        <option value="{{$category->category_id}}">{{$category->category_name}}</option>
-                    @endforeach
-                </select>
-                <label for="category_id">Category</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <select name="user_id" class="form-control" id="supplier_id">
-                    <option value="{{$product->user_id}}">{{$product->user->user_name}}</option>
-                    @foreach(User::all()->where('user_id', '<>', "$product->user_id") as $user)
-                        <option value="{{$user->user_id}}">{{$user->user_name}}</option>
-                    @endforeach
-                </select>
-                <label for="user_id">User</label>
-            </div>
-
-            <div class="container text-center">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <button type="submit" formaction="/products" formmethod="get" class="btn btn-danger">Cancel</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-</x-layout>

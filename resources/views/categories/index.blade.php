@@ -5,51 +5,50 @@
 
 	@section('content')
 	<ol class="breadcrumb p-2">
-        <li class="breadcrumb-item">Suppliers</li>
-        <li class="breadcrumb-item active">All Suppliers</li>
+        <li class="breadcrumb-item">Product Category</li>
+        <li class="breadcrumb-item active">All Categories</li>
     </ol>
     @include('components.alertMessages')
 	<div class="container-fluid">
-	<table>
+	<table id="categoryTable">
 	    <thead class="text-center">
 	    	<tr>
-		        <th>Supplier ID</th>
-		        <th>Supplier Name</th>
-		        <th>Supplier Contact</th>
-		        <th>Supplier Email</th>
+		        <th>Category ID</th>
+		        <th>Category Name</th>
+		        <th>Category Description</th>
 		        <th>Action</th>
 	        </tr>
 	    </thead>
 
 	    <tbody>
-	        @foreach ($suppliers as $supplier)
+	        @foreach ($categories as $category)
 	            <tr>
-	                <td>{{$supplier->supplier_id}}</td>
-	                <td>{{$supplier->supplier_name}}</td>
-	                <td>{{$supplier->supplier_phone}}</td>
-	                <td>{{$supplier->supplier_email}}</td>
+	                <td>{{$category->category_id}}</td>
+	                <td>{{$category->category_name}}</td>
+	                <td>{{$category->category_desc}}</td>
 	                <td>
-	                <a href="suppliers/{{$supplier->supplier_id}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+	                <a href="suppliers/{{$category->category_id}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
 	                <a href="#" data-bs-toggle="modal" data-bs-target="#editSupplierModal{{$supplier->supplier_id}}" class="btn btn-sm btn-warning">
 	                <i class="fa fa-pencil text-white"></i></a>
-	                    <form action="{{ route('destroy_supplier', $supplier->supplier_id)}}" method="post">
+	                    <form action="{{ route('destroy_category', $category->category_id)}}" method="post">
 	                        @csrf
 	                        @method('DELETE')
 	                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
 	                    </form>
 
 	                </td>
-	                @include('suppliers.edit')
+	                @include('categories.edit')
 	            </tr>
 	        @endforeach
 	    </tbody>
 	</table>
+		<a role="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="fa fa-fw fa-plus" ></i> Add Category</a>
 	</div>
 	@endsection
 	@section('script')
 	<script>
 			$(document).ready( function() {
-				$('#supplierTable').DataTable();
+				$('#categoryTable').DataTable();
 			} );
 	</script>
 	@endsection

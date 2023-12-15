@@ -1,48 +1,56 @@
-<x-layout>
-    <x-navbar></x-navbar>
-    <div class="container w-100 mt-5">
-        <div class="card p-4">
-                <p class="card-title text-center h1">Product List</p>
+@extends('scaffholding-page')
+    @section('title')
+    {{"Suppliers - All Suppliers"}}
+    @endsection
 
-            <div class="card-body">
-                <a href="/products/create"><button class="btn btn-success my-2">Add Product</button></a>
-            <table class="table table-striped table-bordered">
-                <thead class="text-center">
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Product Code</th>
-                    <th>Product Price</th>
-                    <th>Product Qty</th>
-                    <th>Supplier</th>
-                    <th>Category</th>
-                    <th>User</th>
-                    <th>Action</th>
-                </thead>
+	@section('content')
+	<ol class="breadcrumb p-2">
+        <li class="breadcrumb-item">Supplier</li>
+        <li class="breadcrumb-item active">All Suppliers</li>
+    </ol>
+    @include('components.alertMessages')
+	<div class="container-fluid">
+	<table id="supplierTable">
+	    <thead class="text-center">
+	    	<tr>
+		        <th>Supplier ID</th>
+		        <th>Supplier Name</th>
+		        <th>Supplier Contact</th>
+		        <th>Supplier Email</th>
+		        <th>Action</th>
+	        </tr>
+	    </thead>
 
-                <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <td class="text-center">{{$product->product_id}}</td>
-                            <td class="text-start">{{$product->product_name}}</td>
-                            <td class="text-center">{{$product->product_code}}</td>
-                            <td class="text-end">{{$product->product_price}}</td>
-                            <td class="text-end">{{$product->product_quantity}}</td>
-                            <td class="text-center">{{$product->supplier->supplier_name}}</td>
-                            <td class="text-center">{{$product->category->category_name}}</td>
-                            <td class="text-center">{{$product->user->user_name}}</td>
-                            <td class="d-flex justify-content-between"><a href="/products/{{$product->product_id}}" class="btn btn-sm btn-success">View</a>
-                            <a href="/products/edit/{{$product->product_id}}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="/products/{{$product->product_id}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</x-layout>
+	    <tbody>
+	        @foreach ($suppliers as $supplier)
+	            <tr>
+	                <td>{{$supplier->supplier_id}}</td>
+	                <td>{{$supplier->supplier_name}}</td>
+	                <td>{{$supplier->supplier_phone}}</td>
+	                <td>{{$supplier->supplier_email}}</td>
+	                <td>
+	                <a href="suppliers/{{$supplier->supplier_id}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+	                <a href="#" data-bs-toggle="modal" data-bs-target="#editSupplierModal{{$supplier->supplier_id}}" class="btn btn-sm btn-warning">
+	                <i class="fa fa-pencil text-white"></i></a>
+	                    <form action="{{ route('destroy_supplier', $supplier->supplier_id)}}" method="post">
+	                        @csrf
+	                        @method('DELETE')
+	                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+	                    </form>
+
+	                </td>
+	                @include('suppliers.edit')
+	            </tr>
+	        @endforeach
+	    </tbody>
+	</table>
+	<a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addSupplierModal"><i class="fa fa-fw fa-plus" ></i> Add Supplier</a>
+	</div>
+	@endsection
+	@section('script')
+	<script>
+			$(document).ready( function() {
+				$('#supplierTable').DataTable();
+			} );
+	</script>
+	@endsection

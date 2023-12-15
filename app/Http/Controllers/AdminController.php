@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Supplier;
@@ -77,7 +79,6 @@ class AdminController extends Controller
             session()->forget('success');
             return back()->with('error', 'Supplier was not added successfully.');
         }
-
     }
 
     public function update_supplier(Request $request, Supplier $supplier) {
@@ -107,6 +108,56 @@ class AdminController extends Controller
             return back()->with('error', 'Supplier was not deleted successfully.');
         }
 
+    }
+    // end suppliers
+
+    //category
+    public function view_category() {
+        return view('categories.index', [
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function store_category(Request $request) {
+        try{
+            $formFields = $request->all();
+            Category::create($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Supplier added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not added successfully.');
+        }
+    }
+
+    public function update_category(Request $request, Category $category) {
+        try{
+            $formFields = $request->all();
+            $category->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Supplier updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not updated successfully.');
+        }
+
+    }
+
+    public function destroy_category(Supplier $category) {
+        try{
+            $category->delete();
+
+            session()->forget('error');
+            return back()->with('success', 'Supplier deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not deleted successfully.');
+        }
     }
     // end suppliers
 
