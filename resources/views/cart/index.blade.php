@@ -12,13 +12,10 @@
             </thead>
 
             <tbody class="add-more-product">
-                <td>1</td>
+                <td class="row-number">1</td>
                 <td>
                     <select name="product[]" id="product" class="form-select product">
                         <option value=""></option>
-                        @foreach($products as $product)
-                            <option value="{{$product->product_id}}" data-product-price="{{$product->product_price}}">{{$product->product_name}}</option>
-                        @endforeach
                     </select>
                 </td>
                 <td>
@@ -26,17 +23,16 @@
                 </td>
 
                 <td>
-                    <input type="text" class="form-control product_price" name="product_price[]" id="product_price" readonly>
+                    <input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly>
                 </td>
 
                 <td>
-                    <input type="text" class="form-control total" name="total[]" id="total" readonly>
+                    <input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly>
                 </td>
 
                 <td>
-                    <a href="#" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+                    <a href="#" class="btn btn-danger delete"><i class="bi bi-x-lg"></i></a>
                 </td>
-
             </tbody>
         </table>
 
@@ -47,27 +43,58 @@
             <label for="amount-paid">Amount Paid</label>
             <input type="text" name="amount-paid" id="amount-paid" class="form-control w-50 mb-3" placeholder="Amount Paid">
             <label for="change">Change</label>
-            <input type="text" name="change" id="change" class="form-control w-50" placeholder="Change" readonly>
+            <input type="text" name="change" id="change" class="form-control w-50 shadow-none" placeholder="Change" readonly>
         </span>
     </div>
 </div>
 
     <script>
+        let data;
+        function fetchProducts(){
+            $.ajax({
+                url: "/cart/fetch",
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{csrf_token()}}"
+                }, success: function (response) {
+                    populateProductOptions(response);
+                }, error: function (response) {
+                    console.error(response);
+                }
+            });
+        }
+
+        function populateProductOptions(data) {
+            var select = $('.product');
+            for (const element of data) {
+                select.append($('<option>', {
+                    value: element[0],
+                    'data-product-price': element[2],
+                    text: element[1]
+                }));
+            }
+        }
+
+        fetchProducts();
+
+
         $(document).ready(function (){
            $('.add').on('click', function (){
-               var product = $('.product').html();
-               var numRow = ($('.add-more-product tr').length - 0) + 1;
-
-               var tr =
+               let product = $('.product').html();
+               let numRow = ($('.add-more-product tr').length - 0) + 1;
+               let tr =
                    '<tr><td class="row-number">' + numRow + '</td>' +
                    '<td><select name="product[]" id="product" class="form-select product">' + product + '</select></td>' +
                    '<td><input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity"></td>' +
-                   '<td><input type="text" class="form-control product_price" name="product_price[]" id="product_price" readonly></td>' +
-                   '<td><input type="number" class="form-control total" name="total[]" id="total"></td>' +
+                   '<td><input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly></td>' +
+                   '<td><input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly></td>' +
                    '<td><a href="#" class="btn btn-danger delete"><i class="bi bi-x-lg"></i></a></td></tr>';
                $('.add-more-product').append(tr);
                updateRowNumbers();
+               fetchProducts();
            });
+
+
 
            $('.add-more-product').delegate('.delete', 'click', function () {
                $(this).parent().parent().remove();
@@ -117,6 +144,10 @@
                 var change = (paid - total).toFixed(2);
                 $('#change').val(change >= 0 ? change : 0);
             })
+
+            $('#change').css('cursor', 'default');
+            $('.total').css('cursor', 'default');
+            $('.product_price').css('cursor', 'default');
         });
     </script>
 </x-layout>

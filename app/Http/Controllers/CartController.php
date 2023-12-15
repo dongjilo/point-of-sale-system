@@ -3,24 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
     public function index() {
-        $cartData = [
-            'products' => Product::all()
-        ];
-        return view('cart.index')->with($cartData);
-
+        return view('cart.index', ['products' => Product::all()]);
     }
 
-    public function addToCart(Request $request)
-    {
-        $productId = $request->input('product_id');
+    public function fetchAll() {
+        $wrapper = array();
+        $result = DB::table('products')->select('product_id','product_name', 'product_price')->get();
+        foreach($result as $item){
+            $data = array();
+            foreach ($item as $key => $value){
+                $data[] = $value;
+            }
+            $wrapper[] = $data;
+        }
+        return response()->json($wrapper);
+    }
 
-        // Implement your logic to add the product to the cart here
+    public function store() {
 
-        return response()->json(['message' => 'Product added to cart']);
     }
 }
