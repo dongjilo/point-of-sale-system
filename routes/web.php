@@ -32,6 +32,9 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('test', function () {
+    return view('login');
+});
 
 // Users
 Route::get('/users', [UserController::class, 'index']);
