@@ -20,8 +20,8 @@ class ProductFactory extends Factory
         return [
             'product_name' => $this->faker->colorName(),
             'product_price' => $this->faker->randomFloat(2, 0, 1000),
-            'product_quantity' => $this->faker->numberBetween(0, 1000),
             'product_code' => $this->faker->unique()->numberBetween(1000, 9999),
+            'product_quantity' => $this->faker->numberBetween(1, 999),
             'supplier_id' => $this->faker->numberBetween(1, 10),
             'category_id' => $this->faker->numberBetween(1, 10),
             'user_id' => $this->faker->numberBetween(1, 10)

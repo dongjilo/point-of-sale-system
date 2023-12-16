@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>@yield('title')</title>
   </head>
 
@@ -144,7 +145,7 @@
           </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Cashier</h6>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addOrderModal"> <i class="fa fa-fw fa-desktop"></i> Add Order</a>
+            <a class="dropdown-item" href="/cart" > <i class="fa fa-fw fa-desktop"></i> Add Order</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-history"></i> All Orders</a>
           </div>
         </li>

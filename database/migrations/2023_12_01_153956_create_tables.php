@@ -137,20 +137,18 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
-        Schema::dropIfExists('inventories');
-        Schema::dropIfExists('supplier_receives');
-        Schema::dropIfExists('supplier_orders');
         Schema::dropIfExists('billings');
-        Schema::dropIfExists('orders');
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('suppliers');
-        Schema::dropIfExists('categories');
-        Schema::dropIfExists('supplier_order_items');
-        Schema::dropIfExists('supplier_receive_items');
-        Schema::dropIfExists('inventories');
         Schema::dropIfExists('order_items');
+        Schema::dropIfExists('orders');
+        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('supplier_receive_items');
+        Schema::dropIfExists('supplier_receives');
+        Schema::dropIfExists('supplier_order_items');
+        Schema::dropIfExists('supplier_orders');
+        Schema::dropIfExists('products');
+        Schema::dropIfExists('categories');
+        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('users');
     }
 
 };

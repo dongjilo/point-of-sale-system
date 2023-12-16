@@ -94,9 +94,9 @@ Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']
 Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');
 // orders end
 
-// Cart
+    // Cart
     Route::get('/cart', [CartController::class, 'index']);
-    Route::post('/cart/fetch', [CartController::class, 'fetchAll']);
-
-    Route::post('/add-to-cart', [CartController::class, 'add-to-cart']);
+    Route::post('/cart/fetch/products', [CartController::class, 'fetchProducts']);
+    Route::post('/cart/fetch/inventories', [CartController::class, 'fetchInventories']);
+    Route::post('/orders/store', [CartController::class, 'store']);
 });
