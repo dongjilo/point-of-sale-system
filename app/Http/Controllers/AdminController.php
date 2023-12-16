@@ -57,7 +57,6 @@ class AdminController extends Controller
     public function destroy_product(Product $product) {
         try{
             $product->delete();
-
             session()->forget('error');
             return back()->with('success', 'Product deleted successfully!');
 

@@ -195,7 +195,7 @@
 
 {{-- order modal --}}
 <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-lg modal-fullscreen" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addOrderModal">
@@ -205,39 +205,18 @@
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"></button>
             </button>
           </div>
-          <form class="">
             <div class="modal-body">
             <form action="{{route('store_order')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>{{ __('Order Date') }}:</strong>
-                      {!! Form::date('order_date', null, array('placeholder' => 'Input Date Order','class' => 'form-control')) !!}
-                  </div>
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+              Left
+              table
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-             <table class="table table-striped">
-              <thead>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-              </thead>
-              <tbody>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tbody>
-            </table>
-                  </div>
-              </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+              Right
+            </div>
+          </div>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>

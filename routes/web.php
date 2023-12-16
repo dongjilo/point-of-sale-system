@@ -35,6 +35,9 @@ Route::get('/', function () {
     return view('dashboard');
 }); //   ->middleware('auth');
 
+Route::get('test', function () {
+    return view('login');
+});
 
 // Login
 Route::get('/login', [LoginController::class, 'login'])->name('login');

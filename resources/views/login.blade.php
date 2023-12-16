@@ -1,42 +1,116 @@
 
-<x-layout>
-    <div class="container" style="position: absolute;left: 0;right: 0;top: 50%;transform: translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);">
-    <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-3 col-xl-9 col-xxl-7">
-            <div class="card shadow-lg o-hidden border-0 my-5">
-                <div class="card-body p-0">
-                    <div class="row">
-                        <div class="col-lg-12 offset-lg-0">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h4 class="text-dark mb-4">Login</h4>
-                                </div>
-                                <form class="user" method="post" action="/login">
-                                    @csrf
-                                    <div class="form-floating mb-3">
-                                        <input id="user_uname" class="form-control form-control-user" type="text" aria-describedby="emailHelp" placeholder="Enter Username" name="user_uname">
-                                        <label for="user_uname">Username</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control form-control-user" type="password" placeholder="Password" name="user_password">
-                                        <label for="user_password">Password</label>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <p id="errorMsg" class="text-danger" style="display: none;">Paragraph</p>
-                                    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    @include('components.cdn')
 
-                                    <button id="submitBtn" class="btn btn-primary d-block btn-user w-25 mx-auto" type="submit">Login</button>
-                                    <hr>
-                                </form>
-                                <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                <div class="text-center"><a class="small" href="/register">Create an Account!</a></div>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            color: #E8DEDE;
+        }
+
+        img {
+            max-width: 100%;
+        }
+        ::placeholder {
+            color: white !important;
+            font-size: 13px;
+            opacity: .5 !important;
+        }
+        .container-fluid{
+            padding: 0px;
+        }
+        strong{
+            font-family: 'Ubuntu', sans-serif;
+        }
+        body{
+            font-family: 'Ubuntu', sans-serif;
+            color: #6A6A6A;
+            overflow-x: hidden;
+        }
+        .logo{
+            width: 90px;
+            height: 90px;
+
+        }
+        .login-card{
+            background-color: #30255A;
+            float: none;
+            margin: auto;
+            box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+            margin-top: 8%;
+            margin-bottom: 5%;
+
+        }
+        .left-pic{
+            background-image: url(images/login-left.jpg);
+            padding: 30px;
+            background-size: 100%;
+        }
+
+        .login-form{
+            padding: 30px;
+        }
+        .logo-cover img{
+            margin-bottom: 30px;
+        }
+        .form-cover h6{
+            margin-bottom: 30px;
+        }
+        .form-cover input{
+            margin-bottom: 30px;
+            border-radius: 0px;
+            background-color: #cccccc38;
+
+        }
+
+        .form-footer .forget-paswd{
+            text-align: left;
+        }
+        .{
+            text-align: right;
+        }
+        .form-footer{
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .left-pic{
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid bg-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 login-card">
+                <div class="row">
+                    <div class="col-md-5 left-pic"></div>
+                        <div class="col-md-7 login-form">
+                        <div class="row">
+                            <div class="col-lg-10 col-md-12 mx-auto">
+                                <div class="logo mx-auto">
+                                    <img src="images/logo-removebg.png" alt="logo">
+                                </div>
+                                <form method="post" action="/login">
+                                    @csrf
+                                <div class="form-cover">
+                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control" autocomplete=""/>
+                                    <input name="user_password" Placeholder="Enter Password" type="password" class="form-control" autocomplete="off"/>
+                                <div class="row form-footer">
+                                <div class="col-md-6 float-end">
+                                     <button class="btn btn-outline-light">LOGIN</button>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div></div>
-</div>
-</x-layout>
+                        </div>
