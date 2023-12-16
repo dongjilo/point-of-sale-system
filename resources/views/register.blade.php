@@ -1,4 +1,4 @@
-<form action="/users" method="post">
+<form action="/register" method="post">
     @csrf
 
     <input type="text" name="user_name" id="user_name" placeholder="Name" value="{{old('user_name')}}">
