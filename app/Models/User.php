@@ -29,6 +29,10 @@ class User extends Authenticatable
         'user_password' => 'hashed',
     ];
 
+    public function findForPassport($username) {
+        return $this->where('user_uname', $username)->first();
+    }
+
     public function getAuthPassword()
     {
         return $this->user_password;

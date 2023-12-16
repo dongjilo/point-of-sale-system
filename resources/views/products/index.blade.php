@@ -2,7 +2,6 @@
     @section('title')
     {{"Product - All Products"}}
     @endsection
-
 	@section('content')
 	<ol class="breadcrumb p-2">
         <li class="breadcrumb-item">Product</li>
@@ -61,3 +60,4 @@
 			} );
 	</script>
 	@endsection
+   
