@@ -243,8 +243,20 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .container-fluid{
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .alert{
   font-family: system-ui;
+}
+
+footer{
+  top: auto !important;
+  bottom: 0 !important;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+.modal .modal-dialog .modal-body {
+  overflow-x: auto;
 }

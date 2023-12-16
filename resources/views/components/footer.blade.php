@@ -25,4 +25,6 @@ PLASABAS</a>. All rights reserved.</span>
               <br><br><br>
             </div>
           </div>
+
+          <a type="button" onclick="topFunction()" id="scroll-to-top"><i class="fa fa-chevron-up"></i></a>
 </footer>

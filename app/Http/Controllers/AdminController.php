@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Supplier;
@@ -167,6 +169,65 @@ class AdminController extends Controller
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Category was not deleted successfully.');
+        }
+    }
+    // end suppliers
+
+
+
+    //  category
+    public function view_order() {
+        return view('orders.index', [
+            'orders' => Order::all()
+        ]);
+    }
+
+    public function store_order(Request $request) {
+        try{
+            $orderFormFields = $request->all();
+            Order::create($orderFormFields);
+
+            $orderItemFormFields = $request->all();
+            OrderItem::create($orderItemFormFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Order added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Category was not added successfully.');
+        }
+    }
+
+    public function update_order(Request $request, Order $order, OrderItem $orderItem) {
+        try{
+            $orderFormFields = $request->all();
+            $orderItemFormFields = $request->all();
+
+            $order->update($orderFormFields);
+            $orderItem->update($orderItemFormFields);
+
+
+            session()->forget('error');
+            return back()->with('success', 'Category updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Category was not updated successfully.');
+        }
+
+    }
+
+    public function destroy_order(Order $order, OrderItem $orderItem) {
+        try{
+            $order->delete();
+            $orderItem->where('order_id', $order)->delete();
+            session()->forget('error');
+            return back()->with('success', 'Order deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Order was not deleted successfully.');
         }
     }
     // end suppliers

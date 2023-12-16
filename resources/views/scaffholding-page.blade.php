@@ -175,12 +175,12 @@
         <div class="container-fluid">
 
            @yield('content')
-           @include('components.footer')
-        </div>
 
+        </div>
+          @include('components.footer')
       </div>
-      @include('components.modals')
-      <a type="button" onclick="topFunction()" id="scroll-to-top"><i class="fa fa-chevron-up"></i></a>
+          @include('components.modals')
+
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
