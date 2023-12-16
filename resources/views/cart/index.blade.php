@@ -32,7 +32,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
-                    <th><a href="#" class="btn btn-success add"><i class="bi bi-plus-lg"></i></a></th>
+                    <th><a href="#" class="btn btn-success add"><i class="fa-solid fa-plus"></i></a></th>
                 </thead>
 
                 <tbody class="add-more-product">
@@ -60,30 +60,29 @@
                     </td>
 
                     <td>
-                        <a href="#" class="btn btn-danger"><i class="bi bi-x-lg"></i></a>
+                        <a href="#" class="btn btn-danger"><i class="fa-solid fa-minus"></i></a>
                     </td>
                 </tbody>
             </table>
 
-            <span><h4>Total:</h4><input type="text" name="order_total" id="order_total" class="form-control order_total" value="0.00" readonly></span>
-
-            <h3>Payment method</h3>
-            <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="cash">
-                <label class="btn btn-outline-primary" for="payment_method1">Cash</label>
-
-                <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method2" autocomplete="off" value="bank">
-                <label class="btn btn-outline-primary" for="payment_method2">Bank</label>
-            </div>
-
             <div class="container-fluid" id="payment_cash">
+                <span><h4>Total:</h4><input type="text" name="order_total" id="order_total" class="form-control order_total" value="0.00" readonly></span>
+
+                <h3>Payment method</h3>
+                <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="cash">
+                    <label class="btn btn-outline-primary" for="payment_method1">Cash</label>
+
+                    <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method2" autocomplete="off" value="bank">
+                    <label class="btn btn-outline-primary" for="payment_method2">Bank</label>
+                </div>
+                <br>
                 <label for="amount_paid">Amount Paid</label>
                 <input type="text" name="amount_paid" id="amount_paid" class="form-control w-50 mb-3" placeholder="Amount Paid">
                 <label for="change">Change</label>
-                <input type="text" name="change" id="change" class="form-control w-50 shadow-none" placeholder="Change" readonly>
+                <input type="text" name="change" id="change" class="form-control w-50 shadow-none mb-3" placeholder="Change" readonly>
+                <button class="btn btn-primary">Checkout</button>
             </div>
-
-            <button class="btn btn-primary">Checkout</button>
         </div>
     </form>
 </div>
@@ -160,7 +159,7 @@
                    '<td><input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity"></td>' +
                    '<td><input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly></td>' +
                    '<td><input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly></td>' +
-                   '<td><a href="#" class="btn btn-danger delete"><i class="bi bi-x-lg"></i></a></td></tr>';
+                   '<td><a href="#" class="btn btn-danger delete"><i class="fa-solid fa-minus"></i></td></tr>';
                $('.add-more-product').append(tr);
                updateRowNumbers();
            });
