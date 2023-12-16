@@ -1,9 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,43 +29,34 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
  */
 
 Route::get('/', function () {
-
     return view('dashboard');
-}); //   ->middleware('auth');
-
-Route::get('test', function () {
-    return view('login');
 });
 
-// Login
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-
-Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('test', function () {
+    return view('orders.create');
+});
 
 
+// Users
+Route::get('/users', [UserController::class, 'index']);
+
+Route::get('/register', [UserController::class, 'create']);
 
 Route::post('/users', [UserController::class, 'store_users']);
 
-Route::middleware(['auth'])->group(function (){
-    // Users
-    Route::get('/users', [UserController::class, 'index']);
+Route::get('/login', [UserController::class, 'login']);
 
-    Route::get('/register', [UserController::class, 'create']);
+Route::post('/login/auth', [UserController::class, 'authenticate']);
 
-    Route::post('/users', [UserController::class, 'store']);
+Route::get('/users/edit/{user}', [UserController::class, 'edit']);
 
-    Route::get('/users/edit/{user}', [UserController::class, 'edit']);
+Route::put('/users/{user}', [UserController::class, 'update']);
 
-    Route::put('/users/{user}', [UserController::class, 'update']);
+Route::post('/logout', [UserController::class, 'logout']);
 
-    Route::post('/logout', [UserController::class, 'logout']);
-
-    Route::get('users/{user}', [UserController::class, 'show']);
+Route::get('users/{user}', [UserController::class, 'show']);
 
 // Products
-
 Route::get('/products', [AdminController::class, 'view_product']);
 Route::post('/store_product', [AdminController::class, 'store_product']) -> name('store_product');
 Route::delete('/products/delete/{product}', [AdminController::class, 'destroy_product']) -> name('destroy_product');
@@ -94,10 +83,3 @@ Route::post('/store_order', [AdminController::class, 'store_order']) -> name('st
 Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
 Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');
 // orders end
-
-// Cart
-    Route::get('/cart', [CartController::class, 'index']);
-    Route::post('/cart/fetch', [CartController::class, 'fetchAll']);
-
-    Route::post('/add-to-cart', [CartController::class, 'add-to-cart']);
-});

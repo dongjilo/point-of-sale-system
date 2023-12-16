@@ -21,7 +21,7 @@
                     <i class="fa fa-fw  fa-dollar"></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>135</strong></h1>
+                    <h1 class="text-center display-3"><strong>150</strong></h1>
                   </div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">

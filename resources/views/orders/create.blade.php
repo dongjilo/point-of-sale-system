@@ -1,80 +1,103 @@
-@php use App\Models\Category;use App\Models\Supplier;use App\Models\User; @endphp
-<x-layout>
-    <x-navbar></x-navbar>
-    <div class="container" style="position: absolute;left: 0;right: 0;top: 50%;transform: translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-3 col-xl-9 col-xxl-7">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-12 offset-lg-0">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-2">Add Product</h4>
-                                    </div>
-                                    <form action="/products" method="post">
-                                        <div class="card-body"></div>
-                                        @csrf
+@extends('scaffholding-page')
+@section('content')
+<ol class="breadcrumb rounded p-2">
+  <li class="breadcrumb-item">Cashier</li>
+  <li class="breadcrumb-item active">Add new Order</li>
+</ol>
+@include('components.alertMessages')
 
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="product_name" id="product_name" placeholder="name" class="form-control">
-                                        <label for="product_name">Enter Product Name</label>
-                                    </div>
+             <div class="card">
+                 <div class="card-body">
+                 <form action="{{route('store_order')}}" method="post" enctype="multipart/form-data">
+                 {{ csrf_field() }}
+                   <div class="row">
+                     <div class="col-xs-6 col-sm-12 col-md-12 col-lg-8">
+                       <table id="orderTable" class="table table-bordered">
+                         <thead>
+                           <tr>
+                             <th>Item ID</th>
+                             <th>Product ID</th>
+                             <th>Product Code</th>
+                             <th>Product Name</th>
+                             <th>Quantity</th>
+                             <th>Subtotal</th>
+                             <th>Operations</th>
+                           </tr>
+                         </thead>
+                         <tbody id="tbody">
+                         </tbody>
+                       </table>
+                   </div>
+                 <div class="col-xs-6 col-sm-12 col-md-12 col-lg-4">
+                       <h5 class="fw-bold">TOTAL: </h5>
+                         <div class="row" id="select-center">
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                             <div class="form-floating">
+                               <input type="text" class="form-control" name="product_input" id="product_input">
+                               <label for="product_input">Input Product</label>
+                             </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                             <select class="form-select" name="product_name" id="product_name">
+                               <option value="" selected disabled/>Select Product Here</option>
+                             </select>
+                           </div>
+                         </div>
+                           <div class="form-floating mt-3">
+                             <input type="text" class="form-control" name="price" id="price" readonly/>
+                             <label for="price">Price</label>
+                           </div>
+                           <div class="form-floating mt-3">
+                             <input type="text" class="form-control" name="quantity" id="quantity">
+                             <label for="quantity">Quantity</label>
+                           </div>
+                           <div class="form-floating mt-3">
+                             <input type="text" class="form-control" name="discount" id="discount">
+                             <label for="discount">Discount</label>
+                           </div>
+                           <a id="addToOrder" href="#" class="btn mt-3 btn-primary"><i class="fa fa-fw fa-arrow-left"></i>Add</a>
+                           <a id="resetOrder" href="#" class="btn mt-3 btn-secondary"><i class="fa fa-fw fa-close"></i>Reset</a>
+                           <a type="button" class="btn add mt-3 float-end" data-bs-toggle="modal" data-bs-target="#addBillingModal" ><i class="fa fa-fw fa-credit-card"></i> Billing</a>
 
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="product_code" id="product_code" placeholder="code" class="form-control">
-                                        <label for="product_code">Enter Product Code</label>
-                                    </div>
+                 </div>
+               </form>
+             </div>
+       </div>
+ @endsection
 
-                                    <div class="form-floating mb-3">
-                                        <input type="number" name="product_price" id="product_price" placeholder="price" class="form-control">
-                                        <label for="product_price">Enter Price</label>
-                                    </div>
+    @section('script')
+        <script>
+            $(document).ready(() => {
+        let count=1;
+        $('#addToOrder').click(function () {
+            let dynamicRowHTML = `
+            <tr class="rowClass"">
+                <td class="row-index text-center">
+                    ${count}
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-danger remove"
+                        type="button"><i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>`;
+            $('#tbody').append(dynamicRowHTML);
+            count++;
 
-                                    <div class="form-floating mb-3">
-                                        <input type="number" name="product_quantity" id="product_quantity" placeholder="quantity" class="form-control">
-                                        <label for="product_quantity">Enter Quantity</label>
-                                    </div>
+            @php
+                session()->forget('error');
+                session('success', 'Item successfully added!');
+            @endphp
+        });
 
-                                    <div class="form-floating mb-3">
-                                        <select name="supplier_id" id="supplier_id" class="form-control">
-                                            <option value="" selected></option>
-                                            @foreach(Supplier::all() as $supplier)
-                                                <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="supplier_id">Supplier</label>
-                                    </div>
-
-                                    <div class="form-floating mb-3">
-                                        <select name="category_id" id="category_id" class="form-control">
-                                            <option value="" selected></option>
-                                            @foreach(Category::all() as $category)
-                                                <option value="{{$category->category_id}}">{{$category->category_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="category_id">Category</label>
-                                    </div>
-
-                                    <div class="form-floating mb-3">
-                                        <select name="user_id" id="user_id" class="form-control">
-                                            <option value="" selected></option>
-                                            @foreach(User::all() as $user)
-                                                <option value="{{$user->user_id}}">{{$user->user_name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="user_id">User</label>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-success">ADD</button>
-                                </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div></div>
-    </div>
-</x-layout>
+        // Removing Row on click to Remove button
+        $('#tbody').on('click', '.remove', function () {
+            $(this).parent('td.text-center').parent('tr.rowClass').remove();
+        });
+    })
+        // Delete All row
+        $('#resetOrder').click(function(){
+            $("#orderTable").find("tr:gt(0)").remove();
+        });
+        </script>
+    @endsection
