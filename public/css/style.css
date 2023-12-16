@@ -234,7 +234,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: white !important;
 }
 
-#supplierTable tbody tr td:nth-child(5){
+#supplierTable tbody tr td:last-child, #categoryTable tbody tr td:last-child, #productTable tbody tr td:last-child
+{
   display: flex;
   gap: 5px;
 }

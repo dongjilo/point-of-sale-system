@@ -1,56 +1,63 @@
 @extends('scaffholding-page')
     @section('title')
-    {{"Suppliers - All Suppliers"}}
+    {{"Product - All Products"}}
     @endsection
 
 	@section('content')
 	<ol class="breadcrumb p-2">
-        <li class="breadcrumb-item">Supplier</li>
-        <li class="breadcrumb-item active">All Suppliers</li>
+        <li class="breadcrumb-item">Product</li>
+        <li class="breadcrumb-item active">All Products</li>
     </ol>
     @include('components.alertMessages')
 	<div class="container-fluid">
-	<table id="supplierTable">
+	<table id="productTable">
 	    <thead class="text-center">
 	    	<tr>
-		        <th>Supplier ID</th>
-		        <th>Supplier Name</th>
-		        <th>Supplier Contact</th>
-		        <th>Supplier Email</th>
+		        <th>Product ID</th>
+		        <th>Name</th>
+		        <th>Category</th>
+		        <th>Code</th>
+		        <th>Price</th>
+		        <th>Stocks</th>
+		        <th>Supplier</th>
+		        <th>User</th>
 		        <th>Action</th>
 	        </tr>
 	    </thead>
 
 	    <tbody>
-	        @foreach ($suppliers as $supplier)
+	        @foreach ($products as $product)
 	            <tr>
-	                <td>{{$supplier->supplier_id}}</td>
-	                <td>{{$supplier->supplier_name}}</td>
-	                <td>{{$supplier->supplier_phone}}</td>
-	                <td>{{$supplier->supplier_email}}</td>
+	                <td>{{$product->product_id}}</td>
+	                <td>{{$product->product_name}}</td>
+	                <td>{{$product->category->category_name}}</td>
+	                <td>{{$product->product_code}}</td>
+	                <td>{{$product->product_price}}</td>
+	                <td>{{$product->product_quantity}}</td>
+	                <td>{{$product->supplier->supplier_name}}</td>
+	                <td>{{$product->user->user_lname}}</td>
 	                <td>
-	                <a href="suppliers/{{$supplier->supplier_id}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-	                <a href="#" data-bs-toggle="modal" data-bs-target="#editSupplierModal{{$supplier->supplier_id}}" class="btn btn-sm btn-warning">
+	                <a href="#" data-bs-toggle="modal" data-bs-target="#editProductModal{{$product->product_id}}" class="btn btn-sm btn-warning">
 	                <i class="fa fa-pencil text-white"></i></a>
-	                    <form action="{{ route('destroy_supplier', $supplier->supplier_id)}}" method="post">
+	                    <form action="{{ route('destroy_product', $product->product_id)}}" method="post">
 	                        @csrf
 	                        @method('DELETE')
-	                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+	                        <a role="button" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 	                    </form>
 
 	                </td>
-	                @include('suppliers.edit')
+	                @include('products.edit')
 	            </tr>
 	        @endforeach
 	    </tbody>
 	</table>
-	<a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addSupplierModal"><i class="fa fa-fw fa-plus" ></i> Add Supplier</a>
+	<a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="fa fa-fw fa-plus" ></i> Add Product</a>
 	</div>
 	@endsection
 	@section('script')
 	<script>
 			$(document).ready( function() {
-				$('#supplierTable').DataTable();
+				$('#productTable').DataTable();
 			} );
 	</script>
 	@endsection

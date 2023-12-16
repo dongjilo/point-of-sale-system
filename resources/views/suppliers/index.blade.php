@@ -29,7 +29,6 @@
 	                <td>{{$supplier->supplier_phone}}</td>
 	                <td>{{$supplier->supplier_email}}</td>
 	                <td>
-	                <a href="suppliers/{{$supplier->supplier_id}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
 	                <a href="#" data-bs-toggle="modal" data-bs-target="#editSupplierModal{{$supplier->supplier_id}}" class="btn btn-sm btn-warning">
 	                <i class="fa fa-pencil text-white"></i></a>
 	                    <form action="{{ route('destroy_supplier', $supplier->supplier_id)}}" method="post">

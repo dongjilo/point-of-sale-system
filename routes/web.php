@@ -53,36 +53,24 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('users/{user}', [UserController::class, 'show']);
 
 // Products
-Route::get('/products', [ProductController::class, 'index']);
-
-Route::get('/products/create', [ProductController::class, 'create']);
-
-Route::post('/products', [ProductController::class, 'store']);
-
-Route::get('products/edit/{product}', [ProductController::class, 'edit']);
-
-Route::put('/products/{product}', [ProductController::class, 'update']);
-
-Route::delete('/products/{product}', [ProductController::class, 'destroy']);
-
-Route::get('/products/{product}', [ProductController::class, 'show']);
-
-Route::get('/suppliers', [ProductController::class, 'index']);
+Route::get('/products', [AdminController::class, 'view_product']);
+Route::post('/store_product', [AdminController::class, 'store_product']) -> name('store_product');
+Route::delete('/products/delete/{product}', [AdminController::class, 'destroy_product']) -> name('destroy_product');
+Route::patch('/products/update/{product}', [AdminController::class, 'update_product']) -> name('update_product');
+// products end
 
 // suppliers
 Route::get('/suppliers', [AdminController::class, 'view_supplier']);
-
 Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
 Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
 Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
 // suppliers end
 
 // categories
-Route::get('categories', [AdminController::class, 'view_category']);
-
+Route::get('/categories', [AdminController::class, 'view_category']);
 Route::post('/store_category', [AdminController::class, 'store_category']) -> name('store_category');
 Route::delete('/categories/delete/{category}', [AdminController::class, 'destroy_category']) -> name('destroy_category');
-Route::patch('/categories/update/{category}', [AdminController::class, 'update_cateory']) -> name('update_category');
+Route::patch('/categories/update/{category}', [AdminController::class, 'update_category']) -> name('update_category');
 // categories end
 
-
+// icopy lang ang suppliers or category

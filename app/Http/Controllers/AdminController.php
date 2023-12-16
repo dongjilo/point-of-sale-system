@@ -23,37 +23,46 @@ class AdminController extends Controller
         ]);
     }
 
-    public function show_product(Product $product) {
-        return view('products.show', [
-            'product' => $product
-        ]);
-    }
-
-    public function create_product() {
-        return view('products.create');
-    }
-
     public function store_product(Request $request) {
-        $formFields = $request->all();
-        Product::create($formFields);
-        return redirect('/products')->with('success', 'Product created successfully!');
-    }
+        try{
+            $formFields = $request->all();
+            Product::create($formFields);
 
-    public function edit_product(Product $product) {
-        return view('products.edit', [
-            'product' => $product
-        ]);
+            session()->forget('error');
+            return back()->with('success', 'Product added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Product was not added successfully.');
+        }
     }
 
     public function update_product(Request $request, Product $product) {
-        $formFields = $request->all();
-        $product->update($formFields);
-        return redirect('products');
+        try{
+            $formFields = $request->all();
+            $product->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Product updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Product was not updated successfully.');
+        }
+
     }
 
     public function destroy_product(Product $product) {
-        $product->delete();
-        return redirect('products');
+        try{
+            $product->delete();
+
+            session()->forget('error');
+            return back()->with('success', 'Product deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Product was not deleted successfully.');
+        }
     }
     //end products
 
@@ -65,7 +74,6 @@ class AdminController extends Controller
             'suppliers' => Supplier::all()
         ]);
     }
-
 
     public function store_supplier(Request $request) {
         try{
@@ -111,7 +119,9 @@ class AdminController extends Controller
     }
     // end suppliers
 
-    //category
+
+
+    //  category
     public function view_category() {
         return view('categories.index', [
             'categories' => Category::all()
@@ -124,11 +134,11 @@ class AdminController extends Controller
             Category::create($formFields);
 
             session()->forget('error');
-            return back()->with('success', 'Supplier added successfully!');
+            return back()->with('success', 'Category added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
-            return back()->with('error', 'Supplier was not added successfully.');
+            return back()->with('error', 'Category was not added successfully.');
         }
     }
 
@@ -138,25 +148,25 @@ class AdminController extends Controller
             $category->update($formFields);
 
             session()->forget('error');
-            return back()->with('success', 'Supplier updated successfully!');
+            return back()->with('success', 'Category updated successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
-            return back()->with('error', 'Supplier was not updated successfully.');
+            return back()->with('error', 'Category was not updated successfully.');
         }
 
     }
 
-    public function destroy_category(Supplier $category) {
+    public function destroy_category(Category $category) {
         try{
             $category->delete();
 
             session()->forget('error');
-            return back()->with('success', 'Supplier deleted successfully!');
+            return back()->with('success', 'Category deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
-            return back()->with('error', 'Supplier was not deleted successfully.');
+            return back()->with('error', 'Category was not deleted successfully.');
         }
     }
     // end suppliers

@@ -5,7 +5,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">
                         <i class="fa fa-fw fa-pencil"></i>
-                        Edit Product Category Supplier: <u>{{$category->category_name}}</u>
+                        Edit Category: <u>{{$category->category_name}}</u>
                     </h4>
                     <button class="btn-close btn-close-white" type="button"data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
