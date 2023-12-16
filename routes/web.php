@@ -30,10 +30,7 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
  * destroy - delete
  */
 
-Route::get('/', function () {
 
-    return view('dashboard');
-}); //   ->middleware('auth');
 
 
 // Login
@@ -48,6 +45,11 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/users', [UserController::class, 'store_users']);
 
 Route::middleware(['auth'])->group(function (){
+    Route::get('/', function () {
+
+        return view('dashboard');
+    });
+
     // Users
     Route::get('/users', [UserController::class, 'index']);
 

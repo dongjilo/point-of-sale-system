@@ -83,7 +83,7 @@
     <div id="wrapper">
       <ul class="sidebar navbar-nav">
         <li class="nav-item mt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/">
             <i class="fa fa-fw fa-area-chart"></i>
             <span>Dashboard</span>
           </a>
