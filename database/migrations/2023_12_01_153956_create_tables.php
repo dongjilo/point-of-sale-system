@@ -77,7 +77,7 @@ return new class extends Migration
 
         Schema::create('billings', function (Blueprint $table) {
             $table->id('billing_id');
-            $table->string('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->string('billing_payment_method');
             $table->string('billing_bank_name')->nullable();
