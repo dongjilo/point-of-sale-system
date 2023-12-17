@@ -42,7 +42,9 @@ class AdminController extends Controller
 
     public function update_product(Request $request, Product $product) {
         try{
-            $formFields = $request->all();
+            $request->validate([
+                'product_name' => 'required|unique:products, product_name'
+            ]);
             $product->update($formFields);
 
             session()->forget('error');

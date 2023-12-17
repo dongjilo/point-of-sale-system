@@ -50,18 +50,19 @@
             <div class="modal-body">
               <form action="{{route('store_product')}}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>{{ __('Product Code') }}:</strong>
-                        {!! Form::text('product_code', null, array('placeholder' => 'Optional Product Code','class' => 'form-control')) !!}
-                    </div>
-                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Name') }}:</strong>
                         {!! Form::text('product_name', null, array('placeholder' => 'Enter Product Name','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>{{ __('Product Code') }}:</strong>
+                        {!! Form::text('product_code', null, array('placeholder' => 'Optional Product Code','class' => 'form-control')) !!}
+                    </div>
+                </div>
+
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Price') }}:</strong>
@@ -70,28 +71,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
-                        <strong>{{ __('Product Stocks') }}:</strong>
-                        {!! Form::number('product_quantity', null, array('placeholder' => 'Enter Product Stocks','class' => 'form-control','min' => '0')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
                         <strong>{{ __('Category') }}:</strong>
                           <select name="category_id" id="category_id" class="form-select">
-                            <option value="" selected></option>
+                            <option value="" disabled selected>select category</option>
                               @foreach(Category::all() as $categoryoption)
                                 <option value="{{$categoryoption->category_id}}">{{$categoryoption->category_name}}</option>
-                              @endforeach
-                          </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
-                        <strong>{{ __('Supplier') }}:</strong>
-                          <select name="supplier_id" id="supplier_id" class="form-select">
-                            <option value="--" selected></option>
-                              @foreach(Supplier::all() as $supplieroption)
-                                <option value="{{$supplieroption->supplier_id}}">{{$supplieroption->supplier_name}}</option>
                               @endforeach
                           </select>
                     </div>

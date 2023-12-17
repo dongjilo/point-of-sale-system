@@ -197,6 +197,13 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready( function() {
+        setTimeout(function(){
+            $("div.alert").remove();
+        }, 5000 );
+      } );
+    </script>
     @yield('script')
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/chart.min.js"></script>

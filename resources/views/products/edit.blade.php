@@ -21,6 +21,12 @@
                         {!! Form::text('product_name', $product->product_name, array('placeholder' => 'Enter Product Name','class' => 'form-control')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>{{ __('Product Code') }}:</strong>
+                        {!! Form::text('product_code', $product->product_code, array('placeholder' => 'Optional Product Code','class' => 'form-control')) !!}
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Price') }}:</strong>
@@ -34,17 +40,6 @@
                                 <option value="{{$product->category_id}}">{{$product->category->category_name}}</option>
                                     @foreach(Category::all()->where('category_id', '<>', "$product->category_id") as $category)
                                     <option value="{{$category->category_id}}">{{$category->category_name}}</option>
-                                    @endforeach
-                            </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
-                        <strong>{{ __('Supplier') }}:</strong>
-                            <select name="supplier_id" id="supplier_id" class="form-control">
-                                <option value="{{$product->supplier_id}}">{{$product->supplier->supplier_name}}</option>
-                                    @foreach(Supplier::all()->where('supplier_id', '<>', "$product->supplier_id") as $supplier)
-                                        <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
                                     @endforeach
                             </select>
                     </div>

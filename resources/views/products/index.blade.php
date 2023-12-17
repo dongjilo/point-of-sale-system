@@ -12,12 +12,11 @@
 	<table id="productTable">
 	    <thead class="text-center">
 	    	<tr>
-		        <th>Product ID</th>
+		        <th>ID</th>
 		        <th>Name</th>
-		        <th>Category</th>
 		        <th>Code</th>
 		        <th>Price</th>
-		        <th>Supplier</th>
+		        <th>Category</th>
 		        {{-- <th>User</th> --}}
 		        <th>Action</th>
 	        </tr>
@@ -28,14 +27,9 @@
 	            <tr>
 	                <td>{{$product->product_id}}</td>
 	                <td>{{$product->product_name}}</td>
-	                <td>{{$product->category->category_name}}</td>
 	                <td>{{$product->product_code}}</td>
 	                <td>{{$product->product_price}}</td>
-	                <td>{{$product->supplier->supplier_name}}</td>
-
-	                {{-- <td>{{$product->user->user_name}}</td> --}}
-
-	                <td>{{$product->user->user_name}}</td>
+	                <td>{{$product->category->category_name}}</td>
 
 	                <td>
 	                <a href="#" data-bs-toggle="modal" data-bs-target="#editProductModal{{$product->product_id}}" class="btn btn-sm btn-warning">
@@ -55,10 +49,10 @@
 	</div>
 	@endsection
 	@section('script')
-	<script>
+		<script>
 			$(document).ready( function() {
-				$('#productTable').DataTable();
+			  $('#productTable').DataTable();
 			} );
-	</script>
+		</script>
 	@endsection
 
