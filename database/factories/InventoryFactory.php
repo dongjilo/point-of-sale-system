@@ -18,6 +18,7 @@ class InventoryFactory extends Factory
     {
         return [
             'supplier_id' => $this->faker->numberBetween(1, 10),
+            'user_id' => $this->faker->numberBetween(1, 10),
             'product_id' => $this->faker->numberBetween(1, 10),
             'inventory_quantity' => $this->faker->numberBetween(1, 100),
             'inventory_expiry' => $this->faker->dateTimeBetween('now', '+1 month'),

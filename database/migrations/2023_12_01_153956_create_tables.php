@@ -44,24 +44,23 @@ return new class extends Migration
             $table->id('product_id');
             $table->string('product_name');
             $table->string('product_code');
-            $table->integer('product_price');
-            $table->unsignedBigInteger('supplier_id');
+            $table->decimal('product_price', 8, 2);
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 
         Schema::create('inventories', function (Blueprint $table) {
             $table->id('inventory_id');
-            $table->unsignedBigInteger('supplier_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('inventory_quantity');
+            $table->unsignedInteger('inventory_quantity');
             $table->date('inventory_expiry');
+            $table->unsignedBigInteger('supplier_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 
         Schema::create('orders', function (Blueprint $table) {
-            $table->ulid('order_id')->primary();
+            $table->id('order_id');
             $table->unsignedBigInteger('user_id');
             $table->date('order_date');
             $table->timestamps();
@@ -69,11 +68,10 @@ return new class extends Migration
 
         Schema::create('order_items', function (Blueprint $table) {
             $table->id('order_item_id');
-            $table->string('order_id');
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('inventory_id');
-            $table->integer('order_item_quantity');
-            $table->integer('order_item_subtotal');
+            $table->unsignedInteger('order_item_quantity');
+            $table->decimal('order_item_subtotal', 8, 2);
             $table->timestamps();
         });
 
@@ -84,9 +82,16 @@ return new class extends Migration
             $table->string('billing_payment_method');
             $table->string('billing_bank_name')->nullable();
             $table->string('billing_bank_account')->nullable();
-            $table->integer('billing_total_amount');
-            $table->integer('billing_amount_tendered');
+            $table->decimal('billing_total_amount', 8, 2);
+            $table->decimal('billing_amount_tendered', 8, 2);
             $table->date('billing_date');
+            $table->timestamps();
+        });
+
+        Schema::create('best_sellers', function (Blueprint $table) {
+            $table->id('best_seller_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger ('best_seller_quantity');
             $table->timestamps();
         });
     }
@@ -96,6 +101,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('best_sellers');
         Schema::dropIfExists('billings');
         Schema::dropIfExists('order_items');
         Schema::dropIfExists('orders');
