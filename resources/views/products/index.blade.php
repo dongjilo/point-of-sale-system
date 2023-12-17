@@ -43,7 +43,6 @@
 	                        @method('DELETE')
 	                        <a role="button" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 	                    </form>
-
 	                </td>
 	                @include('products.edit')
 	            </tr>

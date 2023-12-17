@@ -78,9 +78,4 @@ Route::delete('/categories/delete/{category}', [AdminController::class, 'destroy
 Route::patch('/categories/update/{category}', [AdminController::class, 'update_category']) -> name('update_category');
 // categories end
 
-// orders
-Route::get('/orders', [AdminController::class, 'view_order']);
-Route::post('/store_order', [AdminController::class, 'store_order']) -> name('store_order');
-Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
-Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');
-// orders end
+
