@@ -1,7 +1,7 @@
 @extends('scaffholding-page')
 
 @section('title')
-    {{"Order - Add Order"}}
+    {{"Cashier - Add Order"}}
 @endsection
 
 @section('content')
