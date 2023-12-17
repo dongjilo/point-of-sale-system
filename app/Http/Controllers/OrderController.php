@@ -15,7 +15,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view('cart.index');
+        return view('orders.index');
     }
 
     public function fetchProducts()
