@@ -3,91 +3,6 @@
     {{"Order - Add Order"}}
 @endsection
 
-@section('content')
-<div class="card p-5">
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
-
-    @if($errors->any())
-        <div class="col-6 align-self-center">
-            @foreach($errors->all() as $error)
-                <div class="alert alert-danger" role="alert">
-                    {{$error}}
-                </div>
-
-            @endforeach
-        </div>
-    @endif
-    <form action="orders/store" method="post">
-        @csrf
-        <div class="card-body">
-            <table class="table table-striped table-left table-bordered">
-                <thead>
-                    <th></th>
-                    <th>Product Name</th>
-                    <th>Expiry</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th><a href="#" class="btn btn-success add"><i class="fa-solid fa-plus"></i></a></th>
-                </thead>
-
-                <tbody class="add-more-product">
-                    <td>1</td>
-                    <td>
-                        <select name="product_id[]" id="product_id" class="form-select product_id">
-                            <option value=""></option>
-                        </select>
-                    </td>
-
-                    <td>
-                        <input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>
-                        <input type="text" class="form-control inventory_id" name="inventory_id[]" id="inventory_id" hidden="true">
-                    </td>
-
-                    <td>
-                        <input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity">
-                    </td>
-
-                    <td>
-                        <input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly>
-                    </td>
-
-                    <td>
-                        <input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly>
-                    </td>
-
-                    <td>
-                        <a href="#" class="btn btn-danger"><i class="fa-solid fa-minus"></i></a>
-                    </td>
-                </tbody>
-            </table>
-
-            <div class="container-fluid" id="payment_cash">
-                <span><h4>Total:</h4><input type="text" name="order_total" id="order_total" class="form-control order_total" value="0.00" readonly></span>
-
-                <h3>Payment method</h3>
-                <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="cash">
-                    <label class="btn btn-outline-primary" for="payment_method1">Cash</label>
-
-                    <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method2" autocomplete="off" value="bank">
-                    <label class="btn btn-outline-primary" for="payment_method2">Bank</label>
-                </div>
-                <br>
-                <label for="amount_paid">Amount Paid</label>
-                <input type="text" name="amount_paid" id="amount_paid" class="form-control w-50 mb-3" placeholder="Amount Paid">
-                <label for="change">Change</label>
-                <input type="text" name="change" id="change" class="form-control w-50 shadow-none mb-3" placeholder="Change" readonly>
-                <button class="btn btn-primary">Checkout</button>
-            </div>
-        </div>
-    </form>
-</div>
-
     <script>
         let data;
         function fetchProducts(){
@@ -120,7 +35,6 @@
         }
 
         $(document).ready(function (){
-
             fetchProducts();
             setTimeout(function(){
                 $("div.alert").remove();

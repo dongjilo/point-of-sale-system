@@ -177,7 +177,7 @@ class AdminController extends Controller
 
     //  category
     public function view_order() {
-        return view('orders.index', [
+        return view('orders.create', [
             'orders' => Order::all()
         ]);
     }
@@ -282,5 +282,27 @@ class AdminController extends Controller
     }
     // end inventory
 
+
+    // fetch data
+
+    public function fetchAlmostOutOfStock()
+    {
+        $lowStock = Inventory::where('inventory_quantity', '<=', 20)->count();
+        return response()->json([
+            'success' => true,
+            'message' => 'Products almost out of stock',
+            'data' => $lowStock
+        ], 200);
+    }
+
+    public function fetchNearlyExpiredProducts()
+    {
+        $nearlyExpiredProducts = Inventory::where('inventory_expiry', '<=', now()->addWeek())->count();
+        return response()->json([
+            'success' => true,
+            'message' => 'Nearly expired products',
+            'data' => $nearlyExpiredProducts
+        ], 200);
+    }
 
 }
