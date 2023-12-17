@@ -79,7 +79,7 @@ class OrderController extends Controller
                 $order_item->save();
 
                 $inventory = Inventory::where('product_id', $request->product_id[$product_id])
-                    ->where('inventory_expiry', $request->product_expiry[$product_id])
+                    ->where('inventory_id', $request->inventory_id[$product_id])
                     ->first();
 
                 $inventory->inventory_quantity -= $request->product_quantity[$product_id];

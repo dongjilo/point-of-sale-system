@@ -144,7 +144,7 @@
                                 <form method="post" action="/login" id="form" autocomplete="off"/>
                                     @csrf
                                 <div class="form-cover">
-                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control"/>
+                                    <input name="user_uname" placeholder="Enter Username" type="text" class="form-control"/>
                                     <input name="user_password" Placeholder="Enter Password" type="password" class="form-control"/>
                                 <div class="row form-footer">
                                 <div class="col-md-6 float-end">
