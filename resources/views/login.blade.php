@@ -26,13 +26,14 @@
         .container-fluid{
             padding: 0px;
         }
-        strong{
-            font-family: 'Ubuntu', sans-serif;
-        }
+
         body{
             font-family: 'Ubuntu', sans-serif;
             color: #6A6A6A;
             overflow-x: hidden;
+            background-color: #616763;
+            background-size: cover;
+
         }
         .logo{
             width: 90px;
@@ -40,26 +41,26 @@
 
         }
         .login-card{
-            background-color: #30255A;
+            background-color: #2e2114;
             float: none;
             margin: auto;
-            box-shadow: 0 1px 15px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+            box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
             margin-top: 8%;
             margin-bottom: 5%;
-
+            border-radius: 10px;
         }
         .left-pic{
             background-image: url(images/login-left.jpg);
             padding: 30px;
             background-size: 100%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
         }
 
         .login-form{
             padding: 30px;
         }
-        .logo-cover img{
-            margin-bottom: 30px;
-        }
+
         .form-cover h6{
             margin-bottom: 30px;
         }
@@ -86,31 +87,102 @@
             }
         }
 
+        .form-animation {
+            background-color: #2e2114;
+            float: none;
+            width: ;
+            margin: auto;
+            box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
+            margin-top: 8%;
+            margin-bottom: 5%;
+            border-radius: 10px;
+            -webkit-animation: glow-form linear 8s infinite;
+            animation: glow-form linear 8s infinite;
+        }
+        @-webkit-keyframes glow-form {
+            50% { background-color: #2e2114; }
+            100% { background-color: #31304D; }
+
+        }
+        @keyframes glow-form {
+            0% { background-color: #2e2114; }
+            50% { background-color: #31304D ; }
+            100% { background-color: #161A30; }
+        }
+
+        .body-animation {
+            -webkit-animation: glow linear 8s infinite;
+            animation: glow linear 8s infinite;
+        }
+        @-webkit-keyframes glow {
+            50% { background-color: #F0ECE5; }
+            100% { background-color: #B6BBC4; }
+
+        }
+        @keyframes glow {
+            0% { background-color: #616763; }
+            50% { background-color: #F0ECE5 ; }
+            100% { background-color: #B6BBC4; }
+        }
+
     </style>
 </head>
-<body>
+<body id="body-animation">
 <div class="container-fluid bg-login">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-md-12 login-card">
+            <div class="col-lg-9 col-md-12 login-card" id="form-animation">
                 <div class="row">
-                    <div class="col-md-5 left-pic"></div>
-                        <div class="col-md-7 login-form">
-                        <div class="row">
-                            <div class="col-lg-10 col-md-12 mx-auto">
+                    <div class="col-md-5 left-pic">
+                    </div>
+
+                    <div class="col-md-7 login-form">
                                 <div class="logo mx-auto">
                                     <img src="images/logo-removebg.png" alt="logo">
                                 </div>
-                                <form method="post" action="/login">
+                                <form method="post" action="/login" id="form" autocomplete="off"/>
                                     @csrf
                                 <div class="form-cover">
-                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control" autocomplete=""/>
-                                    <input name="user_password" Placeholder="Enter Password" type="password" class="form-control" autocomplete="off"/>
+                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control"/>
+                                    <input name="user_password" Placeholder="Enter Password" type="password" class="form-control"/>
                                 <div class="row form-footer">
                                 <div class="col-md-6 float-end">
-                                     <button class="btn btn-outline-light">LOGIN</button>
+                                     <button id="btnLogin" onclick="ani()" type="submit" class="btn btn-outline-light">LOGIN</button>
                                 </div>
                                 </div>
-                            </div>
-                        </div>
-                        </div>
+                                </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        function ani(){
+            document.getElementById('form-animation').className = 'form-animation';
+            document.getElementById('body-animation').className = 'body-animation';
+            document.getElementsByClassName('form-animation').className = 'col-lg-9 col-md-12 login-card';
+
+        }
+        // Cache your Form Elements
+        const EL_form = document.querySelector("#form");
+        const EL_formSubmitBtn = EL_form.querySelector("#btnLogin");
+
+        const Progress = (evt) => {
+          evt.preventDefault(); // Prevent Browser Submit action
+
+          EL_formSubmitBtn.disabled = true; // Disable the submit button
+
+          setTimeout(function() {
+            EL_form.submit(); // Or do AJAX stuff here
+            EL_formSubmitBtn.disabled = false; // Enable the submit button
+          }, 6200);
+        };
+
+        EL_form.addEventListener("submit", Progress);
+
+
+    </script>
+</body>
+</html>

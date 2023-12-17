@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +45,7 @@ Route::get('/register', [UserController::class, 'create']);
 
 Route::post('/users', [UserController::class, 'store_users']);
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login']);
 
 Route::post('/login/auth', [UserController::class, 'authenticate']);
 
