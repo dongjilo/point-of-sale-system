@@ -17,8 +17,6 @@
 		        <th>Category</th>
 		        <th>Code</th>
 		        <th>Price</th>
-		        <th>Supplier</th>
-		        {{-- <th>User</th> --}}
 		        <th>Action</th>
 	        </tr>
 	    </thead>
@@ -31,12 +29,6 @@
 	                <td>{{$product->category->category_name}}</td>
 	                <td>{{$product->product_code}}</td>
 	                <td>{{$product->product_price}}</td>
-	                <td>{{$product->supplier->supplier_name}}</td>
-
-	                {{-- <td>{{$product->user->user_name}}</td> --}}
-
-	                <td>{{$product->user->user_name}}</td>
-
 	                <td>
 	                <a href="#" data-bs-toggle="modal" data-bs-target="#editProductModal{{$product->product_id}}" class="btn btn-sm btn-warning">
 	                <i class="fa fa-pencil text-white"></i></a>
@@ -52,7 +44,7 @@
 	        @endforeach
 	    </tbody>
 	</table>
-	<a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="fa fa-fw fa-plus" ></i> Add Product</a>
+	    <a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="fa fa-fw fa-plus" ></i> Add Product</a>
 	</div>
 	@endsection
 	@section('script')
