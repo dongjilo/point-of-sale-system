@@ -260,3 +260,18 @@ footer{
 .modal .modal-dialog .modal-body {
   overflow-x: auto;
 }
+
+#select-center{
+  align-items: center !important;
+}
+
+.card .card-footer.bottom{
+  margin-top: 15px;
+  justify-content: flex-end;
+}
+
+#logo{
+  width: 40px;
+  height: auto;
+}
+

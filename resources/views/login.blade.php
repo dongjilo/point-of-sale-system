@@ -1,57 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Jun-Ianez - Point of Sale System">
-    <meta name="author" content="Group 8 - BSIT2D">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-</head>
-<body>
-    <div class="container" style="position: absolute;left: 0;right: 0;top: 50%;transform: translateY(-50%);-ms-transform: translateY(-50%);-moz-transform: translateY(-50%);-webkit-transform: translateY(-50%);-o-transform: translateY(-50%);">
-        <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-3 col-xl-9 col-xxl-7">
-            <div class="card shadow-lg o-hidden border-0 my-5">
-                <div class="card-body p-0">
-                    <div class="row">
-                        <div class="col-lg-12 offset-lg-0">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h4 class="text-dark mb-4">Login</h4>
-                                </div>
-                                <form class="user" method="post" action="/login">
-                                    @csrf
-                                    <div class="form-floating mb-3">
-                                        <input id="user_uname" class="form-control form-control-user" type="text" aria-describedby="emailHelp" placeholder="Enter Username" name="user_uname">
-                                        <label for="user_uname">Username</label>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control form-control-user" type="password" placeholder="Password" name="user_password">
-                                        <label for="user_password">Password</label>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <p id="errorMsg" class="text-danger" style="display: none;">Paragraph</p>
-                                    </div>
+    @include('components.cdn')
 
-                                    <button id="submitBtn" class="btn btn-primary d-block btn-user w-25 mx-auto" type="submit">Login</button>
-                                    <hr>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            color: #E8DEDE;
+        }
+
+        img {
+            max-width: 100%;
+        }
+        ::placeholder {
+            color: white !important;
+            font-size: 13px;
+            opacity: .5 !important;
+        }
+        .container-fluid{
+            padding: 0px;
+        }
+
+        body{
+            font-family: 'Ubuntu', sans-serif;
+            color: #6A6A6A;
+            overflow-x: hidden;
+            background-color: #616763;
+            background-size: cover;
+
+        }
+        .logo{
+            width: 90px;
+            height: 90px;
+
+        }
+        .login-card{
+            background-color: #2e2114;
+            float: none;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
+            margin-top: 8%;
+            margin-bottom: 5%;
+            border-radius: 10px;
+        }
+        .left-pic{
+            background-image: url(images/login-left.jpg);
+            padding: 30px;
+            background-size: 100%;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .login-form{
+            padding: 30px;
+        }
+
+        .form-cover h6{
+            margin-bottom: 30px;
+        }
+        .form-cover input{
+            margin-bottom: 30px;
+            border-radius: 0px;
+            background-color: #cccccc38;
+
+        }
+
+        .form-footer .forget-paswd{
+            text-align: left;
+        }
+        .{
+            text-align: right;
+        }
+        .form-footer{
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .left-pic{
+                display: none;
+            }
+        }
+
+        .form-animation {
+            background-color: #2e2114;
+            float: none;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
+            margin-top: 8%;
+            margin-bottom: 5%;
+            border-radius: 10px;
+            -webkit-animation: glow-form linear 8s infinite;
+            animation: glow-form linear 8s infinite;
+        }
+        @-webkit-keyframes glow-form {
+            50% { background-color: #2e2114; }
+            100% { background-color: #31304D; }
+
+        }
+        @keyframes glow-form {
+            0% { background-color: #2e2114; }
+            50% { background-color: #31304D ; }
+            100% { background-color: #161A30; }
+        }
+
+        .body-animation {
+            -webkit-animation: glow linear 8s infinite;
+            animation: glow linear 8s infinite;
+        }
+        @-webkit-keyframes glow {
+            50% { background-color: #F0ECE5; }
+            100% { background-color: #B6BBC4; }
+
+        }
+        @keyframes glow {
+            0% { background-color: #616763; }
+            50% { background-color: #F0ECE5 ; }
+            100% { background-color: #B6BBC4; }
+        }
+
+    </style>
+</head>
+<body id="body-animation">
+<div class="container-fluid bg-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 login-card" id="form-animation">
+                <div class="row">
+                    <div class="col-md-5 left-pic">
+                    </div>
+
+                    <div class="col-md-7 login-form">
+                                <div class="logo mx-auto">
+                                    <img src="images/logo-removebg.png" alt="logo">
+
+                                </div>
+                                <form method="post" action="/login" id="form" autocomplete="off"/>
+                                    @csrf
+                                <div class="form-cover">
+                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control"/>
+                                    <input name="user_password" Placeholder="Enter Password" type="password" class="form-control"/>
+                                <div class="row form-footer">
+                                <div class="col-md-6 float-end">
+                                     <button id="btnLogin" onclick="ani()" type="submit" class="btn btn-outline-light">LOGIN</button>
+                                </div>
+                                </div>
                                 </form>
-                                <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                <div class="text-center"><a class="small" href="/register">Create an Account!</a></div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <script>
+        function ani(){
+            document.getElementById('form-animation').className = 'form-animation';
+            document.getElementById('body-animation').className = 'body-animation';
+            document.getElementsByClassName('form-animation').className = 'col-lg-9 col-md-12 login-card';
+
+        }
+        // Cache your Form Elements
+        const EL_form = document.querySelector("#form");
+        const EL_formSubmitBtn = EL_form.querySelector("#btnLogin");
+
+        const Progress = (evt) => {
+          evt.preventDefault(); // Prevent Browser Submit action
+
+          EL_formSubmitBtn.disabled = true; // Disable the submit button
+
+          setTimeout(function() {
+            EL_form.submit(); // Or do AJAX stuff here
+            EL_formSubmitBtn.disabled = false; // Enable the submit button
+          }, 6200);
+        };
+
+        EL_form.addEventListener("submit", Progress);
+
+
+    </script>
 </body>
 </html>

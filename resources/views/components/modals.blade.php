@@ -193,9 +193,9 @@
 {{-- end of add supplier modal --}}
 
 
-{{-- order modal --}}
-<div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+{{-- billing modal --}}
+<div class="modal fade" id="addBillingModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-fullscreen" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="addOrderModal">
@@ -205,49 +205,67 @@
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"></button>
             </button>
           </div>
-          <form class="">
             <div class="modal-body">
             <form action="{{route('store_order')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
+              <div class="row">
+                <div class="col-xs-6 col-sm-12 col-md-8">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Item ID</th>
+                        <th>Product ID</th>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Operations</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <td></td>
+                    </tbody>
+                  </table>
+              </div>
+            <div class="col-xs-6 col-sm-12 col-md-4">
+                  <h5 class="fw-bold">TOTAL: </h5>
+                    <div class="row" id="select-center">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" name="product_input" id="product_input">
+                          <label for="product_input">Input Product</label>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <select class="form-select" name="product_name" id="product_name">
+                          <option value="" selected disabled/>Select Product Here</option>
+                        </select>
+                      </div>
+                    </div>
+                      <div class="form-floating mt-3">
+                        <input type="text" class="form-control" name="price" id="price" readonly/>
+                        <label for="price">Price</label>
+                      </div>
+                      <div class="form-floating mt-3">
+                        <input type="text" class="form-control" name="quantity" id="quantity">
+                        <label for="quantity">Quantity</label>
+                      </div>
+                      <div class="form-floating mt-3">
+                        <input type="text" class="form-control" name="discount" id="discount">
+                        <label for="discount">Discount</label>
+                      </div>
+                      <a id="addToOrder" href="#" class="btn mt-3 btn-primary"><i class="fa fa-fw fa-arrow-left"></i>Add</a>
+                      <a id="cancelOrder" href="#" class="btn mt-3 btn-secondary"><i class="fa fa-fw fa-close"></i>Reset</a>
 
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>{{ __('Order Date') }}:</strong>
-                      {!! Form::date('order_date', null, array('placeholder' => 'Input Date Order','class' => 'form-control')) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-             <table class="table table-striped">
-              <thead>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-                <th>test</th>
-              </thead>
-              <tbody>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-              </tbody>
-            </table>
-                  </div>
-              </div>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier</button>
+            <div class="modal-footer bottom">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Close</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Order</button>
             </div>
           </form>
         </div>
-      </div>
   </div>
-{{-- end of add order modal --}}
+{{-- end of billing modal --}}
 
 
 {{-- add supplier order modal --}}
