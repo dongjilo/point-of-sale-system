@@ -66,6 +66,7 @@
             margin-bottom: 30px;
         }
         .form-cover input{
+            color: white;
             margin-bottom: 30px;
             border-radius: 0px;
             background-color: #cccccc38;
@@ -131,6 +132,7 @@
 <body id="body-animation">
 <div class="container-fluid bg-login">
     <div class="container">
+        @include('components.alertMessages')
         <div class="row">
             <div class="col-lg-9 col-md-12 login-card" id="form-animation">
                 <div class="row">
@@ -144,7 +146,7 @@
                                 <form method="post" action="/login" id="form" autocomplete="off"/>
                                     @csrf
                                 <div class="form-cover">
-                                    <input name="user_name" placeholder="Enter Username" type="text" class="form-control"/>
+                                    <input name="user_uname" placeholder="Enter Username" type="text" class="form-control"/>
                                     <input name="user_password" Placeholder="Enter Password" type="password" class="form-control"/>
                                 <div class="row form-footer">
                                 <div class="col-md-6 float-end">
