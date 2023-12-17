@@ -36,14 +36,14 @@
               <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-header">
                   <h1>Top-Selling</h1>
-                  <small class="float-left">TBD</small>
+                  <small class="float-left" id="best-seller">TBD</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fa fa-fw fa-external-link-square "></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>24</strong></h1>
+                      <strong><h1 class="text-center display-3" id="total-sales">0.00</h1></strong>
                   </div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
@@ -109,3 +109,28 @@
             </div>
             <div class="card-footer small text-muted">Last Updated:  </div>
 	@endsection
+
+    @section('script')
+          <script>
+              function fetchBestSeller() {
+                    $.ajax({
+                        url: "/bestseller/fetch",
+                        method: "GET",
+                        dataType: "JSON",
+                        success: function (data) {
+                            editTopSellingCard(data)
+                        },
+                        error: function (response) {
+                            console.error(response);
+                        }
+                    })
+              }
+
+              function editTopSellingCard(data) {
+                  $('#best-seller').html(data.data.product_details.product_name);
+                  $('#total-sales').html(data.data.bestseller_total_sales);
+              }
+
+              fetchBestSeller()
+          </script>
+    @endsection

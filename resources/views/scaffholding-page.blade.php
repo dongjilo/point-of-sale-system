@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>@yield('title')</title>
   </head>
 
@@ -79,7 +80,6 @@
             <i class="fa-solid fa-fw fa-power-off"></i>
                 Logout
             </a>
-
           </div>
         </li>
         <li class="nav-item dropdown"></li>
@@ -90,7 +90,7 @@
     <div id="wrapper">
       <ul class="sidebar navbar-nav">
         <li class="nav-item mt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/">
             <i class="fa fa-fw fa-area-chart"></i>
             <span>Dashboard</span>
           </a>
@@ -151,7 +151,7 @@
           </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Cashier</h6>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addOrderModal"> <i class="fa fa-fw fa-desktop"></i> Add Order</a>
+            <a class="dropdown-item" href="/orders" > <i class="fa fa-fw fa-desktop"></i> Add Order</a>
             <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-history"></i> All Orders</a>
           </div>
         </li>
@@ -172,9 +172,15 @@
           </div>
         </li>
         <li class="nav-item mt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/inventories">
             <i class="fa fa-fw fa-list-alt"></i>
             <span>Inventory</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <a class="nav-link" href="/logout" onclick="confirm('Are you sure you want to log out?')">
+              <i class="fa-solid fa-power-off"></i>
+              <span>Logout</span>
           </a>
         </li>
       </ul>

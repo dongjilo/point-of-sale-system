@@ -234,9 +234,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: white !important;
 }
 
-#supplierTable tbody tr td:last-child,
-#categoryTable tbody tr td:last-child,
-#productTable tbody tr td:last-child
+
+#supplierTable tbody tr td:last-child, #categoryTable tbody tr td:last-child, #productTable tbody tr td:last-child, #inventoryTable tbody tr td:last-child
 {
   display: flex;
   gap: 5px;
@@ -273,7 +272,7 @@ footer{
 }
 
 #logo{
-  width: 50px;
+  width: 40px;
   height: auto;
 }
 

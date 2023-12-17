@@ -32,13 +32,13 @@ class UserController extends Controller
 
 
     public function create() {
-        return view('users.register');
+        return view('register');
     }
 
     public function store(Request $request) {
         $userInfo = $request->all();
         $userInfo['user_password'] = bcrypt($userInfo['user_password']);
         User::create($userInfo);
-        return redirect('/register');
+        return redirect('/login');
     }
 }

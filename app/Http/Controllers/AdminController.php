@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -30,11 +31,11 @@ class AdminController extends Controller
             $formFields = $request->all();
             Product::create($formFields);
 
-
+            session()->forget('error');
             return back()->with('success', 'Product added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-
+            session()->forget('success');
             return back()->with('error', 'Product was not added successfully.');
         }
     }
@@ -44,10 +45,11 @@ class AdminController extends Controller
             $formFields = $request->all();
             $product->update($formFields);
 
+            session()->forget('error');
             return back()->with('success', 'Product updated successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-
+            session()->forget('success');
             return back()->with('error', 'Product was not updated successfully.');
         }
 
@@ -56,9 +58,11 @@ class AdminController extends Controller
     public function destroy_product(Product $product) {
         try{
             $product->delete();
+            session()->forget('error');
             return back()->with('success', 'Product deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
             return back()->with('error', 'Product was not deleted successfully.');
         }
     }
@@ -78,9 +82,11 @@ class AdminController extends Controller
             $formFields = $request->all();
             Supplier::create($formFields);
 
+            session()->forget('error');
             return back()->with('success', 'Supplier added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
             return back()->with('error', 'Supplier was not added successfully.');
         }
     }
@@ -90,33 +96,26 @@ class AdminController extends Controller
             $formFields = $request->all();
             $supplier->update($formFields);
 
+            session()->forget('error');
             return back()->with('success', 'Supplier updated successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            if ($ex->getCode() === '23000') {
-                return back()->with('warning', 'Cannot be deleted, because the Product is used elsewhere...');
-            }else{
-                return back()->with('error', 'Supplier was not deleted successfully.');
-            }
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not updated successfully.');
         }
 
     }
 
     public function destroy_supplier(Supplier $supplier) {
         try{
-
             $supplier->delete();
 
+            session()->forget('error');
             return back()->with('success', 'Supplier deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            if ($ex->getCode() === '23000') {
-                return back()->with('warning', 'Cannot be deleted, because the Supplier is used elsewhere...');
-            }else{
-
-                return back()->with('error', 'Supplier was not deleted successfully.');
-            }
-
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not deleted successfully.');
         }
 
     }
@@ -136,15 +135,12 @@ class AdminController extends Controller
             $formFields = $request->all();
             Category::create($formFields);
 
-
+            session()->forget('error');
             return back()->with('success', 'Category added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            if ($ex->getCode() === '23000') {
-                return back()->with('warning', 'Cannot be deleted, because the Category is used elsewhere...');
-            }else{
-                return back()->with('error', 'Category was not deleted successfully.');
-            }
+            session()->forget('success');
+            return back()->with('error', 'Category was not added successfully.');
         }
     }
 
@@ -153,11 +149,11 @@ class AdminController extends Controller
             $formFields = $request->all();
             $category->update($formFields);
 
-
+            session()->forget('error');
             return back()->with('success', 'Category updated successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-
+            session()->forget('success');
             return back()->with('error', 'Category was not updated successfully.');
         }
 
@@ -167,12 +163,124 @@ class AdminController extends Controller
         try{
             $category->delete();
 
+            session()->forget('error');
             return back()->with('success', 'Category deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-
+            session()->forget('success');
             return back()->with('error', 'Category was not deleted successfully.');
         }
     }
     // end suppliers
+
+
+
+    //  category
+    public function view_order() {
+        return view('orders.index', [
+            'orders' => Order::all()
+        ]);
+    }
+
+    public function store_order(Request $request) {
+        try{
+            $orderFormFields = $request->all();
+            Order::create($orderFormFields);
+
+            $orderItemFormFields = $request->all();
+            OrderItem::create($orderItemFormFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Order added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Category was not added successfully.');
+        }
+    }
+
+    public function update_order(Request $request, Order $order, OrderItem $orderItem) {
+        try{
+            $orderFormFields = $request->all();
+            $orderItemFormFields = $request->all();
+
+            $order->update($orderFormFields);
+            $orderItem->update($orderItemFormFields);
+
+
+            session()->forget('error');
+            return back()->with('success', 'Category updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Category was not updated successfully.');
+        }
+
+    }
+
+    public function destroy_order(Order $order, OrderItem $orderItem) {
+        try{
+            $order->delete();
+            $orderItem->where('order_id', $order)->delete();
+            session()->forget('error');
+            return back()->with('success', 'Order deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Order was not deleted successfully.');
+        }
+    }
+    // end suppliers
+
+    // inventory
+    public function view_inventory() {
+        return view('inventories.index', [
+            'inventories' => Inventory::all()
+        ]);
+    }
+
+    public function store_inventory(Request $request) {
+        try{
+            $formFields = $request->all();
+            Inventory::create($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not added successfully.');
+        }
+    }
+
+    public function update_inventory(Request $request, Inventory $inventory) {
+        try{
+            $formFields = $request->all();
+            $inventory->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not updated successfully.');
+        }
+
+    }
+
+    public function destroy_inventory(Inventory $inventory) {
+        try{
+            $inventory->delete();
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not deleted successfully.');
+        }
+    }
+    // end inventory
+
+
 }

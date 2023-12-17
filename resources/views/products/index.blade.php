@@ -17,7 +17,6 @@
 		        <th>Category</th>
 		        <th>Code</th>
 		        <th>Price</th>
-		        <th>Stocks</th>
 		        <th>Supplier</th>
 		        {{-- <th>User</th> --}}
 		        <th>Action</th>
@@ -32,9 +31,12 @@
 	                <td>{{$product->category->category_name}}</td>
 	                <td>{{$product->product_code}}</td>
 	                <td>{{$product->product_price}}</td>
-	                <td>{{$product->product_quantity}}</td>
 	                <td>{{$product->supplier->supplier_name}}</td>
+
 	                {{-- <td>{{$product->user->user_name}}</td> --}}
+
+	                <td>{{$product->user->user_name}}</td>
+
 	                <td>
 	                <a href="#" data-bs-toggle="modal" data-bs-target="#editProductModal{{$product->product_id}}" class="btn btn-sm btn-warning">
 	                <i class="fa fa-pencil text-white"></i></a>
@@ -59,4 +61,4 @@
 			} );
 	</script>
 	@endsection
-   
+
