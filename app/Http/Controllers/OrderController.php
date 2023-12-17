@@ -52,7 +52,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'product_id' => 'required',
-            'inventory_id' => 'required',
+            'product_expiry' => 'required',
             'product_quantity' => 'required',
             'product_price' => 'required',
             'total' => 'required',
@@ -64,7 +64,7 @@ class OrderController extends Controller
             // order model
             $order = new Order;
             $order->user_id = Auth::id();
-            $order->order_date = date_create();
+            $order->order_date = now();
             $order->save();
             $order_id = $order->order_id;
 
@@ -73,10 +73,16 @@ class OrderController extends Controller
                 $order_item = new OrderItem;
                 $order_item->order_id = $order_id;
                 $order_item->product_id = $request->product_id[$product_id];
-                $order_item->inventory_id = $request->inventory_id[$product_id];
                 $order_item->order_item_quantity = $request->product_quantity[$product_id];
                 $order_item->order_item_subtotal = $request->total[$product_id];
                 $order_item->save();
+
+                $inventory = Inventory::where('product_id', $request->product_id[$product_id])
+                    ->where('inventory_expiry', $request->product_expiry[$product_id])
+                    ->first();
+
+                $inventory->inventory_quantity -= $request->product_quantity[$product_id];
+                $inventory->save();
             }
 
             // billings model
@@ -91,8 +97,14 @@ class OrderController extends Controller
             $billing->billing_date = date_create();
             $billing->save();
 
+            // inventory model
+
+            // bestseller model
+
+
+
         });
 
-        return redirect('/cart')->with('success', 'Transaction Successful!');
+        return redirect('/orders')->with('success', 'Transaction Successful!');
     }
 }
