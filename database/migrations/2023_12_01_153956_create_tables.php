@@ -15,12 +15,18 @@ return new class extends Migration
          * TODO: Finalize the columns for the users table.
          */
 
+        Schema::create('roles' , function (Blueprint $table) {
+            $table->id('role_id');
+            $table->string('role_name');
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('user_name');
             $table->string('user_uname')->unique();
             $table->string('user_password');
-            $table->string('user_type');
+            $table->unsignedBigInteger('role_id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -113,6 +119,7 @@ return new class extends Migration
         Schema::dropIfExists('categories');
         Schema::dropIfExists('suppliers');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');
     }
 
 };

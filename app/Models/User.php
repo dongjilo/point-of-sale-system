@@ -33,6 +33,15 @@ class User extends Authenticatable
         return $this->where('user_uname', $username)->first();
     }
 
+    public function role() : BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function hasRole($role) {
+        return $this->role->role_name == $role;
+    }
+
     public function getAuthPassword()
     {
         return $this->user_password;

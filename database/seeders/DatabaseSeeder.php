@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('roles')->insert([
+            'role_name' => 'admin',
+        ]);
+
+        DB::table('roles')->insert([
+            'role_name' => 'cashier',
+        ]);
 
         User::factory(10)->create();
         Category::factory(10)->create();
@@ -29,7 +36,14 @@ class DatabaseSeeder extends Seeder
             'user_name' => 'Admin',
             'user_uname' => 'admin',
             'user_password' => bcrypt('admin'),
-            'user_type' => 'admin',
+            'role_id' => '1',
+        ]);
+
+        DB::table('users')->insert([
+            'user_name' => 'Cashier',
+            'user_uname' => 'cashier',
+            'user_password' => bcrypt('123'),
+            'role_id' => '2',
         ]);
     }
 }
