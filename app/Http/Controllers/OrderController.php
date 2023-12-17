@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BestSeller;
+use App\Models\Bestseller;
 use App\Models\Billing;
 use App\Models\Inventory;
 use App\Models\Order;
@@ -91,7 +91,7 @@ class OrderController extends Controller
                 $totalRevenue = $request->total[$key];
 
                 // Update or create a record in top_sellers table
-                BestSeller::updateOrCreate(
+                Bestseller::updateOrCreate(
                     ['product_id' => $productId, 'bestseller_month' => now()->month, 'bestseller_year' => now()->year],
                     ['bestseller_quantity_sold' => DB::raw("bestseller_quantity_sold + $quantitySold"), 'bestseller_total_sales' => DB::raw("bestseller_total_sales + $totalRevenue")]
                 );
