@@ -42,16 +42,4 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    function supplierOrder() : HasMany
-    {
-        return $this->hasMany(SupplierOrder::class);
-    }
-
-    function supplierReceive() : HasMany
-    {
-        return $this->hasMany(SupplierReceive::class);
-    }
-
-
-
 }

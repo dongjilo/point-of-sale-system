@@ -20,9 +20,9 @@ class Supplier extends Model
         return $this->hasMany(Product::class);
     }
 
-    function supplierOrder() : HasMany
+    function inventory() : HasMany
     {
-        return $this->hasMany(SupplierOrder::class);
+        return $this->hasMany(Inventory::class);
     }
 
 }

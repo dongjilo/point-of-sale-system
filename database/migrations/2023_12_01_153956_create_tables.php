@@ -45,59 +45,18 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_code');
             $table->integer('product_price');
-            $table->integer('product_quantity');
             $table->unsignedBigInteger('supplier_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
 
-        Schema::create('supplier_orders', function (Blueprint $table) {
-            $table->id('supplier_order_id');
-            $table->date('supplier_order_date');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-        });
-
-        Schema::create('supplier_order_items', function (Blueprint $table) {
-            $table->id('supplier_order_item_id');
-            $table->unsignedBigInteger('supplier_order_id');
-            $table->unsignedBigInteger('product_id');
-            $table->double('supplier_order_price');
-            $table->integer('supplier_order_quantity');
-            $table->double('supplier_order_subtotal');
-            $table->unsignedBigInteger('supplier_id');
-            $table->timestamps();
-        });
-
-        Schema::create('supplier_receives', function (Blueprint $table) {
-            $table->id('supplier_receive_id');
-            $table->unsignedBigInteger('supplier_order_id')->nullable(true);
-            $table->date('supplier_receive_date');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-        });
-
-        Schema::create('supplier_receive_items', function (Blueprint $table) {
-            $table->id('supplier_receive_item_id');
-            $table->unsignedBigInteger('supplier_receive_id');
-            $table->unsignedBigInteger('product_id');
-            $table->integer('supplier_receive_batch');
-            $table->double('supplier_receive_price');
-            $table->integer('supplier_receive_quantity');
-            $table->double('supplier_receive_subtotal');
-            $table->date('supplier_receive_expiry');
-            $table->unsignedBigInteger('supplier_id');
-            $table->timestamps();
-        });
-
         Schema::create('inventories', function (Blueprint $table) {
             $table->id('inventory_id');
-            $table->unsignedBigInteger('supplier_receive_id');
+            $table->unsignedBigInteger('supplier_id');
             $table->unsignedBigInteger('product_id');
-            $table->string('inventory_location');
-            $table->string('inventory_shelf');
-            $table->string('inventory_status');
+            $table->integer('inventory_quantity');
+            $table->date('inventory_expiry');
             $table->timestamps();
         });
 
@@ -141,10 +100,6 @@ return new class extends Migration
         Schema::dropIfExists('order_items');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('inventories');
-        Schema::dropIfExists('supplier_receive_items');
-        Schema::dropIfExists('supplier_receives');
-        Schema::dropIfExists('supplier_order_items');
-        Schema::dropIfExists('supplier_orders');
         Schema::dropIfExists('products');
         Schema::dropIfExists('categories');
         Schema::dropIfExists('suppliers');

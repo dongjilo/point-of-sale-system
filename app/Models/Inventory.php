@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -14,14 +15,19 @@ class Inventory extends Model
     protected $guarded = [];
     protected $primaryKey = 'inventory_id';
 
-    function product() : BelongsToMany
+    function product() : BelongsTo
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
-    function supplierReceive() : BelongsToMany
+    function supplier() : BelongsTo
     {
-        return $this->belongsToMany(SupplierReceive::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    function orderItem() : HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
 }
