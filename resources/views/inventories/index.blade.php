@@ -43,7 +43,7 @@
                         </form>
 
                     </td>
-{{--                    @include('inventories.edit')--}}
+                    @include('inventories.edit')
                 </tr>
             @endforeach
             </tbody>
