@@ -31,4 +31,9 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    function bestSeller() : HasMany
+    {
+        return $this->hasMany(BestSeller::class);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BestSeller;
 use App\Models\Billing;
 use App\Models\Inventory;
 use App\Models\Order;
@@ -85,6 +86,17 @@ class OrderController extends Controller
                 $inventory->save();
             }
 
+            foreach ($request->product_id as $key => $productId) {
+                $quantitySold = $request->product_quantity[$key];
+                $totalRevenue = $request->total[$key];
+
+                // Update or create a record in top_sellers table
+                BestSeller::updateOrCreate(
+                    ['product_id' => $productId, 'bestseller_month' => now()->month, 'bestseller_year' => now()->year],
+                    ['bestseller_quantity_sold' => DB::raw("bestseller_quantity_sold + $quantitySold"), 'bestseller_total_sales' => DB::raw("bestseller_total_sales + $totalRevenue")]
+                );
+            }
+
             // billings model
             $billing = new Billing;
             $billing->order_id = $order_id;
@@ -94,15 +106,12 @@ class OrderController extends Controller
             $billing->billing_bank_account = $request->bank_account;
             $billing->billing_total_amount = $request->order_total;
             $billing->billing_amount_tendered = $request->amount_paid;
-            $billing->billing_date = date_create();
+            $billing->billing_date = now();
             $billing->save();
 
             // inventory model
 
             // bestseller model
-
-
-
         });
 
         return redirect('/orders')->with('success', 'Transaction Successful!');

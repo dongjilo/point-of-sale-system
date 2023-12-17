@@ -88,10 +88,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('best_sellers', function (Blueprint $table) {
-            $table->id('best_seller_id');
+        Schema::create('bestseller', function (Blueprint $table) {
+            $table->id('bestseller_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedInteger ('best_seller_quantity');
+            $table->unsignedInteger ('bestseller_quantity_sold');
+            $table->decimal('bestseller_total_sales', 8, 2);
+            $table->unsignedInteger('bestseller_month');
+            $table->unsignedInteger('bestseller_year');
             $table->timestamps();
         });
     }
@@ -101,7 +104,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('best_sellers');
+        Schema::dropIfExists('bestseller');
         Schema::dropIfExists('billings');
         Schema::dropIfExists('order_items');
         Schema::dropIfExists('orders');
