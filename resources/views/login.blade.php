@@ -43,6 +43,7 @@
         .login-card{
             background-color: #2e2114;
             float: none;
+            width: 60%;
             margin: auto;
             box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
             margin-top: 8%;
@@ -90,7 +91,7 @@
         .form-animation {
             background-color: #2e2114;
             float: none;
-            width: ;
+            width: 60%;
             margin: auto;
             box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
             margin-top: 8%;
