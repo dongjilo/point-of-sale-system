@@ -16,20 +16,9 @@ class Product extends Model
 
     use HasFactory;
 
-
-    function supplier() : BelongsTo
-    {
-        return $this->belongsTo(Supplier::class, 'supplier_id');
-    }
-
     function category() : BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    function user() : BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     function inventory() : HasMany
@@ -42,16 +31,9 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    function supplierOrder() : HasMany
+    function bestSeller() : HasMany
     {
-        return $this->hasMany(SupplierOrder::class);
+        return $this->hasMany(BestSeller::class);
     }
-
-    function supplierReceive() : HasMany
-    {
-        return $this->hasMany(SupplierReceive::class);
-    }
-
-
 
 }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +139,7 @@
                     <div class="col-md-7 login-form">
                                 <div class="logo mx-auto">
                                     <img src="images/logo-removebg.png" alt="logo">
+
                                 </div>
                                 <form method="post" action="/login" id="form" autocomplete="off"/>
                                     @csrf

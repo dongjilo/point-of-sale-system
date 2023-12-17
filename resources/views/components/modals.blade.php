@@ -3,7 +3,7 @@
 
 
 @php
-  use App\Models\Category;use App\Models\Supplier;use App\Models\User;
+  use App\Models\Category;use App\Models\Supplier;use App\Models\User;use App\Models\Product;use App\Models\Inventory;use App\Models\Order;use App\Models\OrderItem;
 
 @endphp
 
@@ -320,3 +320,28 @@
       </div>
   </div>
 {{-- end of add supplier receive modal --}}
+
+{{--inventory add modal--}}
+<div class="modal fade" id="addInventoryModal" tabindex="-1" role="dialog" aria-labelledby="addInventoryModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-white">
+                <h5 class="modal-title" id="addInventoryModal">
+                    <i class="fa fa-truck"></i>
+                    Add Inventory
+                </h5>
+                <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form class="">
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier Receive</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

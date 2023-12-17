@@ -30,8 +30,6 @@ class ProductController extends Controller
 
         Product::create($formFields);
 
-
-
         return redirect('/products')->with('success', 'Product created successfully!');
     }
 

@@ -109,3 +109,11 @@
             </div>
             <div class="card-footer small text-muted">Last Updated:  </div>
 	@endsection
+
+    @section('script')
+          <script>
+              $.ajax({
+
+              })
+          </script>
+    @endsection

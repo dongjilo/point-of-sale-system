@@ -29,17 +29,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
-                        <strong>{{ __('Product Stocks') }}:</strong>
-                        {!! Form::number('product_quantity', $product->product_quantity, array('placeholder' => 'Enter Product Stocks','class' => 'form-control','min' => '0')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
                         <strong>{{ __('Category') }}:</strong>
                             <select name="category_id" class="form-control" id="category_id">
                                 <option value="{{$product->category_id}}">{{$product->category->category_name}}</option>
                                     @foreach(Category::all()->where('category_id', '<>', "$product->category_id") as $category)
-                                    <   option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                                    <option value="{{$category->category_id}}">{{$category->category_name}}</option>
                                     @endforeach
                             </select>
                     </div>
@@ -55,8 +49,6 @@
                             </select>
                     </div>
                 </div>
-                 </div>
-
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
                         <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Update</button>

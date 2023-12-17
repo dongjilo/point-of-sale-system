@@ -38,14 +38,9 @@ class User extends Authenticatable
         return $this->user_password;
     }
 
-    function userType() : BelongsTo
+    function inventory() : HasMany
     {
-        return $this->belongsTo(UserType::class, 'type_id');
-    }
-
-    function supplierOrder() : HasMany
-    {
-        return $this->hasMany(SupplierOrder::class);
+        return $this->hasMany(Inventory::class);
     }
 
     function product() : HasMany

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -230,6 +231,56 @@ class AdminController extends Controller
         }
     }
     // end suppliers
+
+    // inventory
+    public function view_inventory() {
+        return view('inventories.index', [
+            'inventories' => Inventory::all()
+        ]);
+    }
+
+    public function store_inventory(Request $request) {
+        try{
+            $formFields = $request->all();
+            Inventory::create($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not added successfully.');
+        }
+    }
+
+    public function update_inventory(Request $request, Inventory $inventory) {
+        try{
+            $formFields = $request->all();
+            $inventory->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not updated successfully.');
+        }
+
+    }
+
+    public function destroy_inventory(Inventory $inventory) {
+        try{
+            $inventory->delete();
+
+            session()->forget('error');
+            return back()->with('success', 'Inventory deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Inventory was not deleted successfully.');
+        }
+    }
+    // end inventory
 
 
 }
