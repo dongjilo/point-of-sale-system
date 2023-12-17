@@ -35,8 +35,8 @@
             <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
               <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-header">
-                  <h1>Top-Selling</h1>
-                  <small class="float-left" id="best-seller">TBD</small>
+                  <h1 id="best-seller">TBD</h1>
+                  <small class="float-left">Top-Selling</small>
                 </div>
                 <div class="card-body">
                   <div class="card-body-icon">
