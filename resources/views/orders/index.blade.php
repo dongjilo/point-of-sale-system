@@ -28,7 +28,7 @@
                 <thead>
                     <th></th>
                     <th>Product Name</th>
-                    <th>Inventory</th>
+                    <th>Expiry</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
@@ -42,11 +42,11 @@
                             <option value=""></option>
                         </select>
                     </td>
+
                     <td>
-                        <select name="inventory_id[]" id="inventory_id" class="form-select inventory_id">
-                            <option value=""></option>
-                        </select>
+                        <input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>
                     </td>
+
                     <td>
                         <input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity">
                     </td>
@@ -91,7 +91,7 @@
         let data;
         function fetchProducts(){
             $.ajax({
-                url: "/cart/fetch/products",
+                url: "/orders/fetch/products",
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": "{{csrf_token()}}"
@@ -104,43 +104,21 @@
             });
         }
 
-        function fetchInventories(){
-            $.ajax({
-                url: "/cart/fetch/inventories",
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": "{{csrf_token()}}"
-                }, success: function (response) {
-                    populateInventoryOptions(response);
-                }, error: function (response) {
-                    console.error(response);
-                }
-            })
-        }
-
         function populateProductOptions(data) {
             var select = $('.product_id');
             for (const element of data) {
                 select.append($('<option>', {
-                    value: element[0],
-                    'data-product-price': element[2],
-                    text: element[1]
-                }));
-            }
-        }
-
-        function populateInventoryOptions(data) {
-            var select = $('.inventory_id');
-            for (const element of data) {
-                select.append($('<option>', {
-                    value: element[0],
-                    text: element[1]
+                    value: element.product_id,
+                    'data-product-price': element.product_price,
+                    'data-inventory-quantity': element.inventory_quantity,
+                    'data-inventory-id': element.inventory_id,
+                    'data-inventory-expiry': element.inventory_expiry,
+                    text: element.product_name
                 }));
             }
         }
 
         fetchProducts();
-        fetchInventories();
 
 
         $(document).ready(function (){
@@ -150,12 +128,11 @@
 
            $('.add').on('click', function (){
                let product = $('.product_id').html();
-               let inventory = $('.inventory_id').html();
                let numRow = ($('.add-more-product tr').length - 0) + 1;
                let tr =
                    '<tr><td class="row-number">' + numRow + '</td>' +
                    '<td><select name="product_id[]" id="product_id" class="form-select product_id">' + product + '</select></td>' +
-                   '<td><select name="inventory_id[]" id="inventory_id" class="form-select inventory_id">' + inventory + '</select></td>' +
+                   '<td><input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly></td>' +
                    '<td><input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity"></td>' +
                    '<td><input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly></td>' +
                    '<td><input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly></td>' +
@@ -189,14 +166,32 @@
 
            function calculate(tr) {
                var price = tr.find('.product_id option:selected').attr('data-product-price');
+               var available = tr.find('.product_id option:selected').attr('data-inventory-quantity');
+               var expiry = tr.find('.product_id option:selected').attr('data-inventory-expiry');
+
                tr.find('.product_price').val(price);
+               tr.find('.product_quantity').attr('max', available);
+               tr.find('.product_expiry').val(expiry);
+
                var qty = tr.find('.product_quantity').val() - 0;
                var price = tr.find('.product_price').val() - 0;
                var total = qty * price;
-               tr.find('.total').val(total);
+               tr.find('.total').val(total.toFixed(2));
                totalAmount();
-           };
+           }
 
+              function validateQuantity(tr) {
+                var qty = tr.find('.product_quantity').val() - 0;
+                var available = tr.find('.product_id option:selected').attr('data-inventory-quantity');
+                var product = tr.find('.product_id option:selected').text();
+                if (qty > available) {
+                     alert(product + ' in stock: ' + available + '.');
+                     tr.find('.product_quantity').val(available);
+                     calculate(tr);
+                }
+              }
+
+            // TODO - Prevent user from inputting duplicate products
            $('.add-more-product').delegate('.product_id', 'change', function () {
                var tr = $(this).closest('tr');
                calculate(tr);
@@ -204,6 +199,7 @@
 
             $('.add-more-product').delegate('.product_quantity', 'input', function () {
                 var tr = $(this).closest('tr');
+                validateQuantity(tr);
                 calculate(tr);
             });
 

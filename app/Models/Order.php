@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     protected $guarded = [];
     protected $primaryKey = 'order_id';

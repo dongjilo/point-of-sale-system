@@ -25,6 +25,11 @@ class Inventory extends Model
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
+    function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     function orderItem() : HasMany
     {
         return $this->hasMany(OrderItem::class);

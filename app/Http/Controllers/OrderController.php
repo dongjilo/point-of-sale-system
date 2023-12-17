@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Billing;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -13,37 +14,38 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+
     public function index()
     {
         return view('orders.index');
     }
 
+
     public function fetchProducts()
     {
         $wrapper = array();
-        $result = DB::table('products')->select('product_id', 'product_name', 'product_price')->get();
-        foreach ($result as $item) {
-            $data = array();
-            foreach ($item as $key => $value) {
-                $data[] = $value;
-            }
-            $wrapper[] = $data;
-        }
-        return response()->json($wrapper);
-    }
+        $result = Product::select(
+            'products.product_id',
+            'products.product_name',
+            'products.product_price',
+            'inventories.inventory_id',
+            DB::raw('SUM(inventories.inventory_quantity) as inventory_quantity'),
+            DB::raw('MIN(inventories.inventory_expiry) as inventory_expiry')
+        )
+            ->join('inventories', 'products.product_id', '=', 'inventories.product_id')
+            ->where('inventories.inventory_quantity', '>', 0)
+            ->groupBy(
+                'products.product_id',
+                'products.product_name',
+                'products.product_price',
+                'inventories.inventory_id',
+                'inventories.inventory_expiry'
+            )
+            ->orderBy('inventories.inventory_expiry', 'asc')
+            ->get();
 
-    public function fetchInventories()
-    {
-        $wrapper = array();
-        $result = DB::table('inventories')->select('inventory_id', 'inventory_location')->get();
-        foreach ($result as $item) {
-            $data = array();
-            foreach ($item as $key => $value) {
-                $data[] = $value;
-            }
-            $wrapper[] = $data;
-        }
-        return response()->json($wrapper);
+        $response = $result->toArray();
+        return  response()->json($response);
     }
 
     public function store(Request $request)
