@@ -120,21 +120,48 @@
                   fetchNearlyExpired()
               })
 
-              function editTopSellingCard(data) {
-                  $('#best-seller').html(data.data.product_details.product_name)
-                  $('#total-sales').html(data.data.bestseller_total_sales)
+              function animateCounter(element, initialValue, finalValue, duration) {
+                  $({ Counter: initialValue }).animate({
+                      Counter: finalValue
+                  }, {
+                      duration: duration,
+                      easing: 'linear',
+                      step: function () {
+                          element.text(Math.ceil(this.Counter))
+                      }
+                  });
+              }
+
+              function animateCounterFloat(element, initialValue, finalValue, duration) {
+                  $({ Counter: initialValue }).animate({
+                      Counter: finalValue
+                  }, {
+                      duration: duration,
+                      easing: 'linear',
+                      step: function () {
+                          element.text(parseFloat(this.Counter).toFixed(2));
+                      }
+                  });
               }
 
               function editSalesCount(data) {
                   $('#sales-count').html(data.data)
+                  animateCounter($('#sales-count'), 0, data.data, 1000);
+              }
+              function editTopSellingCard(data) {
+                  $('#best-seller').html(data.data.product_details.product_name)
+                  $('#total-sales').html(data.data.bestseller_total_sales)
+                  animateCounterFloat($('#total-sales'), 0, data.data.bestseller_total_sales, 1000)
               }
 
               function editOutOfStockCount(data){
                   $('#out-of-stock').html(data.data)
+                  animateCounter($('#out-of-stock'), 0, data.data, 1000)
               }
 
               function editNearlyExpiredCount(data){
                   $('#nearly-expired').html(data.data)
+                  animateCounter($('#nearly-expired'), 0, data.data, 1000)
               }
 
               function fetchSalesCount() {

@@ -47,19 +47,13 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', function () {return view('dashboard');});
 
     // Users
     Route::get('/users', [UserController::class, 'index']);
-
     Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-
     Route::put('/users/{user}', [UserController::class, 'update']);
-
     Route::post('/logout', [UserController::class, 'logout']);
-
     Route::get('users/{user}', [UserController::class, 'show']);
 
     // Products
@@ -100,6 +94,7 @@ Route::middleware(['auth'])->group(function (){
 
     // Orders
     Route::get('/orders', [OrderController::class, 'create']);
+    Route::get('/orders_history' , [OrderController::class, 'index']);
     Route::post('/orders/fetch/products', [OrderController::class, 'fetchProducts']);
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);
