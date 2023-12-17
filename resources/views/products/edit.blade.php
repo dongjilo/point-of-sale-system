@@ -38,17 +38,6 @@
                             </select>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
-                        <strong>{{ __('Supplier') }}:</strong>
-                            <select name="supplier_id" id="supplier_id" class="form-control">
-                                <option value="{{$product->supplier_id}}">{{$product->supplier->supplier_name}}</option>
-                                    @foreach(Supplier::all()->where('supplier_id', '<>', "$product->supplier_id") as $supplier)
-                                        <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
-                                    @endforeach
-                            </select>
-                    </div>
-                </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
                         <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Update</button>

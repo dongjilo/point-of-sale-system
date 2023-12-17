@@ -23,7 +23,11 @@
 
             <tbody>
             @foreach ($inventories as $inventory)
-                <tr>
+                @php
+                    $isLowStock = $inventory->inventory_quantity <= 10;
+                    $isNearExpiry = strtotime($inventory->inventory_expiry) < strtotime('+7 days');
+                @endphp
+                <tr class="{{ $isLowStock ? 'text-warning' : '' }} {{ $isNearExpiry ? 'text-danger' : '' }}">
                     <td>{{$inventory->inventory_id}}</td>
                     <td>{{$inventory->supplier->supplier_name}}</td>
                     <td>{{$inventory->product->product_name}}</td>

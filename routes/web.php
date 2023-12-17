@@ -93,8 +93,8 @@ Route::middleware(['auth'])->group(function (){
     // inventories end
 
     // Orders
-    Route::get('/orders', [OrderController::class, 'create']);
-    Route::get('/orders_history' , [OrderController::class, 'index']);
+    Route::get('/orders_create', [OrderController::class, 'create']);
+    Route::get('/orders' , [OrderController::class, 'index']);
     Route::post('/orders/fetch/products', [OrderController::class, 'fetchProducts']);
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);

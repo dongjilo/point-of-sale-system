@@ -70,28 +70,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
-                        <strong>{{ __('Product Stocks') }}:</strong>
-                        {!! Form::number('product_quantity', null, array('placeholder' => 'Enter Product Stocks','class' => 'form-control','min' => '0')) !!}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
                         <strong>{{ __('Category') }}:</strong>
                           <select name="category_id" id="category_id" class="form-select">
                             <option value="" selected></option>
                               @foreach(Category::all() as $categoryoption)
                                 <option value="{{$categoryoption->category_id}}">{{$categoryoption->category_name}}</option>
-                              @endforeach
-                          </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                    <div class="form-group">
-                        <strong>{{ __('Supplier') }}:</strong>
-                          <select name="supplier_id" id="supplier_id" class="form-select">
-                            <option value="--" selected></option>
-                              @foreach(Supplier::all() as $supplieroption)
-                                <option value="{{$supplieroption->supplier_id}}">{{$supplieroption->supplier_name}}</option>
                               @endforeach
                           </select>
                     </div>

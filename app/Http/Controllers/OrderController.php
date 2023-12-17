@@ -21,6 +21,12 @@ class OrderController extends Controller
         return view('orders.create');
     }
 
+    public function index()
+    {
+        $orders = Order::with('user')->get();
+        return view('orders.index', compact('orders'));
+    }
+
 
     public function fetchProducts()
     {

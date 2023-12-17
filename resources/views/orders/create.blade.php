@@ -93,6 +93,7 @@
     </div>
 @endsection
 
+@section('script')
     <script>
         let data;
         function fetchProducts(){
@@ -126,6 +127,7 @@
 
         $(document).ready(function (){
             fetchProducts();
+
             setTimeout(function(){
                 $("div.alert").remove();
             }, 5000 ); // 5 secs
@@ -230,3 +232,4 @@
             $('.product_price').css('cursor', 'default');
         });
     </script>
+@endsection
