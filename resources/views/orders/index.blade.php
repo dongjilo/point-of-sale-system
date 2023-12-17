@@ -45,6 +45,7 @@
 
                     <td>
                         <input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>
+                        <input type="text" class="form-control inventory_id" name="inventory_id[]" id="inventory_id" hidden="true">
                     </td>
 
                     <td>
@@ -118,10 +119,9 @@
             }
         }
 
-        fetchProducts();
-
-
         $(document).ready(function (){
+
+            fetchProducts();
             setTimeout(function(){
                 $("div.alert").remove();
             }, 5000 ); // 5 secs
@@ -132,7 +132,8 @@
                let tr =
                    '<tr><td class="row-number">' + numRow + '</td>' +
                    '<td><select name="product_id[]" id="product_id" class="form-select product_id">' + product + '</select></td>' +
-                   '<td><input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly></td>' +
+                   '<td><input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>' +
+                   '<input type="text" class="form-control inventory_id" name="inventory_id[]" id="inventory_id" hidden="true"></td>' +
                    '<td><input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity"></td>' +
                    '<td><input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly></td>' +
                    '<td><input type="text" class="form-control total shadow-none" name="total[]" id="total" readonly></td>' +
@@ -168,10 +169,12 @@
                var price = tr.find('.product_id option:selected').attr('data-product-price');
                var available = tr.find('.product_id option:selected').attr('data-inventory-quantity');
                var expiry = tr.find('.product_id option:selected').attr('data-inventory-expiry');
+               var inventory = tr.find('.product_id option:selected').attr('data-inventory-id');
 
                tr.find('.product_price').val(price);
                tr.find('.product_quantity').attr('max', available);
                tr.find('.product_expiry').val(expiry);
+               tr.find('.inventory_id').val(inventory);
 
                var qty = tr.find('.product_quantity').val() - 0;
                var price = tr.find('.product_price').val() - 0;
