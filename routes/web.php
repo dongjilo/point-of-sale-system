@@ -35,7 +35,7 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 
 
 // Login
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login']);
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 

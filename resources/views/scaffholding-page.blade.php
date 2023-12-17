@@ -77,7 +77,7 @@
             </a>
 
             <a class="dropdown-item" href="/logout" onclick="confirm('Are you sure you want to log out?')">
-            <i class="fa-solid fa-power-off"></i>
+            <i class="fa-solid fa-fw fa-power-off"></i>
                 Logout
             </a>
           </div>
