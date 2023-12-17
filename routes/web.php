@@ -47,19 +47,13 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+    Route::get('/', function () {return view('dashboard');});
 
     // Users
     Route::get('/users', [UserController::class, 'index']);
-
     Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-
     Route::put('/users/{user}', [UserController::class, 'update']);
-
     Route::post('/logout', [UserController::class, 'logout']);
-
     Route::get('users/{user}', [UserController::class, 'show']);
 
     // Products
@@ -85,7 +79,7 @@ Route::middleware(['auth'])->group(function (){
     // categories end
 
     // orders
-    Route::get('/orders', [AdminController::class, 'view_order']);
+//    Route::get('/orders', [AdminController::class, 'view_order']);
     Route::post('/store_order', [AdminController::class, 'store_order']) -> name('store_order');
     Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
     Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');
@@ -99,11 +93,17 @@ Route::middleware(['auth'])->group(function (){
     // inventories end
 
     // Orders
-    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders', [OrderController::class, 'create']);
+    Route::get('/orders_history' , [OrderController::class, 'index']);
     Route::post('/orders/fetch/products', [OrderController::class, 'fetchProducts']);
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);
 
     // Bestseller
     Route::get('/bestseller/fetch', [BestsellerController::class, 'fetchBestseller']);
+
+    // fetch
+    Route::get('/fetch/sales-count', [OrderController::class, 'fetchSalesCount']);
+    Route::get('/fetch/out-of-stock', [AdminController::class, 'fetchAlmostOutOfStock']);
+    Route::get('/fetch/nearly-expired', [AdminController::class, 'fetchNearlyExpiredProducts']);
 });

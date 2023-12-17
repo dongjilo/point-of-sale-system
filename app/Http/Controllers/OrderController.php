@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
 
-    public function index()
+    public function create()
     {
-        return view('orders.index');
+        return view('orders.create');
     }
 
 
@@ -115,5 +115,14 @@ class OrderController extends Controller
         });
 
         return redirect('/orders')->with('success', 'Transaction Successful!');
+    }
+
+    public function fetchSalesCount() {
+        $lastMonthOrders = Order::where('created_at', '>=', now()->subMonth())->count();
+        return response()->json([
+            'success' => true,
+            'message' => 'Sales count for the last month',
+            'data' => $lastMonthOrders
+        ], 200);
     }
 }

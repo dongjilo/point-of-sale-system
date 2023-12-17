@@ -21,7 +21,7 @@
                     <i class="fa fa-fw  fa-dollar"></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>150</strong></h1>
+                    <h1 class="text-center display-3" id="sales-count"><strong>0</strong></h1>
                   </div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
@@ -65,10 +65,10 @@
                     <i class="fa fa-fw fa-tag"></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>14</strong></h1>
+                    <h1 class="text-center display-3" id="out-of-stock"><strong>0</strong></h1>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="">
+                <a class="card-footer text-white clearfix small z-1" href="/inventories">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
@@ -87,10 +87,10 @@
                     <i class="fa fa-fw fa-exclamation-circle"></i>
                   </div>
                   <div class="card-text">
-                    <h1 class="text-center display-3"><strong>15</strong></h1>
+                    <h1 class="text-center display-3" id="nearly-expired"><strong>0</strong></h1>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="">
+                <a class="card-footer text-white clearfix small z-1" href="/inventories">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
@@ -112,25 +112,111 @@
 
     @section('script')
           <script>
-              function fetchBestSeller() {
-                    $.ajax({
-                        url: "/bestseller/fetch",
-                        method: "GET",
-                        dataType: "JSON",
-                        success: function (data) {
-                            editTopSellingCard(data)
-                        },
-                        error: function (response) {
-                            console.error(response);
-                        }
-                    })
+
+              $(document).ready(function () {
+                  fetchSalesCount()
+                  fetchBestSeller()
+                  fetchOutOfStock()
+                  fetchNearlyExpired()
+              })
+
+              function animateCounter(element, initialValue, finalValue, duration) {
+                  $({ Counter: initialValue }).animate({
+                      Counter: finalValue
+                  }, {
+                      duration: duration,
+                      easing: 'linear',
+                      step: function () {
+                          element.text(Math.ceil(this.Counter))
+                      }
+                  });
               }
 
+              function animateCounterFloat(element, initialValue, finalValue, duration) {
+                  $({ Counter: initialValue }).animate({
+                      Counter: finalValue
+                  }, {
+                      duration: duration,
+                      easing: 'linear',
+                      step: function () {
+                          element.text(parseFloat(this.Counter).toFixed(2));
+                      }
+                  });
+              }
+
+              function editSalesCount(data) {
+                  $('#sales-count').html(data.data)
+                  animateCounter($('#sales-count'), 0, data.data, 1000);
+              }
               function editTopSellingCard(data) {
-                  $('#best-seller').html(data.data.product_details.product_name);
-                  $('#total-sales').html(data.data.bestseller_total_sales);
+                  $('#best-seller').html(data.data.product_details.product_name)
+                  $('#total-sales').html(data.data.bestseller_total_sales)
+                  animateCounterFloat($('#total-sales'), 0, data.data.bestseller_total_sales, 1000)
               }
 
-              fetchBestSeller()
+              function editOutOfStockCount(data){
+                  $('#out-of-stock').html(data.data)
+                  animateCounter($('#out-of-stock'), 0, data.data, 1000)
+              }
+
+              function editNearlyExpiredCount(data){
+                  $('#nearly-expired').html(data.data)
+                  animateCounter($('#nearly-expired'), 0, data.data, 1000)
+              }
+
+              function fetchSalesCount() {
+                  $.ajax({
+                      url: '/fetch/sales-count',
+                      method: 'get',
+                      dataType: 'JSON',
+                      success: function (data){
+                          editSalesCount(data)
+                      }, error: function (response) {
+                          console.error(response)
+                      }
+                  })
+              }
+
+              function fetchBestSeller() {
+                  $.ajax({
+                      url: "/bestseller/fetch",
+                      method: "GET",
+                      dataType: "JSON",
+                      success: function (data) {
+                          editTopSellingCard(data)
+                      },
+                      error: function (response) {
+                          console.error(response)
+                      }
+                  })
+              }
+
+              function fetchOutOfStock() {
+                  $.ajax({
+                      url: "/fetch/out-of-stock",
+                      method: "GET",
+                      dataType: "JSON",
+                      success: function (data) {
+                          editOutOfStockCount(data)
+                      },
+                      error: function (response) {
+                          console.error(response)
+                      }
+                  })
+              }
+
+              function fetchNearlyExpired() {
+                  $.ajax({
+                      url: "/fetch/nearly-expired",
+                      method: "GET",
+                      dataType: "JSON",
+                      success: function (data) {
+                          editNearlyExpiredCount(data)
+                      },
+                      error: function (response) {
+                          console.error(response)
+                      }
+                  })
+              }
           </script>
     @endsection
