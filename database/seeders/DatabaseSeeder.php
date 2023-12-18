@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -45,5 +46,32 @@ class DatabaseSeeder extends Seeder
             'user_password' => bcrypt('123'),
             'role_id' => '2',
         ]);
+
+        for ($i = 1; $i <= 10; $i++) {
+            DB::table('orders')->insert([
+                'user_id' => $i,
+                'order_date' => Carbon::now()->subDays(rand(1, 30)),
+            ]);
+
+            DB::table('order_items')->insert([
+                'order_id' => $i,
+                'product_id' => rand(1, 10),
+                'order_item_quantity' => rand(1, 5),
+                'order_item_subtotal' => rand(100, 500),
+            ]);
+
+            $orderDate = Carbon::now()->subDays(rand(1, 365));
+
+            DB::table('billings')->insert([
+                'order_id' => $i,
+                'user_id' => $i,
+                'billing_payment_method' => 'Credit Card',
+                'billing_total_amount' => rand(500, 10000),
+                'billing_amount_tendered' => rand(500, 10000),
+                'billing_date' => $orderDate,
+                'created_at' => $orderDate,
+                'updated_at' => $orderDate,
+            ]);
+        }
     }
 }
