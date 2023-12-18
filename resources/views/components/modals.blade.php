@@ -269,58 +269,7 @@
 {{-- end of billing modal --}}
 
 
-{{-- add supplier order modal --}}
-  <div class="modal fade" id="addSupplierOrderModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierOrderModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-white">
-            <h5 class="modal-title" id="addSupplierOrderModal">
-              <i class="fa fa-truck"></i>
-              Add Purchase Order to Supplier
-            </h5>
-            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
 
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier Order</button>
-            </div>
-          </form>
-        </div>
-      </div>
-  </div>
-{{-- end of add supplier order modal --}}
-
-
-{{-- add supplier receive modal --}}
-  <div class="modal fade" id="addSupplierReceiveModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierReceiveModal" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-white">
-            <h5 class="modal-title" id="addSupplierReceiveModal">
-              <i class="fa fa-truck"></i>
-               Receive Product(s) from Supplier
-            </h5>
-            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
-          <form class="">
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier Receive</button>
-            </div>
-          </form>
-        </div>
-      </div>
-  </div>
-{{-- end of add supplier receive modal --}}
 
 {{--inventory add modal--}}
 <div class="modal fade" id="addInventoryModal" tabindex="-1" role="dialog" aria-labelledby="addInventoryModal" aria-hidden="true">
@@ -335,7 +284,7 @@
                 </button>
             </div>
                 <div class="modal-body">
-                    <form action="{{route('store_supplier')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('store_inventory')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
               <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">

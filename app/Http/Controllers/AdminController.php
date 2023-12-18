@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategorySaveRequest;
 use App\Http\Requests\ProductSaveRequest;
 use App\Http\Requests\SupplierSaveRequest;
 use App\Http\Requests\InventorySaveRequest;
@@ -135,11 +136,10 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_category(Request $request) {
+    public function store_category(CategorySaveRequest $request) {
        session()->forget('error');
-
             $category = new Category;
-            $category->request->all();
+            $category->$request->all();
             $category->save();
 
             return back()->with('success', 'Category added successfully!');
