@@ -36,7 +36,7 @@ class AdminController extends Controller
             session()->forget('error');
 
             $product = new Product;
-            $product->request->all();
+            $product->$request->all();
             $product->save();
 
             return back()->with('success', 'Product added successfully!');
@@ -247,7 +247,11 @@ class AdminController extends Controller
         session()->forget('error');
 
             $inventory = new Inventory;
+<<<<<<< Updated upstream
             $inventory->request->all();
+=======
+            $inventory->$request->all();
+>>>>>>> Stashed changes
             $inventory->save();
 
             return back()->with('success', 'Inventory added successfully!');
