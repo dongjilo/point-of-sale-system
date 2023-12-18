@@ -68,14 +68,6 @@
 
         <div class="dropdown-divider"></div>
 
-        <h6 class="dropdown-header">Inventory</h6>
-        <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addInventoryModal">
-          <i class="fa fa-fw fa-list-alt"></i>
-          New Inventory
-        </a>
-
-        <div class="dropdown-divider"></div>
-
         @if(Auth::check() && Auth::user()->hasRole('admin'))
         <h6 class="dropdown-header">Users</h6>
         <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addUserModal">

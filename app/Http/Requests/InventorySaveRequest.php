@@ -11,7 +11,7 @@ class InventorySaveRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -27,15 +27,6 @@ class InventorySaveRequest extends FormRequest
             'inventory_expiry' =>'required',
             'supplier_id' =>'required',
             'user_id' =>'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return[
-            'product_id.required' => 'Please Select a Product.',
-            'supplier_id.required' => 'Please Select a Supplier.',
-
         ];
     }
 }

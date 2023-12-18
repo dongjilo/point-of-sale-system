@@ -7,7 +7,7 @@
 @section('content')
     <ol class="breadcrumb rounded p-2">
         <li class="breadcrumb-item">Cashier</li>
-        <li class="breadcrumb-item active">Add new Order</li>
+        <li class="breadcrumb-item active">Add Order</li>
     </ol>
     @include('components.alertMessages')
     <div class="card">
@@ -53,7 +53,7 @@
                             </td>
 
                             <td>
-                                <a href="#" class="btn btn-danger"><i class="fa-solid fa-minus"></i></a>
+{{--                                <a href="#" class="btn btn-danger"><i class="fa-solid fa-minus"></i></a>--}}
                             </td>
                             </tbody>
                         </table>
@@ -64,10 +64,10 @@
                         <input type="text" name="order_total" id="order_total" class="form-control order_total mb-3" value="0.00" readonly>
                         <h5 class="fw-bold">Payment Method: </h5>
                         <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="cash">
+                            <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="Cash" checked>
                             <label class="btn btn-outline-primary" for="payment_method1">Cash</label>
 
-                            <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method2" autocomplete="off" value="other">
+                            <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method2" autocomplete="off" value="Other">
                             <label class="btn btn-outline-primary" for="payment_method2">Other</label>
                         </div>
 

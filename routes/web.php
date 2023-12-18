@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function (){
 
     // Bestseller
     Route::get('/bestseller/fetch', [BestsellerController::class, 'fetchBestseller']);
+    Route::get('/bestsellers', [BestsellerController::class, 'index']);
 
     // fetch
     Route::get('/fetch/sales-count', [OrderController::class, 'fetchSalesCount']);
