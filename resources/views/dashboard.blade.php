@@ -46,7 +46,7 @@
                       <strong><h1 class="text-center display-3" id="total-sales">0.00</h1></strong>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="/bestsellers">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
