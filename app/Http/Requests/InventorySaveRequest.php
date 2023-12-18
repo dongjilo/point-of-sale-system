@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategorySaveRequest extends FormRequest
+class InventorySaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,20 @@ class CategorySaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_name' => 'required|unique:categories',
-            'category_desc' => 'required'
+            'product_id' => 'required',
+            'inventory_quantity' => 'required',
+            'inventory_expiry' =>'required',
+            'supplier_id' =>'required',
+            'user_id' =>'required',
         ];
     }
 
     public function messages()
     {
         return[
-            'category_name.unique' => 'Inputted Category already exists.',
+            'product_id.required' => 'Please Select a Product.',
+            'supplier_id.required' => 'Please Select a Supplier.',
+
         ];
     }
 }
