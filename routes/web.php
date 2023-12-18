@@ -36,19 +36,11 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 
 // Login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-
 Route::post('login', [ 'as' => 'login', LoginController::class, 'authenticate']);
-
-Route::get('/logout', [LoginController::class, 'logout']);
-
-Route::get('/register', [UserController::class, 'create']);
-
-Route::post('/users_store', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/logout', [LoginController::class, 'logout']);
-
     Route::get('/', function () {return view('dashboard');});
 
     // Admin routes
@@ -60,13 +52,11 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/users/edit/{user}', [UserController::class, 'edit']);
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('update_user');
         Route::post('/logout', [UserController::class, 'logout']);
-        Route::get('users/{user}', [UserController::class, 'show']);
-        Route::post('/users/{user}', [UserController::class, 'destroy'])->name('destroy_user');
+        Route::delete('/users/delete/{user}', [UserController::class, 'destroy'])->name('destroy_user');
     });
 
 
     // Products
-
     Route::get('/products', [AdminController::class, 'view_product']);
     Route::post('/store_product', [AdminController::class, 'store_product']) -> name('store_product');
     Route::delete('/products/delete/{product}', [AdminController::class, 'destroy_product']) -> name('destroy_product');
@@ -88,7 +78,7 @@ Route::middleware(['auth'])->group(function (){
     // categories end
 
     // orders
-   Route::get('/orders', [AdminController::class, 'view_order']);
+    Route::get('/orders', [AdminController::class, 'view_order']);
     Route::post('/store_order', [AdminController::class, 'store_order']) -> name('store_order');
     Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
     Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');

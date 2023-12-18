@@ -39,9 +39,8 @@
                         <form action="{{ route('destroy_inventory', $inventory->inventory_id)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <a role="button" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                            <button role="button" type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this row?')"><i class="fa fa-trash"></i></a>
                         </form>
-
                     </td>
                     @include('inventories.edit')
                 </tr>

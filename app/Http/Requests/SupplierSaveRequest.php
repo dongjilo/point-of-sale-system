@@ -23,7 +23,7 @@ class SupplierSaveRequest extends FormRequest
     {
         return [
             'supplier_name' => 'required|unique:suppliers',
-            'supplier_phone' => 'required|number',
+            'supplier_phone' => 'required|numeric',
             'supplier_email' =>'required|unique:suppliers',
         ];
     }

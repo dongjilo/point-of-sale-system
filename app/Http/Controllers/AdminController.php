@@ -12,10 +12,7 @@ use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\User;
 use App\Models\Supplier;
-use App\Models\SupplierOrder;
-use App\Models\SupplierReceive;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -49,7 +46,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Product updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Product was not updated successfully.');
         }
@@ -62,7 +59,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Product deleted successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             if ($ex->getCode() === '23000') {
                 return back()->with('error', 'Product cannot be deleted, because [Product: '.$product->product_name .'] is used elsewhere...');
@@ -93,13 +90,17 @@ class AdminController extends Controller
 
     public function update_supplier(Request $request, Supplier $supplier) {
         try{
-            $formFields = $request->all();
+            $formFields = $request->validate([
+                'supplier_name' => 'required',
+                'supplier_phone' => 'required|numeric',
+                'supplier_email' =>'required',
+            ]);
             $supplier->update($formFields);
 
             session()->forget('error');
             return back()->with('success', 'Supplier updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Supplier was not updated successfully.');
         }
@@ -113,7 +114,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Supplier deleted successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
            if ($ex->getCode() === '23000') {
                 return back()->with('error', 'Supplier cannot be deleted, because [Supplier: '.$supplier->supplier_name .'] is used elsewhere...');
@@ -150,7 +151,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Category updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Category was not updated successfully.');
         }
@@ -164,7 +165,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Category deleted successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             if ($ex->getCode() === '23000') {
                 return back()->with('error', 'Category cannot be deleted, because [Category: '.$category->category_name .'] is used elsewhere...');
             }else{
@@ -194,7 +195,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Order added successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Category was not added successfully.');
         }
@@ -212,7 +213,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Category updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Category was not updated successfully.');
         }
@@ -226,7 +227,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Order deleted successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Order was not deleted successfully.');
         }
@@ -257,7 +258,7 @@ class AdminController extends Controller
             session()->forget('error');
             return back()->with('success', 'Inventory updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'Inventory was not updated successfully.');
         }
@@ -267,11 +268,9 @@ class AdminController extends Controller
     public function destroy_inventory(Inventory $inventory) {
         try{
             $inventory->delete();
-
             session()->forget('error');
-            return back()->with('success', 'Inventory added successfully!');
-
-        }catch (\Illuminate\Database\QueryException $ex){
+            return back()->with('success', 'Inventory deleted successfully!');
+        }catch (QueryException $ex){
             if ($ex->getCode() === '23000') {
                 return back()->with('error', 'Inventoy cannot be deleted, because [Inventory ID: '.$inventory->inventory_id .'] is used elsewhere...');
             }else{
@@ -287,7 +286,6 @@ class AdminController extends Controller
             'billings' => Billing::all()
         ]);
     }
-
 
     // fetch data
 

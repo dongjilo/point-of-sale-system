@@ -17,7 +17,6 @@
               Add New User
             </h5>
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"></button>
-            </button>
           </div>
             <div class="modal-body">
             <form action="/users_store" method="post" enctype="multipart/form-data">
@@ -76,33 +75,33 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>{{ __('Product Code') }}:</strong>
-                        {!! Form::text('product_code', null, array('placeholder' => 'Product Code','class' => 'form-control')) !!}
+                        {!! Form::text('product_code', null, array('placeholder' => 'Enter Product Code','class' => 'form-control')) !!}
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Price') }}:</strong>
-                        {!! Form::number('product_price', null, array('placeholder' => 'Enter Product Name','class' => 'form-control', 'step' => '.01', 'min' => '0')) !!}
+                        {!! Form::number('product_price', null, array('placeholder' => 'Enter Product Price','class' => 'form-control', 'step' => '.01', 'min' => '0')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Category') }}:</strong>
                           <select name="category_id" id="category_id" class="form-select">
-                            <option value="" disabled selected>select category</option>
+                            <option value="" disabled selected>Select Category</option>
                               @foreach(Category::all() as $categoryoption)
                                 <option value="{{$categoryoption->category_id}}">{{$categoryoption->category_name}}</option>
                               @endforeach
                           </select>
                     </div>
                 </div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+                  <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Product</button>
+                </div>
+              </form>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Product</button>
-            </div>
-          </form>
         </div>
       </div>
   </div>
@@ -216,7 +215,7 @@
                         <strong>{{ __('Supplier') }}:</strong>
                         <select name="supplier_id" id="supplier_id" class="form-select">
 
-                            <option value="" disabled selected>select supplier</option>
+                            <option value="" disabled selected>Select Supplier</option>
                               @foreach(Supplier::all() as $supplier)
                                 <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
                               @endforeach
@@ -228,7 +227,7 @@
                     <div class="form-group">
                         <strong>{{ __('Product') }}:</strong>
                         <select name="product_id" id="product_id" class="form-select">
-                            <option value="" disabled selected>select supplier</option>
+                            <option value="" disabled selected>Select Product</option>
                               @foreach(Product::all() as $product)
                                 <option value="{{$product->product_id}}">{{$product->product_name}}</option>
                               @endforeach

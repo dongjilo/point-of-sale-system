@@ -35,7 +35,7 @@
 	                    <form action="{{ route('destroy_product', $product->product_id)}}" method="post">
 	                        @csrf
 	                        @method('DELETE')
-	                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+	                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this row?')"><i class="fa fa-trash"></i></button>
 	                    </form>
 	                </td>
 	                @include('products.edit')
