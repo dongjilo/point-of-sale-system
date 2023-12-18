@@ -65,6 +65,7 @@
             margin-bottom: 30px;
         }
         .form-cover input{
+            color: white;
             margin-bottom: 30px;
             border-radius: 0px;
             background-color: #cccccc38;
@@ -128,6 +129,8 @@
     </style>
 </head>
 <body id="body-animation">
+    @include('components.alertMessages')
+
 <div class="container-fluid bg-login">
     <div class="container">
         <div class="row">

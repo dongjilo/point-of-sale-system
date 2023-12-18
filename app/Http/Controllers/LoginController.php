@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login() {
-        return view('login');
-    }
-
     public function authenticate(Request $request) {
         $credentials = [
             'user_uname' => $request['user_uname'],
@@ -26,6 +22,12 @@ class LoginController extends Controller
 
         ])->onlyInput('user_uname');
     }
+    public function login() {
+
+        return view('login');
+    }
+
+
 
     public function logout(Request $request): RedirectResponse
     {
