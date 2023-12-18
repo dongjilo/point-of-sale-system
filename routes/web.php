@@ -43,7 +43,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [UserController::class, 'create']);
 
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users_store', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
@@ -52,9 +52,11 @@ Route::middleware(['auth'])->group(function (){
     // Users
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('update_user');
     Route::post('/logout', [UserController::class, 'logout']);
     Route::get('users/{user}', [UserController::class, 'show']);
+    Route::delete('/users/delete/{user}', [UserController ::class, 'destroy']) -> name('destroy_user');
+
 
     // Products
 
@@ -93,8 +95,8 @@ Route::middleware(['auth'])->group(function (){
     // inventories end
 
     // Orders
-    Route::get('/orders', [OrderController::class, 'create']);
-    Route::get('/orders_history' , [OrderController::class, 'index']);
+    Route::get('/orders_create', [OrderController::class, 'create']);
+    Route::get('/orders' , [OrderController::class, 'index']);
     Route::post('/orders/fetch/products', [OrderController::class, 'fetchProducts']);
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);

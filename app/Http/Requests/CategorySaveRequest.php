@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplierSaveRequest extends FormRequest
+class CategorySaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,17 +22,7 @@ class SupplierSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplier_name' => 'required|unique:suppliers',
-            'supplier_phone' => 'required',
-            'supplier_email' =>'required|unique:suppliers',
-        ];
-    }
-
-    public function messages()
-    {
-        return[
-            'supplier_name.unique' => 'Supplier Name has been Taken.',
-            'supplier_email.unique' => 'Inputed Email has been Taken.',
+            //
         ];
     }
 }

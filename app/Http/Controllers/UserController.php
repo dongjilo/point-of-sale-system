@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserSaveRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,18 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user) {
-        $formFields = $request->all();
-        $user->update($formFields);
-        return redirect('users');
+        try{
+            $formFields = $request->all();
+            $user->update($formFields);
+
+            session()->forget('error');
+            return back()->with('success', 'User updated successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'User was not updated successfully.');
+        }
+
     }
 
 
@@ -35,10 +45,30 @@ class UserController extends Controller
         return view('register');
     }
 
-    public function store(Request $request) {
-        $userInfo = $request->all();
-        $userInfo['user_password'] = bcrypt($userInfo['user_password']);
-        User::create($userInfo);
-        return redirect('/login');
+    public function store(UserSaveRequest $request) {
+        session()->forget('error');
+
+        $user = new User();
+        $user->$request->all();
+        $user['user_password'] = bcrypt($user['user_password']);
+        $user->save();
+
+        return back()->with('success', 'User added successfully!');
+    }
+
+    public function destroy(User $user) {
+        try{
+            $user->delete();
+            session()->forget('error');
+            return back()->with('success', 'User deleted successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            if ($ex->getCode() === '23000') {
+                return back()->with('error', 'User cannot be deleted, because [User: '.$user->user_name .'] is used elsewhere...');
+            }else{
+                return back()->with('error', 'User was not deleted successfully.');
+            }
+        }
     }
 }

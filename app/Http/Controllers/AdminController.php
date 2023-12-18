@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductSaveRequest;
+use App\Http\Requests\SupplierSaveRequest;
 use App\Models\Billing;
 use App\Models\Category;
 use App\Models\Inventory;
@@ -28,18 +30,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_product(Request $request) {
-        try{
-            $formFields = $request->all();
-            Product::create($formFields);
-
+    public function store_product(ProductSaveRequest $request) {
             session()->forget('error');
-            return back()->with('success', 'Product added successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Product was not added successfully.');
-        }
+            $product = new Product;
+            $product->request->all();
+            $product->save();
+
+            return back()->with('success', 'Product added successfully!');
     }
 
     public function update_product(Request $request, Product $product) {
@@ -65,7 +63,11 @@ class AdminController extends Controller
 
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
-            return back()->with('error', 'Product was not deleted successfully.');
+            if ($ex->getCode() === '23000') {
+                return back()->with('error', 'Product cannot be deleted, because [Product: '.$product->product_name .'] is used elsewhere...');
+            }else{
+                return back()->with('error', 'Category was not deleted successfully.');
+            }
         }
     }
     //end products
@@ -79,18 +81,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_supplier(Request $request) {
-        try{
-            $formFields = $request->all();
-            Supplier::create($formFields);
-
+    public function store_supplier(SupplierSaveRequest $request) {
             session()->forget('error');
-            return back()->with('success', 'Supplier added successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Supplier was not added successfully.');
-        }
+            $supplier = new Supplier;
+            $supplier->request->all();
+            $supplier->save();
+
+            return back()->with('success', 'Supplier added successfully!');
     }
 
     public function update_supplier(Request $request, Supplier $supplier) {
@@ -117,7 +115,11 @@ class AdminController extends Controller
 
         }catch (\Illuminate\Database\QueryException $ex){
             session()->forget('success');
-            return back()->with('error', 'Supplier was not deleted successfully.');
+           if ($ex->getCode() === '23000') {
+                return back()->with('error', 'Supplier cannot be deleted, because [Supplier: '.$supplier->supplier_name .'] is used elsewhere...');
+            }else{
+                return back()->with('error', 'Category was not deleted successfully.');
+            }
         }
 
     }
@@ -169,8 +171,11 @@ class AdminController extends Controller
             return back()->with('success', 'Category deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Category was not deleted successfully.');
+            if ($ex->getCode() === '23000') {
+                return back()->with('error', 'Category cannot be deleted, because [Category: '.$category->category_name .'] is used elsewhere...');
+            }else{
+                return back()->with('error', 'Category was not deleted successfully.');
+            }
         }
     }
     // end suppliers

@@ -34,8 +34,7 @@ class ProductSaveRequest extends FormRequest
         return[
             'product_name.unique' => 'Product Name has been Taken',
             'product_code.unique' => 'Product Code has been Taken',
-            'product_price.required' => 'Product Name is required!',
-            'category_id.required' => 'Product Name is required!'
+            'category_id.required' => 'The product category is required.',
         ];
     }
 }

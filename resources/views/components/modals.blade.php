@@ -8,30 +8,47 @@
 @endphp
 
 {{-- add user modal --}}
-  {{-- <div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModal" aria-hidden="true">
+  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header text-white">
-            <h5 class="modal-title" id="addSupplierModal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">
               <i class="fa fa-user"></i>
               Add New User
             </h5>
-            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
+            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"></button>
             </button>
           </div>
-          <form action="" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
             <div class="modal-body">
-
+            <form action="/users_store" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                      <strong>{{ __('Name') }}:</strong>
+                      {!! Form::text('user_name', null, array('placeholder' => 'Enter Name','class' => 'form-control')) !!}
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                  <div class="form-group">
+                      <strong>{{ __('Username') }}:</strong>
+                      {!! Form::text('user_uname', null, array('placeholder' => 'Enter Username','class' => 'form-control')) !!}
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                  <div class="form-group">
+                      <strong>{{ __('Password') }}:</strong>
+                      {!! Form::password('user_password', null, array('placeholder' => 'Enter Password','class' => 'form-control')) !!}
+                  </div>
+              </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Supplier">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save User</button>
             </div>
           </form>
         </div>
       </div>
-  </div> --}}
+  </div>
 {{-- end of add user modal --}}
 
 
@@ -82,8 +99,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-              <input type="submit" class="btn add" value="Add Product">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Product</button>
             </div>
           </form>
         </div>

@@ -133,9 +133,10 @@
 <div class="container-fluid position-relative bg-login">
 @if($errors->any())
     @foreach($errors->all() as $error)
-      <div class="alert alert-danger position-absolute w-100" role="alert">
+      <div class="alert alert-danger position-absolute w-100 alert-dismissible fade show" role="alert">
         <i class="fa fa-fw fa-warning text-black"></i>
         <strong class="text-black">Error!</strong> {{$error}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endforeach
 @endif
