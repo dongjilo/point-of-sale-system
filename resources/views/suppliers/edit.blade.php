@@ -16,21 +16,21 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                       <strong>{{ __('Supplier Name') }}:</strong>
-                      {!! Form::text('name', $supplier->supplier_name, array('placeholder' => 'Supplier Name','class' => 'form-control', 'name' => 'supplier_name', 'value' => '$supplier->supplier_name')) !!}
+                      {!! Form::text('supplier_name', $supplier->supplier_name, array('placeholder' => 'Supplier Name','class' => 'form-control')) !!}
                     </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                       <strong>{{ __('Supplier Contact Number') }}:</strong>
-                      {!! Form::number('phone', $supplier->supplier_phone, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'name' => 'supplier_phone', 'value' => '$supplier->supplier_phone')) !!}
+                      {!! Form::number('supplier_phone', $supplier->supplier_phone, array('placeholder' => 'Supplier Contact Number','class' => 'form-control')) !!}
                     </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                       <strong>{{ __('Supplier Email') }}:</strong>
-                      {!! Form::email('email', $supplier->supplier_email, array('placeholder' => 'Email','class' => 'form-control', 'name' => 'supplier_email',  'value' => '$supplier->supplier_email')) !!}
+                      {!! Form::email('supplier_email', $supplier->supplier_email, array('placeholder' => 'Email','class' => 'form-control')) !!}
                     </div>
                     </div>
                  </div>
