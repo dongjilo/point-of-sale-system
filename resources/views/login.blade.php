@@ -129,9 +129,18 @@
     </style>
 </head>
 <body id="body-animation">
-<div class="container-fluid bg-login">
+
+<div class="container-fluid position-relative bg-login">
+@if($errors->any())
+    @foreach($errors->all() as $error)
+      <div class="alert alert-danger position-absolute w-100 alert-dismissible fade show" role="alert">
+        <i class="fa fa-fw fa-warning text-black"></i>
+        <strong class="text-black">Error!</strong> {{$error}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endforeach
+@endif
     <div class="container">
-        @include('components.alertMessages')
         <div class="row">
             <div class="col-lg-9 col-md-12 login-card" id="form-animation">
                 <div class="row">
@@ -161,11 +170,12 @@
         </div>
     </div>
 </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
+
         function ani(){
             document.getElementById('form-animation').className = 'form-animation';
             document.getElementById('body-animation').className = 'body-animation';
-            document.getElementsByClassName('form-animation').className = 'col-lg-9 col-md-12 login-card';
 
         }
         // Cache your Form Elements
@@ -184,6 +194,7 @@
         };
 
         EL_form.addEventListener("submit", Progress);
+
 
 
     </script>

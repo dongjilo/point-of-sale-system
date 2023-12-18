@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplierSaveRequest extends FormRequest
+class InventorySaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,20 @@ class SupplierSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplier_name' => 'required|unique:suppliers',
-            'supplier_phone' => 'required',
-            'supplier_email' =>'required|unique:suppliers',
+            'product_id' => 'required',
+            'inventory_quantity' => 'required',
+            'inventory_expiry' =>'required',
+            'supplier_id' =>'required',
+            'user_id' =>'required',
         ];
     }
 
     public function messages()
     {
         return[
-            'supplier_name.unique' => 'Supplier Name has been Taken.',
-            'supplier_email.unique' => 'Inputed Email has been Taken.',
+            'product_id.required' => 'Please Select a Product.',
+            'supplier_id.required' => 'Please Select a Supplier.',
+
         ];
     }
 }

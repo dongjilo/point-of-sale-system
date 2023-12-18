@@ -171,7 +171,7 @@
           <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addUserModal"> <i
                     class="fa fa-plus"></i>
             Add User</a>
-          <a class="dropdown-item" href="#"> <i class="fa fa-users"></i>
+            <a class="dropdown-item" href="/users"> <i class="fa fa-users"></i>
             All Users</a>
         </div>
       </li>

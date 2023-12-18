@@ -37,37 +37,26 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 // Login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('login', [ 'as' => 'login', LoginController::class, 'authenticate']);
 
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [UserController::class, 'create']);
 
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users_store', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/', function () {return view('dashboard');});
 
-    // Admin routes
-    Route::group(['middleware' => 'role:admin'], function () {
+    // Users
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/edit/{user}', [UserController::class, 'edit']);
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('update_user');
+    Route::post('/logout', [UserController::class, 'logout']);
+    Route::get('users/{user}', [UserController::class, 'show']);
+    Route::delete('/users/delete/{user}', [UserController ::class, 'destroy']) -> name('destroy_user');
 
-        // Users
-        Route::get('/users', [UserController::class, 'index']);
-        Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-        Route::put('/users/{user}', [UserController::class, 'update']);
-        Route::post('/logout', [UserController::class, 'logout']);
-        Route::get('users/{user}', [UserController::class, 'show']);
-
-    });
-
-
-    // suppliers
-    Route::get('/suppliers', [AdminController::class, 'view_supplier']);
-    Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
-    Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
-    Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
-    // suppliers end
 
     // Products
 
@@ -77,9 +66,12 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/products/update/{product}', [AdminController::class, 'update_product']) -> name('update_product');
     // products end
 
-
-
-
+    // suppliers
+    Route::get('/suppliers', [AdminController::class, 'view_supplier']);
+    Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
+    Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
+    Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
+    // suppliers end
 
     // categories
     Route::get('/categories', [AdminController::class, 'view_category']);
@@ -89,7 +81,7 @@ Route::middleware(['auth'])->group(function (){
     // categories end
 
     // orders
-//    Route::get('/orders', [AdminController::class, 'view_order']);
+   Route::get('/orders', [AdminController::class, 'view_order']);
     Route::post('/store_order', [AdminController::class, 'store_order']) -> name('store_order');
     Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
     Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');

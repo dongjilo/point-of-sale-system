@@ -1,16 +1,18 @@
 @extends('scaffholding-page')
 @section('title')
+
     {{"Cashier - All Orders"}}
 @endsection
 @section('content')
     <ol class="breadcrumb p-2">
         <li class="breadcrumb-item">Cashier</li>
         <li class="breadcrumb-item active">All Orders</li>
+        
     </ol>
     @include('components.alertMessages')
 {{-- TODO add view details (order_items) for each order --}}
     <div class="container-fluid">
-        <table id="productTable">
+        <table id="orderTable">
             <thead class="text-center">
             <tr>
                 <th>Order ID</th>
@@ -35,7 +37,7 @@
 @section('script')
     <script>
         $(document).ready( function() {
-            $('#productTable').DataTable();
+            $('#orderTable').DataTable();
         } );
     </script>
 @endsection
