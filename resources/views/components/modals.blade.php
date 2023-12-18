@@ -3,7 +3,7 @@
 
 
 @php
-  use App\Models\Category;use App\Models\Supplier;use App\Models\User;use App\Models\Product;use App\Models\Inventory;use App\Models\Order;use App\Models\OrderItem;
+    use App\Models\Category;use App\Models\Supplier;use App\Models\User;use App\Models\Product;use App\Models\Inventory;use App\Models\Order;use App\Models\OrderItem;use Illuminate\Support\Facades\Auth;
 
 @endphp
 
@@ -40,12 +40,12 @@
                       {!! Form::text('user_password', null, array('placeholder' => 'Enter Password','class' => 'form-control')) !!}
                   </div>
               </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
+                    <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save User</button>
+                </div>
+            </form>
             </div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><i class="fa fa-fw fa-close"></i>Cancel</button>
-              <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save User</button>
-            </div>
-          </form>
         </div>
       </div>
   </div>

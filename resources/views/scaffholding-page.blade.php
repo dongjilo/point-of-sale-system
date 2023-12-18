@@ -84,11 +84,6 @@
           New User
         </a>
         @endif
-
-        <a class="dropdown-item" href="/logout" onclick="return confirm('Are you sure you want to log out?')">
-          <i class="fa-solid fa-fw fa-power-off"></i>
-          Logout
-        </a>
       </div>
     </li>
 
@@ -130,7 +125,7 @@
               <div class="dropdown-divider"></div>
 
               <h6 class="dropdown-header">Inventory</h6>
-              <a href="#" class="dropdown-item">
+              <a href="/inventories" class="dropdown-item">
                 <i class="fa fa-fw fa-list-alt"></i>
                All Inventories
               </a>
@@ -139,7 +134,7 @@
 
               @if(Auth::check() && Auth::user()->hasRole('admin'))
               <h6 class="dropdown-header">Users</h6>
-              <a href="#" class="dropdown-item">
+              <a href="/users" class="dropdown-item">
                 <i class="fa fa-fw fa-users"></i>
                 All Users
               </a>

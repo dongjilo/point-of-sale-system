@@ -47,15 +47,22 @@ Route::post('/users_store', [UserController::class, 'store']);
 
 Route::middleware(['auth'])->group(function (){
 
+    Route::get('/logout', [LoginController::class, 'logout']);
+
     Route::get('/', function () {return view('dashboard');});
 
-    // Users
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-    Route::patch('/users/{user}', [UserController::class, 'update'])->name('update_user');
-    Route::post('/logout', [UserController::class, 'logout']);
-    Route::get('users/{user}', [UserController::class, 'show']);
-    Route::delete('/users/delete/{user}', [UserController ::class, 'destroy']) -> name('destroy_user');
+    // Admin routes
+    Route::group(['middleware' => 'role:admin'], function () {
+        // Users
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/register', [UserController::class, 'create']);
+        Route::post('/users', [UserController::class, 'store']);
+        Route::get('/users/edit/{user}', [UserController::class, 'edit']);
+        Route::patch('/users/{user}', [UserController::class, 'update'])->name('update_user');
+        Route::post('/logout', [UserController::class, 'logout']);
+        Route::get('users/{user}', [UserController::class, 'show']);
+        Route::post('/users/{user}', [UserController::class, 'destroy'])->name('destroy_user');
+    });
 
 
     // Products
@@ -81,7 +88,7 @@ Route::middleware(['auth'])->group(function (){
     // categories end
 
     // orders
-    Route::get('/orders', [AdminController::class, 'view_order']);
+   Route::get('/orders', [AdminController::class, 'view_order']);
     Route::post('/store_order', [AdminController::class, 'store_order']) -> name('store_order');
     Route::delete('/order/delete/{order}', [AdminController::class, 'destroy_order']) -> name('destroy_order');
     Route::patch('/order/update/{order}', [AdminController::class, 'update_order']) -> name('update_order');

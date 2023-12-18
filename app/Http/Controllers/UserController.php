@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserSaveRequest;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,7 +33,7 @@ class UserController extends Controller
             session()->forget('error');
             return back()->with('success', 'User updated successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             return back()->with('error', 'User was not updated successfully.');
         }
@@ -44,7 +45,6 @@ class UserController extends Controller
     public function create() {
         return view('register');
     }
-
     public function store(UserSaveRequest $request) {
         session()->forget('error');
 
@@ -61,7 +61,7 @@ class UserController extends Controller
             session()->forget('error');
             return back()->with('success', 'User deleted successfully!');
 
-        }catch (\Illuminate\Database\QueryException $ex){
+        }catch (QueryException $ex){
             session()->forget('success');
             if ($ex->getCode() === '23000') {
                 return back()->with('error', 'User cannot be deleted, because [User: '.$user->user_name .'] is used elsewhere...');
