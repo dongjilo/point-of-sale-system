@@ -118,7 +118,7 @@ class OrderController extends Controller
             // bestseller model
         });
 
-        return redirect('/orders')->with('success', 'Transaction Successful!');
+        return redirect('/orders_create')->with('success', 'Transaction Successful!');
     }
 
     public function fetchSalesCount() {

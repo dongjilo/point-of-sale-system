@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class BestsellerController extends Controller
 {
+    public function index()
+    {
+        $bestsellers = Bestseller::all();
+        return view('bestsellers.index', compact('bestsellers'));
+    }
     public function fetchBestseller()
     {
         $bestseller = Bestseller::where('bestseller_month', now()->month)
