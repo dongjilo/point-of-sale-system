@@ -24,7 +24,7 @@
                     <h1 class="text-center display-3" id="sales-count"><strong>0</strong></h1>
                   </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="/billings">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fa fa-angle-right"></i>
@@ -108,6 +108,8 @@
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
             <div class="card-footer small text-muted" id="last-updated"></div>
+
+
 	@endsection
 
     @section('script')

@@ -99,6 +99,9 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);
 
+    // Billings
+    Route::get('/billings', [AdminController::class, 'index']);
+
     // Bestseller
     Route::get('/bestseller/fetch', [BestsellerController::class, 'fetchBestseller']);
 
