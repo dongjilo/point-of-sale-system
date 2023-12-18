@@ -18,13 +18,13 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Name') }}:</strong>
-                        {!! Form::text('product_name', $product->product_name, array('placeholder' => 'Enter Product Name','class' => 'form-control')) !!}
+                        {!! Form::text('product_name', $product->product_name, array('placeholder' => 'Enter Product Name','class' => 'form-control', 'required')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Price') }}:</strong>
-                        {!! Form::number('product_price', $product->product_price, array('placeholder' => 'Enter Product Name','class' => 'form-control', 'step' => '.01', 'min' => '0')) !!}
+                        {!! Form::number('product_price', $product->product_price, array('placeholder' => 'Enter Product Name','class' => 'form-control', 'step' => '.01', 'min' => '0', 'required')) !!}
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
