@@ -33,9 +33,8 @@ class InventorySaveRequest extends FormRequest
     public function messages()
     {
         return[
-            'product_id.required' => 'Please Select a Product.',
             'supplier_id.required' => 'Please Select a Supplier.',
-
+            'product_id.required' => 'Please Select a Product.',
         ];
     }
 }

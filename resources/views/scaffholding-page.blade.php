@@ -68,6 +68,15 @@
 
         <div class="dropdown-divider"></div>
 
+
+        <h6 class="dropdown-header">Inventory</h6>
+        <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addInventoryModal">
+          <i class="fa fa-fw fa-list-alt"></i>
+          New Inventory
+        </a>
+
+        <div class="dropdown-divider"></div>
+
         @if(Auth::check() && Auth::user()->hasRole('admin'))
         <h6 class="dropdown-header">Users</h6>
         <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addUserModal">
@@ -82,9 +91,67 @@
         </a>
       </div>
     </li>
-    <li class="nav-item dropdown"></li>
-    <li class="nav-item dropdown"></li>
-    <li class="nav-item dropdown"></li>
+
+    <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-fw fa-sitemap"></i>
+            </a>
+            <div class="dropdown-menu" id="navbarDropdown" aria-labelledby="navbarDropdown">
+              <h6 class="dropdown-header">Products</h6>
+              <a href="/products" class="dropdown-item">
+                <i class="fa fa-fw fa-tags"></i>
+                All Products
+              </a>
+              <a href="/categories" class="dropdown-item">
+                <i class="fa fa-fw fa-tag"></i>
+                All Product Categories
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <h6 class="dropdown-header">Suppliers</h6>
+              <a href="/suppliers" class="dropdown-item">
+                <i class="fa fa-fw fa-truck"></i>
+                All Suppliers
+              </a>
+              <div class="dropdown-divider"></div>
+
+              <h6 class="dropdown-header">Cashier</h6>
+              <a href="/orders" class="dropdown-item">
+                <i class="fa fa-fw fa-history"></i>
+                Orders History
+              </a>
+              <a href="/billings" class="dropdown-item">
+                <i class="fa fa-fw fa-receipt"></i>
+                Billing History
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <h6 class="dropdown-header">Inventory</h6>
+              <a href="#" class="dropdown-item">
+                <i class="fa fa-fw fa-list-alt"></i>
+               All Inventories
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              @if(Auth::check() && Auth::user()->hasRole('admin'))
+              <h6 class="dropdown-header">Users</h6>
+              <a href="#" class="dropdown-item">
+                <i class="fa fa-fw fa-users"></i>
+                All Users
+              </a>
+              @endif
+
+              <a class="dropdown-item" href="/logout" onclick="return confirm('Are you sure you want to log out?')">
+                <i class="fa-solid fa-fw fa-power-off"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+
   </ul>
 </nav>
 <div id="wrapper">
@@ -171,6 +238,7 @@
           <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addUserModal"> <i
                     class="fa fa-plus"></i>
             Add User</a>
+
             <a class="dropdown-item" href="/users"> <i class="fa fa-users"></i>
             All Users</a>
         </div>

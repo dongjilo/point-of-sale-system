@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategorySaveRequest;
 use App\Http\Requests\ProductSaveRequest;
 use App\Http\Requests\SupplierSaveRequest;
+use App\Http\Requests\InventorySaveRequest;
 use App\Models\Billing;
 use App\Models\Category;
 use App\Models\Inventory;
@@ -31,12 +33,11 @@ class AdminController extends Controller
     }
 
     public function store_product(ProductSaveRequest $request) {
+
+             $formFields = $request->all();
+            Product::create($formFields);
+
             session()->forget('error');
-
-            $product = new Product;
-            $product->request->all();
-            $product->save();
-
             return back()->with('success', 'Product added successfully!');
     }
 
@@ -84,9 +85,8 @@ class AdminController extends Controller
     public function store_supplier(SupplierSaveRequest $request) {
             session()->forget('error');
 
-            $supplier = new Supplier;
-            $supplier->request->all();
-            $supplier->save();
+            $formFields = $request->all();
+            Supplier::create($formFields);
 
             return back()->with('success', 'Supplier added successfully!');
     }
@@ -134,18 +134,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_category(Request $request) {
-        try{
-            $formFields = $request->all();
+    public function store_category(CategorySaveRequest $request) {
+       session()->forget('error');
+           $formFields = $request->all();
             Category::create($formFields);
 
-            session()->forget('error');
             return back()->with('success', 'Category added successfully!');
-
-        }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Category was not added successfully.');
-        }
     }
 
     public function update_category(Request $request, Category $category) {
@@ -178,11 +172,11 @@ class AdminController extends Controller
             }
         }
     }
-    // end suppliers
+    // end category
 
 
 
-    //  category
+    //  order
     public function view_order() {
         return view('orders.index', [
             'orders' => Order::all()
@@ -237,7 +231,7 @@ class AdminController extends Controller
             return back()->with('error', 'Order was not deleted successfully.');
         }
     }
-    // end suppliers
+    // end order
 
     // inventory
     public function view_inventory() {
@@ -246,18 +240,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_inventory(Request $request) {
-        try{
+    public function store_inventory(InventorySaveRequest $request) {
+        session()->forget('error');
+
             $formFields = $request->all();
             Inventory::create($formFields);
 
-            session()->forget('error');
             return back()->with('success', 'Inventory added successfully!');
-
-        }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Inventory was not added successfully.');
-        }
     }
 
     public function update_inventory(Request $request, Inventory $inventory) {
@@ -280,11 +269,14 @@ class AdminController extends Controller
             $inventory->delete();
 
             session()->forget('error');
-            return back()->with('success', 'Inventory deleted successfully!');
+            return back()->with('success', 'Inventory added successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            session()->forget('success');
-            return back()->with('error', 'Inventory was not deleted successfully.');
+            if ($ex->getCode() === '23000') {
+                return back()->with('error', 'Inventoy cannot be deleted, because [Inventory ID: '.$inventory->inventory_id .'] is used elsewhere...');
+            }else{
+                return back()->with('error', 'Inventory was not deleted successfully.');
+            }
         }
     }
     // end inventory

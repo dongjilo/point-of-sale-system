@@ -76,7 +76,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>{{ __('Product Code') }}:</strong>
-                        {!! Form::text('product_code', null, array('placeholder' => 'Optional Product Code','class' => 'form-control')) !!}
+                        {!! Form::text('product_code', null, array('placeholder' => 'Product Code','class' => 'form-control')) !!}
                     </div>
                 </div>
 
@@ -193,6 +193,7 @@
   </div>
 {{-- end of add supplier modal --}}
 
+
 {{--inventory add modal--}}
 <div class="modal fade" id="addInventoryModal" tabindex="-1" role="dialog" aria-labelledby="addInventoryModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -200,49 +201,54 @@
             <div class="modal-header text-white">
                 <h5 class="modal-title" id="addInventoryModal">
                     <i class="fa  fa-list-alt"></i>
-                    Add Product in Inventory
+
+                    Add Product Entry in Inventory
                 </h5>
                 <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
                 <div class="modal-body">
                     <form action="{{route('store_inventory')}}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>{{ __('Product') }}:</strong>
-                      <select name="product_id" id="product_id" class="form-select">
-                            <option value="" disabled selected>select product</option>
-                              @foreach(Product::all() as $product)
-                                <option value="{{$product->product_id}}">{{$product->product_name}}</option>
-                              @endforeach
-                          </select>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Quantity') }}:</strong>
-                      {!! Form::number('inventory_quantity', null, array('placeholder' => ' Enter Quantity','class' => 'form-control')) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Expiration Date') }}:</strong>
-                      {!! Form::date('inventory_expiry', null, array('placeholder' => 'Enter Expiry Date','class' => 'form-control')) !!}
-                  </div>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                  <div class="form-group">
-                      <strong>{{ __('Supplier') }}:</strong>
-                      <select name="supplier_id" id="supplier_id" class="form-select">
+
+              {{ csrf_field() }}
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>{{ __('Supplier') }}:</strong>
+                        <select name="supplier_id" id="supplier_id" class="form-select">
+
                             <option value="" disabled selected>select supplier</option>
                               @foreach(Supplier::all() as $supplier)
                                 <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
                               @endforeach
-                          </select>
-                  </div>
-              </div>
 
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>{{ __('Product') }}:</strong>
+                        <select name="product_id" id="product_id" class="form-select">
+                            <option value="" disabled selected>select supplier</option>
+                              @foreach(Product::all() as $product)
+                                <option value="{{$product->product_id}}">{{$product->product_name}}</option>
+                              @endforeach
+                          </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>{{ __('Quantity') }}:</strong>
+                        {!! Form::number('inventory_quantity', null, array('placeholder' => 'Entery Product Quantity','class' => 'form-control')) !!}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>{{ __('Expiration Date') }}:</strong>
+                        {!! Form::date('inventory_expiry', null, array('class' => 'form-control')) !!}
+                    </div>
+                </div>
+                <input class="visually-hidden" name="user_id" value="{{Auth::id()}}">
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>

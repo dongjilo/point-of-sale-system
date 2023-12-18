@@ -1,13 +1,11 @@
 @extends('scaffholding-page')
 @section('title')
-
     {{"Cashier - All Orders"}}
 @endsection
 @section('content')
     <ol class="breadcrumb p-2">
         <li class="breadcrumb-item">Cashier</li>
         <li class="breadcrumb-item active">All Orders</li>
-        
     </ol>
     @include('components.alertMessages')
 {{-- TODO add view details (order_items) for each order --}}
