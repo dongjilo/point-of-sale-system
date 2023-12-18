@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductSaveRequest;
 use App\Models\Category;
 use App\Models\Inventory;
 use App\Models\Order;
@@ -27,14 +26,18 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store_product(ProductSaveRequest $request) {
-            $product = new Product();
-            $product->$request->all();
-
-            $product->save();
+    public function store_product(Request $request) {
+        try{
+            $formFields = $request->all();
+            Product::create($formFields);
 
             session()->forget('error');
             return back()->with('success', 'Product added successfully!');
+
+        }catch (\Illuminate\Database\QueryException $ex){
+            session()->forget('success');
+            return back()->with('error', 'Product was not added successfully.');
+        }
     }
 
     public function update_product(Request $request, Product $product) {
@@ -53,18 +56,14 @@ class AdminController extends Controller
     }
 
     public function destroy_product(Product $product) {
-         try{
+        try{
             $product->delete();
-
             session()->forget('error');
             return back()->with('success', 'Product deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            if ($ex->getCode() === '23000') {
-                return back()->with('error', 'Product cannot be deleted, because [Product: '.$product->product_name .'] is used elsewhere...');
-            }else{
-                return back()->with('error', 'Product was not deleted successfully.');
-            }
+            session()->forget('success');
+            return back()->with('error', 'Product was not deleted successfully.');
         }
     }
     //end products
@@ -115,11 +114,8 @@ class AdminController extends Controller
             return back()->with('success', 'Supplier deleted successfully!');
 
         }catch (\Illuminate\Database\QueryException $ex){
-            if ($ex->getCode() === '23000') {
-                return back()->with('error', 'Supplier cannot be deleted, because [Supplier: '.$supplier->supplier_name .'] is used elsewhere...');
-            }else{
-                return back()->with('error', 'Supplier was not deleted successfully.');
-            }
+            session()->forget('success');
+            return back()->with('error', 'Supplier was not deleted successfully.');
         }
 
     }
