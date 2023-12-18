@@ -8,6 +8,12 @@
     @endforeach
 @endif
 
+@if(session()->has('error'))
+<div class="alert alert-danger" role="alert">
+  <i class="fa fa-fw fa-warning"></i>
+  <strong>Error!</strong> {{session()->get('error')}}
+</div>
+@endif
 
 @if(session()->has('success'))
 <div class="alert alert-success" role="alert">

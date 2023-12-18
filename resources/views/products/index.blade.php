@@ -17,7 +17,6 @@
 		        <th>Code</th>
 		        <th>Price</th>
 		        <th>Category</th>
-		        {{-- <th>User</th> --}}
 		        <th>Action</th>
 	        </tr>
 	    </thead>
@@ -37,7 +36,7 @@
 	                    <form action="{{ route('destroy_product', $product->product_id)}}" method="post">
 	                        @csrf
 	                        @method('DELETE')
-	                        <a role="button" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+	                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
 	                    </form>
 	                </td>
 	                @include('products.edit')
