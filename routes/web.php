@@ -35,7 +35,7 @@ use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 
 
 // Login
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::post('login', [ 'as' => 'login', LoginController::class, 'authenticate']);
 
@@ -106,4 +106,5 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/fetch/sales-count', [OrderController::class, 'fetchSalesCount']);
     Route::get('/fetch/out-of-stock', [AdminController::class, 'fetchAlmostOutOfStock']);
     Route::get('/fetch/nearly-expired', [AdminController::class, 'fetchNearlyExpiredProducts']);
+    Route::get('fetch/monthly-sales', [AdminController::class, 'fetchMonthlySales']);
 });

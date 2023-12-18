@@ -108,8 +108,6 @@ class OrderController extends Controller
             $billing->order_id = $order_id;
             $billing->user_id = Auth::id();
             $billing->billing_payment_method = $request->payment_method;
-            $billing->billing_bank_name = $request->bank_name;
-            $billing->billing_bank_account = $request->bank_account;
             $billing->billing_total_amount = $request->order_total;
             $billing->billing_amount_tendered = $request->amount_paid;
             $billing->billing_date = now();

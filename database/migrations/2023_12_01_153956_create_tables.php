@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('user_uname')->unique();
             $table->string('user_password');
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -49,7 +49,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('product_id');
             $table->string('product_name');
-            $table->string('product_code');
+            $table->string('product_code')->unique();
             $table->decimal('product_price', 8, 2);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
@@ -86,8 +86,6 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->string('billing_payment_method');
-            $table->string('billing_bank_name')->nullable();
-            $table->string('billing_bank_account')->nullable();
             $table->decimal('billing_total_amount', 8, 2);
             $table->decimal('billing_amount_tendered', 8, 2);
             $table->date('billing_date');

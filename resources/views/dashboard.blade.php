@@ -107,7 +107,7 @@
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
-            <div class="card-footer small text-muted">Last Updated:  </div>
+            <div class="card-footer small text-muted" id="last-updated"></div>
 	@endsection
 
     @section('script')
@@ -118,6 +118,8 @@
                   fetchBestSeller()
                   fetchOutOfStock()
                   fetchNearlyExpired()
+                  fetchMonthlySales()
+                  lastUpdated()
               })
 
               function animateCounter(element, initialValue, finalValue, duration) {
@@ -218,5 +220,92 @@
                       }
                   })
               }
+
+              function lastUpdated(){
+                  var currentdate = new Date();
+                  var datetime = "Last Updated: " + currentdate.getDate() + "/"
+                      + (currentdate.getMonth()+1)  + "/"
+                      + currentdate.getFullYear() + " @ "
+                      + currentdate.getHours() + ":"
+                      + currentdate.getMinutes() + ":"
+                      + currentdate.getSeconds();
+                  $('#last-updated').html(datetime)
+              }
+
+              function populateChart(data) {
+                  var ctx = document.getElementById("myAreaChart");
+                  let monthAbbreviations = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov','Dec'];
+
+                  data.forEach(item => {
+                      item.total_sales = parseFloat(item.total_sales);
+                  });
+
+                  var myLineChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                          labels: data.map(item => monthAbbreviations[item.month]),
+                          datasets: [{
+                              label: "Profit",
+                              lineTension: 0.3,
+                              backgroundColor: "#00a63f",
+                              borderColor: "#00a63f",
+                              pointRadius: 5,
+                              pointBackgroundColor: "#00a63f",
+                              pointBorderColor: "rgba(255,255,255,0.8)",
+                              pointHoverRadius: 5,
+                              pointHoverBackgroundColor: "#00a63f",
+                              pointHitRadius: 50,
+                              pointBorderWidth: 2,
+                              data: data.data.total_sales,
+                          }],
+                      },
+                      options: {
+                          scales: {
+                              xAxes: [{
+                                  time: {
+                                      unit: 'date'
+                                  },
+                                  gridLines: {
+                                      display: false
+                                  },
+                                  ticks: {
+                                      maxTicksLimit: 12
+                                  }
+                              }],
+                              yAxes: [{
+                                  ticks: {
+                                      min: 0,
+                                      max: 50000,
+                                      maxTicksLimit: 16
+                                  },
+                                  gridLines: {
+                                      color: "rgba(0, 0, 0, .125)",
+                                  }
+                              }],
+                          },
+                          legend: {
+                              display: false
+                          }
+                      }
+                  });
+              }
+
+              function fetchMonthlySales() {
+                  $.ajax({
+                      url: 'fetch/monthly-sales',
+                      method: 'get',
+                      dataType: 'JSON',
+                      success: function (data)
+                      {
+                          populateChart(data)
+
+
+                      }, error: function (response) {
+                          console.error(response)
+                      }
+                  })
+              }
+
+
           </script>
     @endsection

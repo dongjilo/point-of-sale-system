@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Billing;
 use App\Models\Category;
 use App\Models\Inventory;
 use App\Models\Order;
@@ -14,6 +15,7 @@ use App\Models\SupplierReceive;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -302,6 +304,23 @@ class AdminController extends Controller
             'success' => true,
             'message' => 'Nearly expired products',
             'data' => $nearlyExpiredProducts
+        ], 200);
+    }
+
+    public function fetchMonthlySales()
+    {
+        $monthlySales = Billing::select(
+            DB::raw('MONTH(billing_date) as month'),
+            DB::raw('SUM(billing_total_amount) as total_sales')
+        )
+            ->groupBy(DB::raw('MONTH(billing_date)'))
+            ->orderBy(DB::raw('MONTH(billing_date)'))
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Monthly sales',
+            'data' => $monthlySales
         ], 200);
     }
 
