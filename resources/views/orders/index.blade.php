@@ -1,15 +1,15 @@
 @extends('scaffholding-page')
 @section('title')
-    {{"Product - All Products"}}
+    {{"Order - All Orders"}}
 @endsection
 @section('content')
     <ol class="breadcrumb p-2">
-        <li class="breadcrumb-item">Product</li>
-        <li class="breadcrumb-item active">All Products</li>
+        <li class="breadcrumb-item">Order</li>
+        <li class="breadcrumb-item active">All Order</li>
     </ol>
     @include('components.alertMessages')
     <div class="container-fluid">
-        <table id="productTable">
+        <table id="orderTable">
             <thead class="text-center">
             <tr>
                 <th>Order ID</th>
@@ -40,13 +40,13 @@
             @endforeach
             </tbody>
         </table>
-        <a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="fa fa-fw fa-plus" ></i> Add Product</a>
+        <a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addOrderModal"><i class="fa fa-fw fa-plus" ></i> Add Order</a>
     </div>
 @endsection
 @section('script')
     <script>
         $(document).ready( function() {
-            $('#productTable').DataTable();
+            $('#orderTable').DataTable();
         } );
     </script>
 @endsection

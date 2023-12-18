@@ -184,7 +184,7 @@ class AdminController extends Controller
 
     //  category
     public function view_order() {
-        return view('orders.create', [
+        return view('orders.index', [
             'orders' => Order::all()
         ]);
     }

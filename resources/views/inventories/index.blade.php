@@ -48,7 +48,7 @@
             @endforeach
             </tbody>
         </table>
-        <a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addInventoryModal"><i class="fa fa-fw fa-plus" ></i> Add Product</a>
+        <a role="button" class="btn add" data-bs-toggle="modal" data-bs-target="#addInventoryModal"><i class="fa fa-fw fa-plus" ></i> Add Inventory</a>
     </div>
 @endsection
 @section('script')
