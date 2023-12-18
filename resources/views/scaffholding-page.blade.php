@@ -63,7 +63,7 @@
               <div class="dropdown-divider"></div>
 
             <h6 class="dropdown-header">Cashier</h6>
-            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addOrderModal">
+            <a href="/orders_create" class="dropdown-item">
             <i class="fa fa-fw fa-shopping-cart"></i>
             New Order
             </a>
@@ -151,8 +151,8 @@
           </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Cashier</h6>
-            <a class="dropdown-item" href="/orders" > <i class="fa fa-fw fa-desktop"></i> Add Order</a>
-            <a class="dropdown-item" href="#"> <i class="fa fa-fw fa-history"></i> All Orders</a>
+            <a class="dropdown-item" href="/orders_create" > <i class="fa fa-fw fa-desktop"></i> Add Order</a>
+            <a class="dropdown-item" href="/orders"> <i class="fa fa-fw fa-history"></i> All Orders</a>
           </div>
         </li>
         <li class="nav-item mt-3">

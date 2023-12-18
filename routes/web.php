@@ -49,12 +49,25 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/', function () {return view('dashboard');});
 
-    // Users
-    Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/edit/{user}', [UserController::class, 'edit']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
-    Route::post('/logout', [UserController::class, 'logout']);
-    Route::get('users/{user}', [UserController::class, 'show']);
+    // Admin routes
+    Route::group(['middleware' => 'role:admin'], function () {
+
+        // Users
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/users/edit/{user}', [UserController::class, 'edit']);
+        Route::put('/users/{user}', [UserController::class, 'update']);
+        Route::post('/logout', [UserController::class, 'logout']);
+        Route::get('users/{user}', [UserController::class, 'show']);
+
+    });
+
+
+    // suppliers
+    Route::get('/suppliers', [AdminController::class, 'view_supplier']);
+    Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
+    Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
+    Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
+    // suppliers end
 
     // Products
 
@@ -64,12 +77,9 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/products/update/{product}', [AdminController::class, 'update_product']) -> name('update_product');
     // products end
 
-    // suppliers
-    Route::get('/suppliers', [AdminController::class, 'view_supplier']);
-    Route::post('/store_supplier', [AdminController::class, 'store_supplier']) -> name('store_supplier');
-    Route::delete('/suppliers/delete/{supplier}', [AdminController::class, 'destroy_supplier']) -> name('destroy_supplier');
-    Route::patch('/suppliers/update/{supplier}', [AdminController::class, 'update_supplier']) -> name('update_supplier');
-    // suppliers end
+
+
+
 
     // categories
     Route::get('/categories', [AdminController::class, 'view_category']);
@@ -93,8 +103,8 @@ Route::middleware(['auth'])->group(function (){
     // inventories end
 
     // Orders
-    Route::get('/orders', [OrderController::class, 'create']);
-    Route::get('/orders_history' , [OrderController::class, 'index']);
+    Route::get('/orders_create', [OrderController::class, 'create']);
+    Route::get('/orders' , [OrderController::class, 'index']);
     Route::post('/orders/fetch/products', [OrderController::class, 'fetchProducts']);
     Route::post('/orders/fetch/inventories', [OrderController::class, 'fetchInventories']);
     Route::post('/orders/store', [OrderController::class, 'store']);
