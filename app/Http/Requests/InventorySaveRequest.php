@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategorySaveRequest extends FormRequest
+class InventorySaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -27,7 +27,6 @@ class CategorySaveRequest extends FormRequest
             'supplier_email' =>'required|unique:suppliers',
         ];
     }
-
     public function messages()
     {
         return[

@@ -334,9 +334,27 @@
                 <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <form class="">
                 <div class="modal-body">
-
+                    <form action="{{route('store_supplier')}}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                      <strong>{{ __('Supplier Name') }}:</strong>
+                      {!! Form::text('name', null, array('placeholder' => 'Enter Supplier Name','class' => 'form-control', 'name' => 'supplier_name')) !!}
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                  <div class="form-group">
+                      <strong>{{ __('Supplier Contact Number') }}:</strong>
+                      {!! Form::number('phone', null, array('placeholder' => ' Enter Supplier Contact Number','class' => 'form-control', 'name' => 'supplier_phone')) !!}
+                  </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                  <div class="form-group">
+                      <strong>{{ __('Supplier Email') }}:</strong>
+                      {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control', 'name' => 'supplier_email')) !!}
+                  </div>
+              </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
