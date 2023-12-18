@@ -12,7 +12,7 @@
 	<table id="productTable">
 	    <thead class="text-center">
 	    	<tr>
-		        <th>ID</th>
+		        <th>Product ID</th>
 		        <th>Name</th>
 		        <th>Code</th>
 		        <th>Price</th>
