@@ -21,6 +21,12 @@
                         {!! Form::text('product_name', $product->product_name, array('placeholder' => 'Enter Product Name','class' => 'form-control', 'required')) !!}
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>{{ __('Product Code') }}:</strong>
+                        {!! Form::text('product_code', $product->product_code, array('placeholder' => 'Optional Product Code','class' => 'form-control', 'required')) !!}
+                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Product Price') }}:</strong>
@@ -30,7 +36,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Category') }}:</strong>
-                            <select name="category_id" class="form-control" id="category_id">
+                            <select name="category_id" class="form-control" id="category_id" required/>
                                 <option value="{{$product->category_id}}">{{$product->category->category_name}}</option>
                                     @foreach(Category::all()->where('category_id', '<>', "$product->category_id") as $category)
                                     <option value="{{$category->category_id}}">{{$category->category_name}}</option>

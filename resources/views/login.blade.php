@@ -133,6 +133,7 @@
 
 <div class="container-fluid bg-login">
     <div class="container">
+        @include('components.alertMessages')
         <div class="row">
             <div class="col-lg-9 col-md-12 login-card" id="form-animation">
                 <div class="row">
