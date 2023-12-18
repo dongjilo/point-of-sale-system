@@ -284,6 +284,13 @@ class AdminController extends Controller
     }
     // end inventory
 
+    // billings
+    public function index() {
+        return view('billings.index', [
+            'billings' => Billing::all()
+        ]);
+    }
+
 
     // fetch data
 

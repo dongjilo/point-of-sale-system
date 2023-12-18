@@ -51,15 +51,6 @@
             <i class="fa fa-fw fa-truck"></i>
             New Supplier
             </a>
-            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addSupplierOrderModal">
-            <i class="fa fa-fw fa-arrow-circle-up"></i>
-            New Supplier Order
-            </a>
-            <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addSupplierReceiveModal">
-            <i class="fa fa-fw fa-arrow-circle-down"></i>
-            New Supplier Receive
-            </a>
-
               <div class="dropdown-divider"></div>
 
             <h6 class="dropdown-header">Cashier</h6>
@@ -127,33 +118,28 @@
             </span>
           </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Suppliers</h6>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addSupplierModal"> <i class="fa fa-fw fa-plus">
-            </i> Add Supplier</a>
-            <a class="dropdown-item" href="/suppliers"><i class="fa fa-fw fa-truck">
-            </i> All Suppliers</a>
-
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">
-            Supplier Order/Receive</h6>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addSupplierOrderModal"> <i class="fa fa-fw fa-arrow-circle-up">
-            </i>Order Product(s)</a>
-            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addSupplierReceiveModal"> <i class="fa fa-fw fa-arrow-circle-down"></i>Receive Product(s)</a>
-          </div>
+              <h6 class="dropdown-header">Suppliers</h6>
+              <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addSupplierModal"> <i class="fa fa-fw fa-plus">
+              </i> Add Supplier</a>
+              <a class="dropdown-item" href="/suppliers"><i class="fa fa-fw fa-truck">
+              </i> All Suppliers</a>
+            </div>
         </li>
         <li class="nav-item mt-3">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-shopping-cart"></i>
             <span>
-              Orders
+              Cashier
               <i class="float-right fa fa-angle-down"></i>
             </span>
           </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Cashier</h6>
             <a class="dropdown-item" href="/orders_create" > <i class="fa fa-fw fa-desktop"></i> Add Order</a>
             <a class="dropdown-item" href="/orders"> <i class="fa fa-fw fa-history"></i> All Orders</a>
+            <a class="dropdown-item" href="/billings"> <i class="fa fa-fw fa-receipt"></i> All Billings</a>
           </div>
+
         </li>
         <li class="nav-item mt-3">
           <a class="nav-link" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

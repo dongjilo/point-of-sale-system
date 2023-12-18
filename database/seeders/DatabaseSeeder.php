@@ -65,9 +65,9 @@ class DatabaseSeeder extends Seeder
             DB::table('billings')->insert([
                 'order_id' => $i,
                 'user_id' => $i,
-                'billing_payment_method' => 'Credit Card',
-                'billing_total_amount' => rand(500, 10000),
-                'billing_amount_tendered' => rand(500, 10000),
+                'billing_payment_method' => 'Cash',
+                'billing_total_amount' => rand(500, 5000),
+                'billing_amount_tendered' => rand(500, 6000),
                 'billing_date' => $orderDate,
                 'created_at' => $orderDate,
                 'updated_at' => $orderDate,

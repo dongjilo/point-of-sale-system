@@ -122,7 +122,7 @@ class OrderController extends Controller
     }
 
     public function fetchSalesCount() {
-        $lastMonthOrders = Order::where('created_at', '>=', now()->subMonth())->count();
+        $lastMonthOrders = Billing::where('created_at', '>=', now()->subMonth())->count();
         return response()->json([
             'success' => true,
             'message' => 'Sales count for the last month',
