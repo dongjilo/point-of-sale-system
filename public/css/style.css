@@ -234,8 +234,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   color: white !important;
 }
 
-
-#userTable tbody tr td:last-child, #supplierTable tbody tr td:last-child, #categoryTable tbody tr td:last-child, #productTable tbody tr td:last-child, #inventoryTable tbody tr td:last-child, #billingTable tbody tr td:last-child
+#userTable tbody tr td:last-child, #supplierTable tbody tr td:last-child, #categoryTable tbody tr td:last-child, #productTable tbody tr td:last-child, #inventoryTable tbody tr td:last-child, #billingTable tbody tr td:last-child, #bestsellerTable tbody tr td:last-child
 
 {
   display: flex;

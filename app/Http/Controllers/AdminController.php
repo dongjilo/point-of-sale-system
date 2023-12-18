@@ -178,7 +178,7 @@ class AdminController extends Controller
 
     //  order
     public function view_order() {
-        return view('orders.create', [
+        return view('orders.index', [
             'orders' => Order::all()
         ]);
     }

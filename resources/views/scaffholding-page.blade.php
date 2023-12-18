@@ -68,6 +68,7 @@
 
         <div class="dropdown-divider"></div>
 
+
         <h6 class="dropdown-header">Inventory</h6>
         <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addInventoryModal">
           <i class="fa fa-fw fa-list-alt"></i>
@@ -90,6 +91,7 @@
         </a>
       </div>
     </li>
+
     <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" aria-haspopup="true"
                data-bs-toggle="dropdown" aria-expanded="false">
@@ -149,6 +151,7 @@
               </a>
             </div>
           </li>
+
   </ul>
 </nav>
 <div id="wrapper">
@@ -237,7 +240,6 @@
             Add User</a>
 
             <a class="dropdown-item" href="/users"> <i class="fa fa-users"></i>
-
             All Users</a>
         </div>
       </li>

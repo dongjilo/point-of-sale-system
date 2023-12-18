@@ -201,6 +201,7 @@
             <div class="modal-header text-white">
                 <h5 class="modal-title" id="addInventoryModal">
                     <i class="fa  fa-list-alt"></i>
+
                     Add Product Entry in Inventory
                 </h5>
                 <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close">
@@ -208,15 +209,18 @@
             </div>
                 <div class="modal-body">
                     <form action="{{route('store_inventory')}}" method="post" enctype="multipart/form-data">
+
               {{ csrf_field() }}
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                         <strong>{{ __('Supplier') }}:</strong>
                         <select name="supplier_id" id="supplier_id" class="form-select">
+
                             <option value="" disabled selected>select supplier</option>
                               @foreach(Supplier::all() as $supplier)
                                 <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
                               @endforeach
+
                         </select>
                     </div>
                 </div>
@@ -245,11 +249,10 @@
                     </div>
                 </div>
                 <input class="visually-hidden" name="user_id" value="{{Auth::id()}}">
-
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Supplier Receive</button>
+                    <button type="submit" class="btn add"><i class="fa fa-fw fa-save"></i>Save Inventory</button>
                 </div>
             </form>
         </div>

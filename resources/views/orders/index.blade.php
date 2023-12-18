@@ -10,7 +10,7 @@
     @include('components.alertMessages')
 {{-- TODO add view details (order_items) for each order --}}
     <div class="container-fluid">
-        <table id="productTable">
+        <table id="orderTable">
             <thead class="text-center">
             <tr>
                 <th>Order ID</th>
@@ -35,7 +35,7 @@
 @section('script')
     <script>
         $(document).ready( function() {
-            $('#productTable').DataTable();
+            $('#orderTable').DataTable();
         } );
     </script>
 @endsection
