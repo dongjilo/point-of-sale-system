@@ -48,10 +48,9 @@ class UserController extends Controller
     public function store(UserSaveRequest $request) {
         session()->forget('error');
 
-        $user = new User();
-        $user->$request->all();
-        $user['user_password'] = bcrypt($user['user_password']);
-        $user->save();
+        $formFields = $request->all();
+        $formFields['user_password'] = bcrypt($formFields['user_password']);
+        User::create($formFields);
 
         return back()->with('success', 'User added successfully!');
     }

@@ -33,12 +33,11 @@ class AdminController extends Controller
     }
 
     public function store_product(ProductSaveRequest $request) {
+
+             $formFields = $request->all();
+            Product::create($formFields);
+
             session()->forget('error');
-
-            $product = new Product;
-            $product->$request->all();
-            $product->save();
-
             return back()->with('success', 'Product added successfully!');
     }
 
@@ -86,9 +85,8 @@ class AdminController extends Controller
     public function store_supplier(SupplierSaveRequest $request) {
             session()->forget('error');
 
-            $supplier = new Supplier;
-            $supplier->request->all();
-            $supplier->save();
+            $formFields = $request->all();
+            Supplier::create($formFields);
 
             return back()->with('success', 'Supplier added successfully!');
     }
@@ -138,9 +136,8 @@ class AdminController extends Controller
 
     public function store_category(CategorySaveRequest $request) {
        session()->forget('error');
-            $category = new Category;
-            $category->$request->all();
-            $category->save();
+           $formFields = $request->all();
+            Category::create($formFields);
 
             return back()->with('success', 'Category added successfully!');
     }
@@ -246,13 +243,8 @@ class AdminController extends Controller
     public function store_inventory(InventorySaveRequest $request) {
         session()->forget('error');
 
-            $inventory = new Inventory;
-<<<<<<< Updated upstream
-            $inventory->request->all();
-=======
-            $inventory->$request->all();
->>>>>>> Stashed changes
-            $inventory->save();
+            $formFields = $request->all();
+            Inventory::create($formFields);
 
             return back()->with('success', 'Inventory added successfully!');
     }
@@ -281,7 +273,7 @@ class AdminController extends Controller
 
         }catch (\Illuminate\Database\QueryException $ex){
             if ($ex->getCode() === '23000') {
-                return back()->with('error', 'Category cannot be deleted, because [Inventory ID: '.$inventory->inventory_id .'] is used elsewhere...');
+                return back()->with('error', 'Inventoy cannot be deleted, because [Inventory ID: '.$inventory->inventory_id .'] is used elsewhere...');
             }else{
                 return back()->with('error', 'Inventory was not deleted successfully.');
             }

@@ -23,7 +23,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                     <div class="form-group">
                       <strong>{{ __('Supplier Contact Number') }}:</strong>
-                      {!! Form::number('supplier_phone', $supplier->supplier_phone, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'required')) !!}
+                      {!! Form::text('supplier_phone', $supplier->supplier_phone, array('placeholder' => 'Supplier Contact Number','class' => 'form-control', 'required')) !!}
                     </div>
                     </div>
 

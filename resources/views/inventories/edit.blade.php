@@ -4,7 +4,7 @@
 
 <div class="modal fade text-left" id="editInventoryModal{{$inventory->inventory_id}}" tabindex="-1" role="dialog"
      aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
@@ -20,6 +20,18 @@
                     {{ method_field('patch') }}
                     {{ csrf_field() }}
 
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                        <div class="form-group">
+                            <strong>{{ __('Supplier') }}:</strong>
+                            <select name="supplier_id" id="supplier_id" class="form-control">
+                                <option
+                                    value="{{$inventory->supplier_id}}">{{$inventory->supplier->supplier_name}}</option>
+                                @foreach(Supplier::all()->where('supplier_id', '<>', "$inventory->supplier_id") as $supplier)
+                                    <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                         <div class="form-group">
                             <strong>{{ __('Product') }}:</strong>
@@ -41,20 +53,16 @@
                         </div>
                     </div>
 
-                    <input type="text" hidden="true" name="user_id" value="{{Auth::id()}}">
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                        <div class="form-group">
-                            <strong>{{ __('Supplier') }}:</strong>
-                            <select name="supplier_id" id="supplier_id" class="form-control">
-                                <option
-                                    value="{{$inventory->supplier_id}}">{{$inventory->supplier->supplier_name}}</option>
-                                @foreach(Supplier::all()->where('supplier_id', '<>', "$inventory->supplier_id") as $supplier)
-                                    <option value="{{$supplier->supplier_id}}">{{$supplier->supplier_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>{{ __('Expiration Date') }}:</strong>
+                        {!! Form::date('inventory_expiry', $inventory->inventory_expiry, array('class' => 'form-control')) !!}
                     </div>
+                </div>
+                <input class="visually-hidden" name="user_id" value="{{Auth::id()}}">
+
+
             </div>
 
             <div class="modal-footer">
