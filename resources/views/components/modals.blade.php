@@ -37,7 +37,7 @@
               <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
                   <div class="form-group">
                       <strong>{{ __('Password') }}:</strong>
-                      {!! Form::text('user_password', null, array('placeholder' => 'Enter Password','class' => 'form-control')) !!}
+                      {!! Form::password('user_password', array('placeholder' => 'Enter Password', 'class' => 'form-control')) !!}
                   </div>
               </div>
                 <div class="modal-footer">
