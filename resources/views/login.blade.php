@@ -45,7 +45,7 @@
             width: 60%;
             margin: auto;
             box-shadow: 0 1px 15px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.4);
-            margin-top: 8%;
+            margin-top: 16%;
             margin-bottom: 5%;
             border-radius: 10px;
         }
