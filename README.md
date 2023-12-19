@@ -39,7 +39,7 @@ A point of sale system made by students dedicated for Jun-Ianez Products Trading
     php artisan serve
     ```
 2. Visit `localhost:8000` in your browser
-3. Credentials for admin: username: `admin` password:`admin`; for cashier: username:`cashier` password:`cashier`
+3. Credentials for admin: username: `admin` password:`admin`; for cashier: username:`cashier` password:`123`
 
 ## Screenshots
 **Login**
