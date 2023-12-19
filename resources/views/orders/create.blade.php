@@ -36,7 +36,7 @@
                             </td>
 
                             <td>
-                                <input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>
+                                <input type="text" class="form-control product_expiry shadow-none" name="product_expiry[]" id="product_expiry" readonly>
                                 <input type="text" class="form-control inventory_id" name="inventory_id[]" id="inventory_id" hidden="true">
                             </td>
 
@@ -61,7 +61,7 @@
 
                     <div class="col-xs-6 col-sm-12 col-md-12 col-lg-4">
                         <h5 class="fw-bold">TOTAL: </h5>
-                        <input type="text" name="order_total" id="order_total" class="form-control order_total mb-3" value="0.00" readonly>
+                        <input type="text" name="order_total" id="order_total" class="form-control form-control-lg order_total mb-3 shadow-none" value="0.00" readonly>
                         <h5 class="fw-bold">Payment Method: </h5>
                         <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check payment_method" name="payment_method" id="payment_method1" autocomplete="off" value="Cash" checked>
@@ -103,7 +103,6 @@
                 headers: {
                     "X-CSRF-TOKEN": "{{csrf_token()}}"
                 }, success: function (response) {
-                    console.log(response)
                     populateProductOptions(response);
                 }, error: function (response) {
                     console.error(response);
@@ -138,7 +137,7 @@
                 let tr =
                     '<tr><td class="row-number">' + numRow + '</td>' +
                     '<td><select name="product_id[]" id="product_id" class="form-select product_id">' + product + '</select></td>' +
-                    '<td><input type="text" class="form-control product_expiry" name="product_expiry[]" id="product_expiry" readonly>' +
+                    '<td><input type="text" class="form-control product_expiry shadow-none" name="product_expiry[]" id="product_expiry" readonly>' +
                     '<input type="text" class="form-control inventory_id" name="inventory_id[]" id="inventory_id" hidden="true"></td>' +
                     '<td><input type="number" class="form-control product_quantity" name="product_quantity[]" id="product_quantity"></td>' +
                     '<td><input type="text" class="form-control product_price shadow-none" name="product_price[]" id="product_price" readonly></td>' +
@@ -190,7 +189,7 @@
                 tr.find('.inventory_id').val(inventory);
 
                 var qty = tr.find('.product_quantity').val() - 0;
-                var price = tr.find('.product_price').val() - 0;
+                price = tr.find('.product_price').val() - 0;
                 var total = qty * price;
                 tr.find('.total').val(total.toFixed(2));
                 totalAmount();
@@ -229,6 +228,8 @@
 
             $('#change').css('cursor', 'default');
             $('.total').css('cursor', 'default');
+            $('#order_total').css('cursor', 'default');
+            $('.product_expiry').css('cursor', 'default');
             $('.product_price').css('cursor', 'default');
         });
     </script>
