@@ -44,9 +44,9 @@ A point of sale system made by students dedicated for Jun-Ianez Products Trading
 ## Screenshots
 **Login**
 ![Login](screenshots/login.png)
-**Dasboard**
-![Dasboard 1](screenshots/dashboard1.png)
-![Dasboard 2](screenshots/dashboard2.png)
+**Dashboard**
+![Dashboard 1](screenshots/dashboard1.png)
+![Dashboard 2](screenshots/dashboard2.png)
 
 **Products**
 ![Products](screenshots/products.png)
