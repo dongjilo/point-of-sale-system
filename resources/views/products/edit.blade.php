@@ -2,7 +2,7 @@
     use App\Models\Category;use App\Models\Supplier;use App\Models\User;
 @endphp
     <div class="modal fade text-left" id="editProductModal{{$product->product_id}}" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
