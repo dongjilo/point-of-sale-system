@@ -15,6 +15,8 @@ A point of sale system made by students dedicated for Jun-Ianez Products Trading
 3. Install dependencies:
     ```bash
     composer install
+    ```
+    ```bash
     npm install
     ```
 4. Create a copy of the `.env-example` and rename it to `.env`:
