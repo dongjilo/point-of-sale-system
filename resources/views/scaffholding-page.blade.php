@@ -8,12 +8,13 @@
   <meta name="description" content="Jun-Ianez - Point of Sale System">
   <meta name="author" content="Group 8 - BSIT2D">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('fontawesome/css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('fontawesome/css/brands.css')}}">
+    <link rel="stylesheet" href="{{asset('fontawesome/css/solid.css')}}">
+
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('js/angular.min.js')}}"></script>
