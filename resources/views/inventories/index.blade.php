@@ -24,15 +24,15 @@
             <tbody>
             @foreach ($inventories as $inventory)
                 @php
-                    $isLowStock = $inventory->inventory_quantity <= 10;
+                    $isLowStock = $inventory->inventory_quantity <= 20;
                     $isNearExpiry = strtotime($inventory->inventory_expiry) < strtotime('+7 days');
                 @endphp
-                <tr class="{{ $isLowStock ? 'text-warning' : '' }} {{ $isNearExpiry ? 'text-danger' : '' }}">
+                <tr>
                     <td>{{$inventory->inventory_id}}</td>
                     <td>{{$inventory->supplier->supplier_name}}</td>
                     <td>{{$inventory->product->product_name}}</td>
-                    <td>{{$inventory->inventory_quantity}}</td>
-                    <td>{{$inventory->inventory_expiry}}</td>
+                    <td class="{{ $isLowStock ? 'text-warning' : '' }}">{{$inventory->inventory_quantity}}</td>
+                    <td class="{{ $isNearExpiry ? 'text-danger' : '' }}">{{$inventory->inventory_expiry}}</td>
                     <td>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#editInventoryModal{{$inventory->inventory_id}}" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil text-white"></i></a>
