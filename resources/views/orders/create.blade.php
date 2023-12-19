@@ -86,7 +86,7 @@
                         </div>
 
                         <a id="resetOrder" href="#" class="btn mt-3 btn-secondary"><i class="fa fa-fw fa-close"></i>Reset</a>
-                        <button type="submit" class="btn add mt-3 float-end"><i class="fa fa-fw fa-credit-card"></i>Checkout</button>
+                        <button type="submit" class="btn add mt-3 float-end"  onclick="return confirm('Confirm order and checkout?')"><i class="fa fa-fw fa-credit-card"></i>Checkout</button>
                     </div>
             </form>
         </div>

@@ -19,7 +19,7 @@
             <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal"></button>
           </div>
             <div class="modal-body">
-            <form action="/users_store" method="post" enctype="multipart/form-data">
+            <form action="/users" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
