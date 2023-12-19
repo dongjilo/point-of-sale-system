@@ -25,7 +25,7 @@ function populateChart(data) {
     data: {
       labels: data.map(item => monthAbbreviations[item.month - 1]),
       datasets: [{
-        label: "Profit",
+        label: "Sales",
         lineTension: 0.3,
         backgroundColor: "#00a63f",
         borderColor: "#00a63f",
